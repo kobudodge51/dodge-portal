@@ -1,4 +1,16 @@
 import Link from "next/link";
+import Timer from "./Timer";
+import { db, isConfigured } from "@/lib/supabase";
+
+async function totalViews() {
+  if (!isConfigured()) return 0;
+  try {
+    const { count } = await db().from("portal_pageviews").select("id", { count: "exact", head: true });
+    return count ?? 0;
+  } catch {
+    return 0;
+  }
+}
 
 export const SITE_NAME = "DODGE PORTAL";
 export const SITE_TAGLINE = "全国のドッジボール情報が集まる場所";
@@ -13,7 +25,8 @@ const NAV: { href: string; label: string; tone: Tone }[] = [
   { href: "/associations", label: "都道府県協会", tone: "ink" },
 ];
 
-export function Header() {
+export async function Header() {
+  const views = await totalViews();
   return (
     <header className="site-header">
       <div className="wrap header-inner">
@@ -23,6 +36,9 @@ export function Header() {
             DODGE<b>PORTAL</b>
           </span>
         </Link>
+        <div className="header-timer">
+          <Timer value={views} label="閲覧数" />
+        </div>
         <nav className="nav" aria-label="メインメニュー">
           {NAV.map((n) => (
             <Link key={n.href} href={n.href} className={`tone-${n.tone}`}>

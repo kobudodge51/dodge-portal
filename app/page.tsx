@@ -1,18 +1,17 @@
 import Link from "next/link";
 import { db, isConfigured, safeList } from "@/lib/supabase";
-import { EVENT_COLS, THREAD_COLS, TEAM_COLS, type EventRow, type ThreadRow, type ColumnRow, type TeamRow } from "@/lib/types";
-import { todayJST } from "@/lib/format";
+import { EVENT_COLS, THREAD_COLS, type EventRow, type ThreadRow, type ColumnRow } from "@/lib/types";
+import { todayJST, fmtDateShort, fmtDateTime } from "@/lib/format";
 import { BLOCKS, PREFECTURES } from "@/lib/prefectures";
-import { EventItem, ThreadItem, ColumnItem, TeamItem } from "@/components/Items";
-import Timer from "@/components/Timer";
+import { ThreadItem } from "@/components/Items";
 
 export const dynamic = "force-dynamic";
 
-async function count(table: string, hiddenFilter = true) {
+async function count(table: string, extra?: (q: any) => any) { // eslint-disable-line @typescript-eslint/no-explicit-any
   if (!isConfigured()) return 0;
   try {
     let q = db().from(table).select("id", { count: "exact", head: true });
-    if (hiddenFilter) q = q.eq("is_hidden", false);
+    q = extra ? extra(q) : q.eq("is_hidden", false);
     const { count } = await q;
     return count ?? 0;
   } catch {
@@ -20,147 +19,130 @@ async function count(table: string, hiddenFilter = true) {
   }
 }
 
-// コートの上に4つのボール。それぞれのコーナーへのリンクになっている
-function Court() {
-  const balls = [
-    { href: "/events", label: "大会予定", color: "var(--blue)", x: 150, y: 120 },
-    { href: "/teams", label: "登録チーム", color: "var(--teal)", x: 196, y: 206 },
-    { href: "/columns", label: "コラム", color: "var(--coral)", x: 360, y: 104 },
-    { href: "/board", label: "交流掲示板", color: "var(--saffron)", x: 392, y: 204 },
-  ];
-  return (
-    <svg className="court" viewBox="0 0 540 340" role="group" aria-label="サイトの主なコーナー">
-      <rect x="10" y="10" width="520" height="320" rx="18" fill="#fff" stroke="var(--line)" />
-      <g fill="none" stroke="var(--blue)" strokeWidth="2.5" opacity=".55">
-        <rect x="40" y="38" width="460" height="264" rx="2" />
-        <rect x="88" y="66" width="364" height="208" />
-        <line x1="270" y1="66" x2="270" y2="274" />
-        <line x1="40" y1="170" x2="88" y2="170" strokeDasharray="4 6" />
-        <line x1="452" y1="170" x2="500" y2="170" strokeDasharray="4 6" />
-      </g>
-      <rect x="89.5" y="67.5" width="179" height="205" fill="var(--blue-soft)" opacity=".55" />
-      <rect x="271.5" y="67.5" width="179" height="205" fill="var(--saffron-soft)" opacity=".55" />
-      {balls.map((b) => (
-        <a key={b.href} href={b.href} aria-label={b.label}>
-          <circle className="ball" cx={b.x} cy={b.y} r="30" fill={b.color} />
-          <path d={`M${b.x - 22} ${b.y - 12} Q${b.x} ${b.y + 6} ${b.x + 22} ${b.y - 12}`} stroke="#fff" strokeOpacity=".55" strokeWidth="2.5" fill="none" />
-          <path d={`M${b.x - 22} ${b.y + 14} Q${b.x} ${b.y - 4} ${b.x + 22} ${b.y + 14}`} stroke="#fff" strokeOpacity=".35" strokeWidth="2" fill="none" />
-          <circle cx={b.x - 10} cy={b.y - 12} r="6" fill="#fff" opacity=".35" />
-          <text x={b.x} y={b.y + 52} textAnchor="middle" fontSize="15" fill="var(--ink)">{b.label}</text>
-        </a>
-      ))}
-    </svg>
-  );
-}
-
 export default async function Home() {
   const today = todayJST();
-  const [events, threads, columns, teams, nEvents, nTeams, nThreads, nViews] = await Promise.all([
-    safeList<EventRow>(() => db().from("portal_events").select(EVENT_COLS).eq("is_hidden", false).gte("date_start", today).order("date_start").limit(6)),
-    safeList<ThreadRow>(() => db().from("portal_threads").select(THREAD_COLS).eq("is_hidden", false).order("last_activity_at", { ascending: false }).limit(6)),
-    safeList<ColumnRow>(() => db().from("portal_columns").select("*").eq("is_published", true).order("published_at", { ascending: false }).limit(3)),
-    safeList<TeamRow>(() => db().from("portal_teams").select(TEAM_COLS).eq("is_hidden", false).order("created_at", { ascending: false }).limit(6)),
-    count("portal_events"),
+  const [events, threads, columns, nEvents, nTeams, nThreads, nColumns] = await Promise.all([
+    safeList<EventRow>(() => db().from("portal_events").select(EVENT_COLS).eq("is_hidden", false).gte("date_start", today).order("date_start").limit(12)),
+    safeList<ThreadRow>(() => db().from("portal_threads").select(THREAD_COLS).eq("is_hidden", false).order("last_activity_at", { ascending: false }).limit(5)),
+    safeList<ColumnRow>(() => db().from("portal_columns").select("*").eq("is_published", true).order("published_at", { ascending: false }).limit(4)),
+    count("portal_events", (q) => q.eq("is_hidden", false).gte("date_start", today)),
     count("portal_teams"),
     count("portal_threads"),
-    count("portal_pageviews", false),
+    count("portal_columns", (q) => q.eq("is_published", true)),
   ]);
+
+  const gates = [
+    { href: "/events", name: "大会予定", num: nEvents, unit: "件 開催予定", tone: "blue" },
+    { href: "/teams", name: "登録チーム", num: nTeams, unit: "チーム", tone: "teal" },
+    { href: "/columns", name: "コラム", num: nColumns, unit: "本", tone: "coral" },
+    { href: "/board", name: "交流掲示板", num: nThreads, unit: "スレッド", tone: "saffron" },
+  ];
 
   return (
     <>
       <section className="hero">
-        <div className="wrap hero-inner">
+        <div className="hero-court" aria-hidden="true" />
+        <div className="wrap hero-inner hero-grid">
           <div>
-            <h1>
-              <span>全国のドッジボールを、</span>
-              <br />
-              <span>ひとつのコートに。</span>
+            <h1 className="hero-title">
+              <span>Dodge</span>
+              <span className="g">Portal</span>
             </h1>
-            <p className="hero-lead">大会予定、登録チーム、コラム、交流掲示板。47都道府県のドッジボール情報を、関わるみんなで集めていく場所です。</p>
-            <div className="page-head-action">
-              <Link href="/events" className="btn btn-primary">大会予定を見る</Link>
-              <Link href="/events/new" className="btn btn-ghost">大会を投稿する</Link>
-            </div>
-            <div className="hero-stats">
-              <div className="stat"><b>{nEvents}</b><span>掲載大会</span></div>
-              <div className="stat"><b>{nTeams}</b><span>登録チーム</span></div>
-              <div className="stat"><b>{nThreads}</b><span>スレッド</span></div>
-              <div className="stat"><b>47</b><span>都道府県</span></div>
-            </div>
+            <p className="hero-sub"><span>全国のドッジボールを、</span><span>ひとつのコートに。</span></p>
+            <p className="hero-lead">大会予定・登録チーム・コラム・交流掲示板。47都道府県の情報が、ここに集まります。</p>
           </div>
-          <div className="hero-visual">
-            <Court />
-            <div className="hero-timer">
-              <Timer value={nViews} digits={6} label="これまでの閲覧数" />
-            </div>
+          <nav className="gates" aria-label="コーナー">
+            {gates.map((g) => (
+              <Link key={g.href} href={g.href} className={`gate tone-${g.tone}`}>
+                <span className="gate-name">{g.name}</span>
+                <span><span className="gate-num">{g.num}</span><span className="gate-unit">{g.unit}</span></span>
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </section>
+
+      <section className="fixtures" aria-label="これからの大会">
+        <div className="wrap fixtures-inner">
+          <span className="fixtures-label">次の大会</span>
+          <div className="rail">
+            {events.length ? (
+              events.map((e) => {
+                const d = fmtDateShort(e.date_start);
+                return (
+                  <Link key={e.id} href={`/events/${e.id}`} className="fixture">
+                    <span className="fixture-date">{d.md}<small>{d.w}曜</small></span>
+                    <span>
+                      <span className="fixture-title">{e.title}</span>
+                      <span className="fixture-meta">{e.prefecture}{e.venue ? `・${e.venue}` : ""}</span>
+                    </span>
+                  </Link>
+                );
+              })
+            ) : (
+              <Link href="/events/new" className="fixture" style={{ width: 300 }}>
+                <span className="fixture-date">+<small>投稿</small></span>
+                <span>
+                  <span className="fixture-title">開催予定の大会を投稿してください</span>
+                  <span className="fixture-meta">主催者・協会の発表済みの大会</span>
+                </span>
+              </Link>
+            )}
           </div>
         </div>
       </section>
 
-      <div className="wrap bento">
-        <section className="tile tile-wide tone-blue">
-          <div className="section-head">
-            <h2>これからの大会</h2>
-            <Link href="/events">一覧を見る</Link>
-          </div>
-          {events.length ? (
-            <ul className="list">{events.map((e) => <EventItem key={e.id} e={e} />)}</ul>
-          ) : (
-            <p className="empty">まだ大会予定がありません。<Link href="/events/new">大会を投稿する</Link></p>
-          )}
-        </section>
-
-        <section className="tile tile-narrow tone-saffron">
+      <div className="wrap home-grid">
+        <section className="panel tone-saffron">
           <div className="section-head">
             <h2>交流掲示板</h2>
-            <Link href="/board">一覧を見る</Link>
+            <Link href="/board/new">話題を立てる</Link>
           </div>
           {threads.length ? (
             <ul className="list">{threads.map((t) => <ThreadItem key={t.id} t={t} />)}</ul>
           ) : (
-            <p className="empty">まだスレッドがありません。<Link href="/board/new">最初の話題を立てる</Link></p>
+            <p className="empty">まだスレッドがありません。最初の話題を立ててみましょう。</p>
           )}
         </section>
 
-        <section className="tile tile-full tile-soft tone-coral">
+        <section className="panel tone-coral">
           <div className="section-head">
-            <h2>ドッジボールコラム</h2>
-            <Link href="/columns">一覧を見る</Link>
+            <h2>コラム</h2>
+            <Link href="/columns">すべて見る</Link>
           </div>
           {columns.length ? (
-            <div className="card-grid">{columns.map((c) => <ColumnItem key={c.id} c={c} />)}</div>
+            <ul className="list">
+              {columns.map((c) => (
+                <li key={c.id}>
+                  <Link href={`/columns/${c.id}`} className="thread-row">
+                    <p className="row-title">{c.title}</p>
+                    <div className="row-meta"><span>{c.author}</span><span>{c.published_at ? fmtDateTime(c.published_at).split(" ")[0] : ""}</span></div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           ) : (
-            <p className="empty">コラムは準備中です。<Link href="/columns/submit">コラムを寄稿する</Link></p>
+            <p className="empty">コラムは準備中です。<Link href="/columns/submit">寄稿する</Link></p>
           )}
         </section>
 
-        <section className="tile tile-full tone-teal">
+        <section className="panel panel-find tone-teal">
           <div className="section-head">
-            <h2>登録チーム</h2>
-            <Link href="/teams">一覧を見る</Link>
+            <h2>地域から探す</h2>
+            <Link href="/associations">協会一覧</Link>
           </div>
-          {teams.length ? (
-            <div className="card-grid">{teams.map((t) => <TeamItem key={t.id} t={t} />)}</div>
-          ) : (
-            <p className="empty">登録チームの情報は準備中です。</p>
-          )}
-        </section>
-
-        <section className="tile tile-full tone-ink">
-          <div className="section-head">
-            <h2>都道府県から探す</h2>
-            <Link href="/associations">協会一覧を見る</Link>
-          </div>
-          {BLOCKS.map((b) => (
-            <div key={b}>
-              <p className="pref-block-label">{b}</p>
-              <div className="pref-grid">
-                {PREFECTURES.filter((p) => p.block === b).map((p) => (
-                  <Link key={p.code} href={`/pref/${p.code}`}>{p.name}</Link>
-                ))}
-              </div>
-            </div>
-          ))}
+          <form action="/pref/go" method="get">
+            <label className="small muted" htmlFor="pref-go">都道府県を選ぶと、その地域の大会・チーム・話題をまとめて見られます。</label>
+            <select id="pref-go" name="code" required defaultValue="" style={{ marginTop: 8 }}>
+              <option value="" disabled>都道府県を選ぶ</option>
+              {BLOCKS.map((b) => (
+                <optgroup key={b} label={b}>
+                  {PREFECTURES.filter((p) => p.block === b).map((p) => <option key={p.code} value={p.code}>{p.name}</option>)}
+                </optgroup>
+              ))}
+            </select>
+            <button className="btn btn-primary btn-sm" type="submit" style={{ width: "100%" }}>この地域を見る</button>
+          </form>
         </section>
       </div>
     </>

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "全国の都道府県ドッジボール協会、大会予定、登録チーム、ドッジボールコラム、交流掲示板をまとめたドッジボールのポータルサイトです。",
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#ffffff" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#070919" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Barlow+Condensed:wght@500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=BIZ+UDPGothic:wght@400;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap"
         />
       </head>
       <body>

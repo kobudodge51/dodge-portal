@@ -1,0 +1,66 @@
+import Link from "next/link";
+import type { Metadata } from "next";
+import { db, isConfigured, safeList } from "@/lib/supabase";
+import { TEAM_COLS, type TeamRow } from "@/lib/types";
+import { PREFECTURES, TEAM_CATEGORIES } from "@/lib/prefectures";
+import { JDBA_URL } from "@/lib/associations";
+import { TeamItem } from "@/components/Items";
+import { PageHead, NotConnected } from "@/components/Layout";
+import PrefSelect from "@/components/PrefSelect";
+
+export const dynamic = "force-dynamic";
+export const metadata: Metadata = { title: "登録チーム一覧" };
+
+type SP = Promise<{ pref?: string; cat?: string }>;
+
+export default async function TeamsPage({ searchParams }: { searchParams: SP }) {
+  const sp = await searchParams;
+  const teams = await safeList<TeamRow>(() => {
+    let q = db().from("portal_teams").select(TEAM_COLS).eq("is_hidden", false);
+    if (sp.pref) q = q.eq("prefecture", sp.pref);
+    if (sp.cat) q = q.eq("category", sp.cat);
+    return q.order("team_name").limit(2000);
+  });
+
+  const order = PREFECTURES.map((p) => p.name);
+  const groups = new Map<string, TeamRow[]>();
+  for (const t of teams) groups.set(t.prefecture, [...(groups.get(t.prefecture) ?? []), t]);
+  const sorted = [...groups.entries()].sort((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]));
+
+  return (
+    <>
+      <PageHead
+        kicker="TEAMS"
+        title="登録チーム一覧"
+        lead="日本ドッジボール協会の公式サイトに掲載されている登録チームを、都道府県別にまとめています。"
+      />
+      <div className="wrap section">
+        {!isConfigured() && <NotConnected />}
+        <form className="filters" method="get">
+          <label>
+            都道府県
+            <PrefSelect name="pref" required={false} defaultValue={sp.pref ?? ""} emptyLabel="すべて" />
+          </label>
+          <label>
+            カテゴリ
+            <select name="cat" defaultValue={sp.cat ?? ""}>
+              <option value="">すべて</option>
+              {TEAM_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+            </select>
+          </label>
+          <button className="btn btn-outline btn-sm" type="submit">絞り込む</button>
+        </form>
+        {teams.length === 0 && <p className="empty">登録チームの情報は準備中です。</p>}
+        {sorted.map(([pref, list]) => (
+          <section key={pref} style={{ marginBottom: 28 }}>
+            <h2>{pref}<span className="small muted" style={{ fontFamily: "var(--body)", marginLeft: 8 }}>{list.length}チーム</span></h2>
+            <div className="card-grid">{list.map((t) => <TeamItem key={t.id} t={t} />)}</div>
+          </section>
+        ))}
+        <p className="small muted">
+          ※掲載内容は<a href={JDBA_URL} target="_blank" rel="noopener noreferrer">日本ドッジボール協会</a>の公式サイトに掲載されている情報をもとにしています。最新の登録状況は協会の発表をご確認ください。掲載内容の誤りは<Link href="/contact">お問い合わせ</Link>からお知らせください。
+        </p>
+      </div>
+    </>
+  );
+}

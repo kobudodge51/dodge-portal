@@ -201,3 +201,12 @@ textarea { min-height: 140px; resize: vertical; }
 
 .empty { color: var(--muted); padding: 20px 0; }
 .banner-ok { background: #e8f7f0; color: var(--ok); padding: 10px 14px; border-radius: 10px; margin-bottom: 16px; font-weight: 700; }
+
+/* ───── insights ───── */
+.insight-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.insight { border: 1px solid var(--line); border-left: 5px solid var(--line); border-radius: 10px; padding: 10px 12px; background: #fff; }
+.insight-good { border-left-color: var(--ok); }
+.insight-warn { border-left-color: var(--ball); background: #fff8f4; }
+.insight-label { font-size: .78rem; color: var(--muted); margin: 0; font-weight: 700; }
+.insight-value { font-family: var(--display); font-size: 1.25rem; margin: 2px 0 4px; line-height: 1.3; word-break: break-word; }
+.insight-note { font-size: .8rem; color: var(--ink-2); margin: 0; line-height: 1.55; }

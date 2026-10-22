@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Header, Footer, SITE_NAME, SITE_TAGLINE } from "@/components/Layout";
+import Tracker from "@/components/Tracker";
 
 export const metadata: Metadata = {
   title: { default: `${SITE_NAME}｜${SITE_TAGLINE}`, template: `%s｜${SITE_NAME}` },
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main>{children}</main>
         <Footer />
+        <Tracker />
       </body>
     </html>
   );

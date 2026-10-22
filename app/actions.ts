@@ -23,16 +23,48 @@ function commonPoster(form: FormData) {
   return { poster_name: name, delete_key_hash: key ? hashDeleteKey(key) : null };
 }
 
+// 弾かれた投稿を記録する（管理者のインサイト・端末管理で使う）
+async function logRejected(ipHash: string, reason: string) {
+  try {
+    await db().from("portal_post_logs").insert({ ip_hash: ipHash, kind: `rejected:${reason}` });
+  } catch {
+    /* 記録失敗は無視 */
+  }
+}
+
+async function isBlocked(ipHash: string) {
+  try {
+    const { data } = await db().from("portal_blocks").select("ip_hash").eq("ip_hash", ipHash).maybeSingle();
+    return Boolean(data);
+  } catch {
+    return false;
+  }
+}
+
 async function guard(form: FormData, kind: string, ...texts: string[]): Promise<{ error: string } | { ipHash: string }> {
   const nr = notReady();
   if (nr) return { error: nr.error! };
-  if (isBot(form)) return { error: "投稿できませんでした。" };
-  if (form.get("agree") !== "on") return { error: "利用規約と投稿ルールへの同意が必要です。" };
-  const c = checkText(...texts);
-  if (!c.ok) return { error: c.error };
   const ipHash = await getIpHash();
+  if (isBot(form)) {
+    await logRejected(ipHash, "bot");
+    return { error: "投稿できませんでした。" };
+  }
+  if (form.get("agree") !== "on") return { error: "利用規約と投稿ルールへの同意が必要です。" };
+  if (await isBlocked(ipHash)) {
+    await logRejected(ipHash, "blocked");
+    return { error: "この端末からは現在投稿できません。お心当たりがない場合はお問い合わせください。" };
+  }
+  const c = checkText(...texts);
+  if (!c.ok) {
+    const reason = /メール|電話/.test(c.error) ? "contact" : /リンク/.test(c.error) ? "links" : "ng";
+    await logRejected(ipHash, reason);
+    return { error: c.error };
+  }
   const r = await rateLimit(ipHash, kind);
-  if (!r.ok) return { error: r.error };
+  if (!r.ok) {
+    await logRejected(ipHash, "rate");
+    return { error: r.error };
+  }
   return { ipHash };
 }
 
@@ -284,4 +316,31 @@ export async function adminSaveColumn(_: FormState, form: FormData): Promise<For
   }
   revalidatePath("/columns");
   redirect("/admin?tab=columns");
+}
+
+// ───────── 端末の管理 ─────────
+export async function adminBlock(form: FormData) {
+  await requireAdmin();
+  const ip_hash = str(form, "ip_hash", 64);
+  const reason = str(form, "reason", 100) || "管理者による投稿停止";
+  if (!ip_hash) return;
+  await db().from("portal_blocks").upsert({ ip_hash, reason });
+  revalidatePath("/admin");
+}
+
+export async function adminUnblock(form: FormData) {
+  await requireAdmin();
+  const ip_hash = str(form, "ip_hash", 64);
+  if (!ip_hash) return;
+  await db().from("portal_blocks").delete().eq("ip_hash", ip_hash);
+  revalidatePath("/admin");
+}
+
+export async function adminHideDevice(form: FormData) {
+  await requireAdmin();
+  const ip_hash = str(form, "ip_hash", 64);
+  if (!ip_hash) return;
+  const supa = db();
+  await Promise.all(["portal_events", "portal_threads", "portal_replies"].map((t) => supa.from(t).update({ is_hidden: true }).eq("ip_hash", ip_hash)));
+  revalidatePath("/admin");
 }

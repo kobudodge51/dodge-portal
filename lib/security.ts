@@ -63,9 +63,9 @@ export async function rateLimit(ipHash: string, kind: string): Promise<CheckResu
   const supa = db();
   const tenMin = new Date(Date.now() - 10 * 60 * 1000).toISOString();
   const oneDay = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-  const { count: c10 } = await supa.from("portal_post_logs").select("id", { count: "exact", head: true }).eq("ip_hash", ipHash).gte("created_at", tenMin);
+  const { count: c10 } = await supa.from("portal_post_logs").select("id", { count: "exact", head: true }).eq("ip_hash", ipHash).not("kind", "like", "rejected%").gte("created_at", tenMin);
   if ((c10 ?? 0) >= 5) return { ok: false, error: "短時間に投稿が集中しています。10分ほど時間をおいてから投稿してください。" };
-  const { count: cDay } = await supa.from("portal_post_logs").select("id", { count: "exact", head: true }).eq("ip_hash", ipHash).gte("created_at", oneDay);
+  const { count: cDay } = await supa.from("portal_post_logs").select("id", { count: "exact", head: true }).eq("ip_hash", ipHash).not("kind", "like", "rejected%").gte("created_at", oneDay);
   if ((cDay ?? 0) >= 30) return { ok: false, error: "本日の投稿上限に達しました。明日以降に投稿してください。" };
   await supa.from("portal_post_logs").insert({ ip_hash: ipHash, kind });
   return { ok: true };

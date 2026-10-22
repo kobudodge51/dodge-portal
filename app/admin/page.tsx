@@ -8,12 +8,16 @@ import PrefSelect from "@/components/PrefSelect";
 import { TEAM_CATEGORIES } from "@/lib/prefectures";
 import ActionForm from "@/components/ActionForm";
 import ConfirmButton from "@/components/ConfirmButton";
+import InsightsView from "./InsightsView";
+import DevicesView from "./DevicesView";
 import { PageHead, NotConnected } from "@/components/Layout";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "管理者ページ", robots: { index: false, follow: false } };
 
 const TABS = [
+  { key: "insights", label: "インサイト" },
+  { key: "devices", label: "端末" },
   { key: "reports", label: "通報" },
   { key: "events", label: "大会予定" },
   { key: "teams", label: "登録チーム" },
@@ -64,7 +68,7 @@ function summary(table: string, r: Row) {
 
 const VIEW: Record<string, string> = { events: "/events/", teams: "/teams/", threads: "/board/" };
 
-export default async function AdminPage({ searchParams }: { searchParams: Promise<{ tab?: string; edit?: string }> }) {
+export default async function AdminPage({ searchParams }: { searchParams: Promise<{ tab?: string; edit?: string; show?: string }> }) {
   if (!(await isAdmin())) {
     return (
       <>
@@ -82,10 +86,12 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   }
 
   const sp = await searchParams;
-  const tab = TABS.some((t) => t.key === sp.tab) ? sp.tab! : "reports";
+  const tab = TABS.some((t) => t.key === sp.tab) ? sp.tab! : "insights";
 
   let rows: Row[] = [];
-  if (tab === "reports") {
+  if (tab === "insights" || tab === "devices") {
+    rows = [];
+  } else if (tab === "reports") {
     rows = await safeList<Row>(() => db().from("portal_reports").select("*").eq("is_resolved", false).order("created_at", { ascending: false }).limit(200));
   } else if (tab === "contacts") {
     rows = await safeList<Row>(() => db().from("portal_contacts").select("*").order("created_at", { ascending: false }).limit(200));
@@ -109,6 +115,9 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
             <Link key={t.key} href={`/admin?tab=${t.key}`} className={t.key === tab ? "chip on" : "chip"}>{t.label}</Link>
           ))}
         </div>
+
+        {tab === "insights" && <InsightsView />}
+        {tab === "devices" && <DevicesView show={sp.show === "all" || sp.show === "blocked" ? sp.show : ""} />}
 
         {tab === "reports" && (
           <div className="table-scroll">

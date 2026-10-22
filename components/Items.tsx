@@ -59,7 +59,7 @@ export function ThreadItem({ t }: { t: ThreadRow }) {
 
 export function ColumnItem({ c }: { c: ColumnRow }) {
   return (
-    <Link href={`/columns/${c.id}`} className="card">
+    <Link href={`/columns/${c.id}`} className="card column-card">
       <p className="small muted" style={{ margin: 0 }}>{c.published_at ? fmtDateTime(c.published_at).split(" ")[0] : ""}　{c.author}</p>
       <h3 style={{ marginTop: 4 }}>{c.title}</h3>
       <p className="small muted" style={{ margin: 0 }}>{excerpt(c.body, 70)}</p>

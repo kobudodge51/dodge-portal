@@ -10,7 +10,9 @@ export function isConfigured() {
 export function db(): SupabaseClient {
   if (!isConfigured()) throw new Error("Supabaseの設定（SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY）がありません");
   if (!client) {
-    client = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
+    // 「https://xxx.supabase.co/rest/v1/」のように後ろに余計な部分が付いていても動くようにする
+    const url = new URL(process.env.SUPABASE_URL!.trim()).origin;
+    client = createClient(url, process.env.SUPABASE_SERVICE_ROLE_KEY!.trim(), {
       auth: { persistSession: false },
     });
   }

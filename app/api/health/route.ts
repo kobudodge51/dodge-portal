@@ -40,5 +40,5 @@ export async function GET(req: Request) {
       }
     }
   }
-  return NextResponse.json(result);
+  return new NextResponse(JSON.stringify(result, null, 2), { headers: { "content-type": "application/json; charset=utf-8" } });
 }

@@ -65,7 +65,7 @@ export async function createEvent(_: FormState, form: FormData): Promise<FormSta
     .single();
   if (error || !data) {
     console.error("insert failed", error);
-    return { error: "保存に失敗しました。時間をおいて再度お試しください。" };
+    return { error: `保存に失敗しました。時間をおいて再度お試しください。（${error?.code ?? "no-data"}）` };
   }
   revalidatePath("/");
   redirect(`/events/${data.id}?posted=1`);
@@ -115,7 +115,7 @@ export async function createThread(_: FormState, form: FormData): Promise<FormSt
     .single();
   if (error || !data) {
     console.error("insert failed", error);
-    return { error: "保存に失敗しました。時間をおいて再度お試しください。" };
+    return { error: `保存に失敗しました。時間をおいて再度お試しください。（${error?.code ?? "no-data"}）` };
   }
   redirect(`/board/${data.id}`);
 }

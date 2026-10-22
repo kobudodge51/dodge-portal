@@ -19,7 +19,8 @@ function keyKind(key: string | undefined) {
   return "不明";
 }
 
-export async function GET() {
+export async function GET(req: Request) {
+  const write = new URL(req.url).searchParams.get("write") === "1";
   const result: Record<string, unknown> = {
     configured: isConfigured(),
     url_host: process.env.SUPABASE_URL ? new URL(process.env.SUPABASE_URL).host.split(".")[0].slice(0, 4) + "…" : "未設定",
@@ -30,6 +31,14 @@ export async function GET() {
   if (isConfigured()) {
     const { error } = await db().from("portal_threads").select("id", { head: true, count: "exact" });
     result.tables = error ? `エラー: ${error.message}` : "OK";
+    if (write) {
+      const ins = await db().from("portal_threads").insert({ title: "health", category: "その他", body: "health check", is_hidden: true }).select("id").single();
+      if (ins.error) result.write = `エラー: ${ins.error.code ?? ""} ${ins.error.message} ${ins.error.details ?? ""} ${ins.error.hint ?? ""}`;
+      else {
+        await db().from("portal_threads").delete().eq("id", ins.data.id);
+        result.write = "OK";
+      }
+    }
   }
   return NextResponse.json(result);
 }

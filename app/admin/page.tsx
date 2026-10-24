@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { isAdmin } from "@/lib/admin";
 import { db, isConfigured, safeList, safeOne } from "@/lib/supabase";
 import { fmtDateTime, excerpt } from "@/lib/format";
-import { adminLogin, adminLogout, adminSet, adminDelete, adminSaveColumn, adminAddTeam } from "@/app/actions";
+import { adminLogin, adminLogout, adminSet, adminDelete, adminSaveColumn, adminAddTeam, adminImportEvents } from "@/app/actions";
 import PrefSelect from "@/components/PrefSelect";
 import { TEAM_CATEGORIES } from "@/lib/prefectures";
 import ActionForm from "@/components/ActionForm";
@@ -140,6 +140,14 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
             </table>
             {rows.length === 0 && <p className="empty">未対応の通報はありません。</p>}
             <p className="small muted">通報された投稿は各タブで「通報数」が表示されます。非表示中の投稿は「公開に戻す」で再公開できます（通報数はリセットされます）。</p>
+          </div>
+        )}
+
+        {tab === "events" && (
+          <div className="panel" style={{ marginBottom: 20, maxWidth: 680 }}>
+            <h3 style={{ marginTop: 0 }}>協会HPから集めた大会予定を取り込む</h3>
+            <p className="small muted">各都道府県協会の年間予定から集めた大会を、まとめて大会予定に追加します。同じ日付・同じ大会名のものはすでに登録済みとして飛ばすので、何度押しても重複しません。</p>
+            <ActionForm action={adminImportEvents} submitLabel="取り込む" />
           </div>
         )}
 

@@ -344,3 +344,25 @@ export async function adminHideDevice(form: FormData) {
   await Promise.all(["portal_events", "portal_threads", "portal_replies"].map((t) => supa.from(t).update({ is_hidden: true }).eq("ip_hash", ip_hash)));
   revalidatePath("/admin");
 }
+
+// ───────── 協会HPから集めた大会予定の取り込み ─────────
+export async function adminImportEvents(_: FormState): Promise<FormState> {
+  await requireAdmin();
+  const list = (await import("@/data/events-import.json")).default as {
+    date_start: string; title: string; prefecture: string; venue: string; category: string; organizer: string; url: string; description: string;
+  }[];
+  const supa = db();
+  const { data: existing, error: e1 } = await supa.from("portal_events").select("title,date_start").gte("date_start", "2026-10-01").limit(5000);
+  if (e1) return { error: "取り込みに失敗しました：" + e1.message };
+  const have = new Set((existing ?? []).map((r) => `${r.date_start}|${r.title}`));
+  const rows = list
+    .filter((e) => !have.has(`${e.date_start}|${e.title}`))
+    .map((e) => ({ ...e, category: EVENT_CATEGORIES.includes(e.category) ? e.category : "その他", poster_name: "運営（協会HPより）", is_verified: true }));
+  if (rows.length === 0) return { ok: true, message: `新しく追加する大会はありませんでした（全${list.length}件とも登録済み）。` };
+  const { error } = await supa.from("portal_events").insert(rows);
+  if (error) return { error: "取り込みに失敗しました：" + error.message };
+  revalidatePath("/");
+  revalidatePath("/events");
+  revalidatePath("/admin");
+  return { ok: true, message: `${rows.length}件の大会を追加しました（登録済みの${list.length - rows.length}件はスキップ）。` };
+}

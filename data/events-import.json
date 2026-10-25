@@ -1,6 +1,16 @@
 [
  {
   "date_start": "2026-04-05",
+  "title": "U-15・シニア ドッジボールフェスティバル",
+  "prefecture": "北海道",
+  "venue": "野幌総合運動公園体育館",
+  "category": "中学生,ファイター,ガールズ",
+  "organizer": "北海道ドッジボール協会",
+  "url": "http://www.hdba.server-shared.com/nittei.html",
+  "description": null
+ },
+ {
+  "date_start": "2026-04-05",
   "title": "東京都新人戦",
   "prefecture": "東京都",
   "venue": "桐ヶ丘体育館",
@@ -18,6 +28,16 @@
   "organizer": "愛知県ドッジボール協会",
   "url": "https://www.aichidba.org/%E5%B9%B4%E9%96%93%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB/",
   "description": "出典：愛知県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-04-11",
+  "title": "開倫ユネスコ杯国際親善大会",
+  "prefecture": "栃木県",
+  "venue": "日環アリーナ栃木",
+  "category": null,
+  "organizer": "栃木県ドッジボール協会",
+  "url": "https://sites.google.com/view/tdba/%E5%B9%B4%E9%96%93%E4%BA%88%E5%AE%9A",
+  "description": "日程：4月11日〜12日"
  },
  {
   "date_start": "2026-04-12",
@@ -81,6 +101,16 @@
  },
  {
   "date_start": "2026-04-26",
+  "title": "第12回スプリングカップ",
+  "prefecture": "山口県",
+  "venue": "山口県立下関武道館",
+  "category": null,
+  "organizer": "山口県ドッジボール協会",
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
+ },
+ {
+  "date_start": "2026-04-26",
   "title": "第20回 会長杯",
   "prefecture": "茨城県",
   "venue": "アダストリアみとアリーナ",
@@ -98,6 +128,16 @@
   "organizer": "長野市ドッジボール協会",
   "url": "https://dodge.upper.jp/schedule.html",
   "description": "出典：長野県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-04-29",
+  "title": "第18回沖縄県ドッジボール新人戦大会",
+  "prefecture": "沖縄県",
+  "venue": "西崎総合体育館",
+  "category": null,
+  "organizer": "沖縄県ドッジボール協会",
+  "url": "https://okinawadodgeballassociation.jimdofree.com/",
+  "description": null
  },
  {
   "date_start": "2026-05-03",
@@ -190,6 +230,26 @@
   "description": "出典：大阪府ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
  },
  {
+  "date_start": "2026-05-06",
+  "title": "第20回よっしゃこいカップ・第16回YOSAKOI CUP",
+  "prefecture": "高知県",
+  "venue": "高知県立青少年センター",
+  "category": "オフィシャル,ファイター",
+  "organizer": "高知県ドッジボール協会",
+  "url": "https://sites.google.com/view/kochidodge/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/%E5%A4%A7%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB",
+  "description": null
+ },
+ {
+  "date_start": "2026-05-09",
+  "title": "第6回のじぎくカップ（ジュニア新人戦ドッジボール大会）",
+  "prefecture": "兵庫県",
+  "venue": "イナホール（猪名川町立文化体育館）",
+  "category": "ジュニア",
+  "organizer": "兵庫県ドッジボール協会",
+  "url": "http://hyogododge.xrea.jp/tournament.html",
+  "description": null
+ },
+ {
   "date_start": "2026-05-09",
   "title": "尾張クラウンズカップ2026",
   "prefecture": "愛知県",
@@ -250,6 +310,26 @@
   "description": "出典：三重県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
  },
  {
+  "date_start": "2026-05-17",
+  "title": "第20回兵庫県新人戦ドッジボール大会",
+  "prefecture": "兵庫県",
+  "venue": "兵庫県立文化体育館",
+  "category": "オフィシャル",
+  "organizer": "兵庫県ドッジボール協会",
+  "url": "http://hyogododge.xrea.jp/tournament.html",
+  "description": null
+ },
+ {
+  "date_start": "2026-05-17",
+  "title": "2026ドッジフェスinつるが",
+  "prefecture": "福井県",
+  "venue": "敦賀市総合運動公園体育館",
+  "category": null,
+  "organizer": "福井県ドッジボール協会",
+  "url": "http://kore.mitene.or.jp/~fdba/schedule.html",
+  "description": null
+ },
+ {
   "date_start": "2026-05-23",
   "title": "SAGAMIジュニアカップ2026 First",
   "prefecture": "神奈川県",
@@ -258,6 +338,16 @@
   "organizer": "神奈川県ドッジボール協会",
   "url": "https://kdba.jp/sche.html",
   "description": "出典：神奈川県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-05-24",
+  "title": "こうのとりカップ2026（シニア／シニア女子）",
+  "prefecture": "兵庫県",
+  "venue": "三田市親和学園駒ヶ谷体育館",
+  "category": "ファイター,ガールズ",
+  "organizer": "兵庫県ドッジボール協会",
+  "url": "http://hyogododge.xrea.jp/tournament.html",
+  "description": null
  },
  {
   "date_start": "2026-05-24",
@@ -350,6 +440,26 @@
   "description": "出典：茨城県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
  },
  {
+  "date_start": "2026-06-07",
+  "title": "第21回さるぼぼカップin高山",
+  "prefecture": "岐阜県",
+  "venue": "飛騨高山ビッグアリーナ",
+  "category": null,
+  "organizer": "岐阜県ドッジボール協会",
+  "url": "https://sites.google.com/view/jdba-gifudodge/%E5%B9%B4%E9%96%93%E3%81%AE%E5%A4%A7%E4%BC%9A%E4%BA%88%E5%AE%9A",
+  "description": null
+ },
+ {
+  "date_start": "2026-06-07",
+  "title": "福岡県小学生ドッジボール新人戦",
+  "prefecture": "福岡県",
+  "venue": "岡垣サンリーアイ",
+  "category": null,
+  "organizer": "福岡県ドッジボール協会",
+  "url": "https://jdba-fukuoka.jp/",
+  "description": null
+ },
+ {
   "date_start": "2026-06-13",
   "title": "第35回 夏の全国小学生ドッジボール選手権 愛知県予選",
   "prefecture": "愛知県",
@@ -430,6 +540,36 @@
   "description": "出典：長野県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
  },
  {
+  "date_start": "2026-06-21",
+  "title": "第35回夏の全国小学生ドッジボール選手権 高知県大会",
+  "prefecture": "高知県",
+  "venue": "南国市スポーツセンター",
+  "category": "オフィシャル",
+  "organizer": "高知県ドッジボール協会",
+  "url": "https://sites.google.com/view/kochidodge/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/%E5%A4%A7%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB",
+  "description": null
+ },
+ {
+  "date_start": "2026-06-23",
+  "title": "第35回夏の全国小学生ドッジボール選手権 沖縄県大会",
+  "prefecture": "沖縄県",
+  "venue": "那覇市民体育館",
+  "category": "オフィシャル",
+  "organizer": "沖縄県ドッジボール協会",
+  "url": "https://okinawadodgeballassociation.jimdofree.com/",
+  "description": null
+ },
+ {
+  "date_start": "2026-06-27",
+  "title": "フレッシュカップ",
+  "prefecture": "岐阜県",
+  "venue": "池田町総合体育館",
+  "category": null,
+  "organizer": "フレッシュカップ実行委員会",
+  "url": "https://sites.google.com/view/jdba-gifudodge/%E5%B9%B4%E9%96%93%E3%81%AE%E5%A4%A7%E4%BC%9A%E4%BA%88%E5%AE%9A",
+  "description": null
+ },
+ {
   "date_start": "2026-06-27",
   "title": "フジカップ 第35回 夏の全国小学生ドッジボール選手権 愛媛県予選",
   "prefecture": "愛媛県",
@@ -451,6 +591,16 @@
  },
  {
   "date_start": "2026-06-28",
+  "title": "江別市夏季ドッジボール大会",
+  "prefecture": "北海道",
+  "venue": "上江別小学校体育館",
+  "category": null,
+  "organizer": "スーパーダイヤモンズ",
+  "url": "http://www.hdba.server-shared.com/nittei.html",
+  "description": null
+ },
+ {
+  "date_start": "2026-06-28",
   "title": "ナゴヤ新人戦ジュニア大会",
   "prefecture": "愛知県",
   "venue": "守山（会場詳細は協会HP）",
@@ -458,6 +608,36 @@
   "organizer": "愛知県ドッジボール協会",
   "url": "https://www.aichidba.org/%E5%B9%B4%E9%96%93%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB/",
   "description": "出典：愛知県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-06-28",
+  "title": "第3回ひまわり21杯 シニアオープンドッジボール大会",
+  "prefecture": "新潟県",
+  "venue": "三条市体育文化会館",
+  "category": "ファイター,ガールズ,中学生",
+  "organizer": "三条市ドッジボール協会",
+  "url": "https://jdba-niigata.blogspot.com/",
+  "description": null
+ },
+ {
+  "date_start": "2026-07-04",
+  "title": "第35回夏の全国小学生ドッジボール選手権 北海道大会",
+  "prefecture": "北海道",
+  "venue": "野幌総合運動公園体育館",
+  "category": "オフィシャル,ジュニア,中学生,ファイター",
+  "organizer": "北海道ドッジボール協会",
+  "url": "http://www.hdba.server-shared.com/nittei.html",
+  "description": "日程：7月4日〜5日"
+ },
+ {
+  "date_start": "2026-07-04",
+  "title": "第35回夏の全国小学生ドッジボール選手権 福井県大会",
+  "prefecture": "福井県",
+  "venue": "福井市体育館",
+  "category": "オフィシャル",
+  "organizer": "福井県ドッジボール協会",
+  "url": "http://kore.mitene.or.jp/~fdba/schedule.html",
+  "description": null
  },
  {
   "date_start": "2026-07-04",
@@ -470,6 +650,16 @@
   "description": "出典：群馬県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
  },
  {
+  "date_start": "2026-07-04",
+  "title": "第35回夏の全国小学生ドッジボール選手権 長崎県大会",
+  "prefecture": "長崎県",
+  "venue": "長与総合公園長与町民体育館",
+  "category": "オフィシャル,ジュニア",
+  "organizer": "長崎県ドッジボール協会",
+  "url": "https://jdba-nagasaki.com/archives/1901",
+  "description": null
+ },
+ {
   "date_start": "2026-07-05",
   "title": "あやべ水無月まつり大会",
   "prefecture": "京都府",
@@ -478,6 +668,16 @@
   "organizer": "京都府ドッジボール協会",
   "url": "https://kyoto.cyber-ninja.jp/schedule.html",
   "description": "出典：京都府ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-07-05",
+  "title": "第35回夏の全国小学生ドッジボール選手権 山口県大会",
+  "prefecture": "山口県",
+  "venue": "やまぐちリフレッシュパーク",
+  "category": "オフィシャル",
+  "organizer": "山口県ドッジボール協会",
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
  },
  {
   "date_start": "2026-07-05",
@@ -501,6 +701,16 @@
  },
  {
   "date_start": "2026-07-11",
+  "title": "三和シヤッターカップ 夏の福岡県小学生ドッジボール選手権",
+  "prefecture": "福岡県",
+  "venue": "アクシオン福岡",
+  "category": "オフィシャル",
+  "organizer": "福岡県ドッジボール協会",
+  "url": "https://jdba-fukuoka.jp/",
+  "description": "日程：7月11日〜12日"
+ },
+ {
+  "date_start": "2026-07-11",
   "title": "第35回 夏の全国小学生ドッジボール選手権 静岡県予選会",
   "prefecture": "静岡県",
   "venue": "静岡県武道館",
@@ -511,6 +721,16 @@
  },
  {
   "date_start": "2026-07-12",
+  "title": "第35回夏の全国小学生ドッジボール選手権 千葉県大会",
+  "prefecture": "千葉県",
+  "venue": "千葉公園体育館",
+  "category": "オフィシャル",
+  "organizer": "千葉県ドッジボール協会",
+  "url": "https://www.cdba.jp/2026/06/22/35-summerdodge/",
+  "description": null
+ },
+ {
+  "date_start": "2026-07-12",
   "title": "横田建設グループ杯 第35回 夏の全国小学生ドッジボール選手権 埼玉県大会",
   "prefecture": "埼玉県",
   "venue": "行田市総合体育館",
@@ -518,6 +738,16 @@
   "organizer": "埼玉県ドッジボール協会",
   "url": "https://members.db-saitama.com/doku.php?id=docs:2026:start",
   "description": "出典：埼玉県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-07-12",
+  "title": "原信ナルスカップ 第35回夏の全国小学生ドッジボール選手権 新潟県大会",
+  "prefecture": "新潟県",
+  "venue": "三条市体育文化会館",
+  "category": "オフィシャル",
+  "organizer": "新潟県ドッジボール協会",
+  "url": "https://jdba-niigata.blogspot.com/",
+  "description": null
  },
  {
   "date_start": "2026-07-12",
@@ -561,6 +791,16 @@
  },
  {
   "date_start": "2026-07-19",
+  "title": "兵庫県民スポーツ大会 第35回夏の全国小学生ドッジボール選手権 兵庫県大会",
+  "prefecture": "兵庫県",
+  "venue": "兵庫県立文化体育館",
+  "category": "オフィシャル",
+  "organizer": "兵庫県ドッジボール協会",
+  "url": "http://hyogododge.xrea.jp/tournament.html",
+  "description": null
+ },
+ {
+  "date_start": "2026-07-19",
   "title": "mandaiカップ 第35回 夏の全国小学生ドッジボール選手権 大阪府大会",
   "prefecture": "大阪府",
   "venue": "パナソニックアリーナ",
@@ -568,6 +808,16 @@
   "organizer": "大阪府ドッジボール協会",
   "url": "https://www.osaka-dodgeball.com/%E5%B9%B4%E9%96%93%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB/",
   "description": "出典：大阪府ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-07-19",
+  "title": "第35回夏の全国小学生ドッジボール選手権 岐阜県大会",
+  "prefecture": "岐阜県",
+  "venue": "池田町総合体育館",
+  "category": "オフィシャル",
+  "organizer": "岐阜県ドッジボール協会",
+  "url": "https://sites.google.com/view/jdba-gifudodge/%E5%B9%B4%E9%96%93%E3%81%AE%E5%A4%A7%E4%BC%9A%E4%BA%88%E5%AE%9A",
+  "description": null
  },
  {
   "date_start": "2026-07-19",
@@ -581,6 +831,16 @@
  },
  {
   "date_start": "2026-07-19",
+  "title": "カワチカップ 第35回夏の全国小学生ドッジボール選手権 栃木県大会",
+  "prefecture": "栃木県",
+  "venue": "日環アリーナ栃木",
+  "category": "オフィシャル",
+  "organizer": "栃木県ドッジボール協会",
+  "url": "https://sites.google.com/view/tdba/%E5%B9%B4%E9%96%93%E4%BA%88%E5%AE%9A",
+  "description": null
+ },
+ {
+  "date_start": "2026-07-19",
   "title": "北関東大会 群馬県予選会",
   "prefecture": "群馬県",
   "venue": "安中しんくみスポーツセンター",
@@ -588,6 +848,36 @@
   "organizer": "群馬県ドッジボール協会",
   "url": "https://gunma-dba.com/2026schedule/",
   "description": "出典：群馬県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-07-19",
+  "title": "長崎県ドッジボール協会 理事長杯 第3回リーグ対抗小学生ドッジボール大会",
+  "prefecture": "長崎県",
+  "venue": "シーハットおおむら",
+  "category": "オフィシャル",
+  "organizer": "長崎県ドッジボール協会",
+  "url": "https://jdba-nagasaki.com/archives/1894",
+  "description": null
+ },
+ {
+  "date_start": "2026-07-20",
+  "title": "山口シニアカップ（S-1・U-15）",
+  "prefecture": "山口県",
+  "venue": "ソルトアリーナ",
+  "category": "ファイター,中学生",
+  "organizer": "山口県ドッジボール協会",
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
+ },
+ {
+  "date_start": "2026-07-20",
+  "title": "第16回フェニックス杯ドッジボール大会",
+  "prefecture": "福井県",
+  "venue": "セーレン・ドリームアリーナ",
+  "category": null,
+  "organizer": "福井県ドッジボール協会",
+  "url": "http://kore.mitene.or.jp/~fdba/schedule.html",
+  "description": null
  },
  {
   "date_start": "2026-07-20",
@@ -610,6 +900,16 @@
   "description": "出典：静岡県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
  },
  {
+  "date_start": "2026-07-20",
+  "title": "第35回すまいる杯 小学生ドッジボール大会",
+  "prefecture": "高知県",
+  "venue": "高知県立青少年センター",
+  "category": "ジュニア,リトル",
+  "organizer": "高知県ドッジボール協会",
+  "url": "https://sites.google.com/view/kochidodge/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/%E5%A4%A7%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB",
+  "description": null
+ },
+ {
   "date_start": "2026-07-25",
   "title": "TOKYOオープン",
   "prefecture": "東京都",
@@ -628,6 +928,16 @@
   "organizer": "愛知県ドッジボール協会",
   "url": "https://www.aichidba.org/%E5%B9%B4%E9%96%93%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB/",
   "description": "出典：愛知県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-07-26",
+  "title": "ジュニアドッジボール大会",
+  "prefecture": "栃木県",
+  "venue": "DAIKYOアリーナ佐野",
+  "category": "ジュニア",
+  "organizer": "佐野市ドッジボール協会",
+  "url": "https://sites.google.com/view/tdba/%E5%B9%B4%E9%96%93%E4%BA%88%E5%AE%9A",
+  "description": null
  },
  {
   "date_start": "2026-08-01",
@@ -650,6 +960,16 @@
   "description": "出典：茨城県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
  },
  {
+  "date_start": "2026-08-01",
+  "title": "九州ブロック親善ドッジボール大会",
+  "prefecture": "鹿児島県",
+  "venue": "大崎町体育館",
+  "category": null,
+  "organizer": "九州ブロック連絡会",
+  "url": "https://jdba-fukuoka.jp/",
+  "description": "日程：8月1日〜2日"
+ },
+ {
   "date_start": "2026-08-02",
   "title": "第13回 首都東京会長杯",
   "prefecture": "東京都",
@@ -658,6 +978,26 @@
   "organizer": "東京都ドッジボール協会",
   "url": "https://www.tdba.jp/schedule_2026.html",
   "description": "出典：東京都ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-08-08",
+  "title": "2026新潟県U-15オープンドッジボール大会",
+  "prefecture": "新潟県",
+  "venue": "三条市体育文化会館",
+  "category": "中学生",
+  "organizer": "新潟県ドッジボール協会",
+  "url": "https://jdba-niigata.blogspot.com/",
+  "description": null
+ },
+ {
+  "date_start": "2026-08-08",
+  "title": "D×Dフェスタ 4th",
+  "prefecture": "栃木県",
+  "venue": "清原体育館",
+  "category": null,
+  "organizer": "ONE-D×BRAVE",
+  "url": "https://sites.google.com/view/tdba/%E5%B9%B4%E9%96%93%E4%BA%88%E5%AE%9A",
+  "description": null
  },
  {
   "date_start": "2026-08-08",
@@ -691,6 +1031,16 @@
  },
  {
   "date_start": "2026-08-09",
+  "title": "2026夏の北信越ドッジボールオープン大会 in Niigata",
+  "prefecture": "新潟県",
+  "venue": "三条市体育文化会館",
+  "category": "オフィシャル",
+  "organizer": "新潟県ドッジボール協会",
+  "url": "https://jdba-niigata.blogspot.com/",
+  "description": null
+ },
+ {
+  "date_start": "2026-08-09",
   "title": "オープンドッジ in ODAWARA",
   "prefecture": "神奈川県",
   "venue": "小田原アリーナ",
@@ -718,6 +1068,16 @@
   "organizer": "静岡県ドッジボール協会",
   "url": "https://www.shizuoka-dba.com/keikaku.html",
   "description": "出典：静岡県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-08-11",
+  "title": "シニアチャンピオンシップ in 中国（S-1・U-15）",
+  "prefecture": "広島県",
+  "venue": "廿日市サンチェリー",
+  "category": "ファイター,中学生",
+  "organizer": "中国ブロック連絡会",
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
  },
  {
   "date_start": "2026-08-11",
@@ -778,6 +1138,16 @@
   "organizer": "関西ブロック",
   "url": "https://kyoto.cyber-ninja.jp/schedule.html",
   "description": "出典：京都府ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-08-22",
+  "title": "シニアチャンピオンシップ in 九州（S-1／U-15）",
+  "prefecture": "福岡県",
+  "venue": "かすやドーム（粕屋町総合体育館）",
+  "category": "ファイター,中学生",
+  "organizer": "九州ブロック連絡会",
+  "url": "https://jdba-fukuoka.jp/",
+  "description": "日程：8月22日〜23日"
  },
  {
   "date_start": "2026-08-29",
@@ -861,6 +1231,26 @@
  },
  {
   "date_start": "2026-09-06",
+  "title": "2026シニアチャンピオンシップ in 北信越",
+  "prefecture": "富山県",
+  "venue": "黒部市総合体育センター",
+  "category": "ファイター,中学生",
+  "organizer": "北信越ブロック",
+  "url": "http://kore.mitene.or.jp/~fdba/schedule.html",
+  "description": null
+ },
+ {
+  "date_start": "2026-09-06",
+  "title": "ジュニア大会",
+  "prefecture": "山口県",
+  "venue": "ルネッサながと",
+  "category": "ジュニア",
+  "organizer": "山口県ドッジボール協会",
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
+ },
+ {
+  "date_start": "2026-09-06",
   "title": "TOKYO League Autumn CUP",
   "prefecture": "東京都",
   "venue": "桐ヶ丘体育館",
@@ -868,6 +1258,16 @@
   "organizer": "東京都ドッジボール協会",
   "url": "https://www.tdba.jp/schedule_2026.html",
   "description": "出典：東京都ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-09-06",
+  "title": "ハピネスカップ",
+  "prefecture": "栃木県",
+  "venue": "花・花薬局さの体育館（佐野市運動公園体育館）",
+  "category": null,
+  "organizer": "ONE-D×BRAVE",
+  "url": "https://sites.google.com/view/tdba/%E5%B9%B4%E9%96%93%E4%BA%88%E5%AE%9A",
+  "description": null
  },
  {
   "date_start": "2026-09-06",
@@ -880,6 +1280,26 @@
   "description": "出典：群馬県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
  },
  {
+  "date_start": "2026-09-06",
+  "title": "ドッジボール交流会（まだまだ暑い夏の終わりの交流会）",
+  "prefecture": "高知県",
+  "venue": "高知県立青少年センター",
+  "category": null,
+  "organizer": "高知県ドッジボール協会",
+  "url": "https://sites.google.com/view/kochidodge/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/%E5%A4%A7%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB",
+  "description": null
+ },
+ {
+  "date_start": "2026-09-12",
+  "title": "第4回 SHINANO CUP",
+  "prefecture": "北海道",
+  "venue": "千歳市スポーツセンター（ダイナックスアリーナ）",
+  "category": null,
+  "organizer": "SHINANO DBC",
+  "url": "http://www.hdba.server-shared.com/nittei.html",
+  "description": null
+ },
+ {
   "date_start": "2026-09-12",
   "title": "2026 NAGANOドッジリーグ 2nd Stage",
   "prefecture": "長野県",
@@ -888,6 +1308,46 @@
   "organizer": "長野市ドッジボール協会",
   "url": "https://dodge.upper.jp/schedule.html",
   "description": "出典：長野県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-09-13",
+  "title": "第25回フレンドリードッジボール大会 兼 第13回全日本女子総合選手権 兵庫県大会",
+  "prefecture": "兵庫県",
+  "venue": "三田市親和学園駒ヶ谷体育館",
+  "category": "ガールズ",
+  "organizer": "兵庫県ドッジボール協会",
+  "url": "http://hyogododge.xrea.jp/tournament.html",
+  "description": null
+ },
+ {
+  "date_start": "2026-09-13",
+  "title": "2026 CHIBAオープン ドッジボール選手権",
+  "prefecture": "千葉県",
+  "venue": "千葉ポートアリーナ",
+  "category": "オフィシャル,ジュニア",
+  "organizer": "千葉県ドッジボール協会",
+  "url": "https://www.cdba.jp/2026/08/04/2026chibaopen/",
+  "description": null
+ },
+ {
+  "date_start": "2026-09-13",
+  "title": "山口シニアカップ（S-1G）",
+  "prefecture": "山口県",
+  "venue": "トラックワンアリーナ",
+  "category": "ガールズ",
+  "organizer": "山口県ドッジボール協会",
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
+ },
+ {
+  "date_start": "2026-09-13",
+  "title": "2026 D-3ドッジボール交流大会",
+  "prefecture": "新潟県",
+  "venue": "三条市下田体育館",
+  "category": "リトル",
+  "organizer": "新潟県ドッジボール協会",
+  "url": "https://jdba-niigata.blogspot.com/",
+  "description": null
  },
  {
   "date_start": "2026-09-13",
@@ -911,6 +1371,16 @@
  },
  {
   "date_start": "2026-09-20",
+  "title": "関西小学生ドッジボールフェスティバル 第18回紀ららジュニアカップ",
+  "prefecture": "和歌山県",
+  "venue": null,
+  "category": "ジュニア",
+  "organizer": "和歌山県ドッジボール協会",
+  "url": "https://www.eonet.ne.jp/~wdba/",
+  "description": null
+ },
+ {
+  "date_start": "2026-09-20",
   "title": "第10回 南関東ドッジボール選手権",
   "prefecture": "山梨県",
   "venue": "小瀬スポーツ公園 武道館",
@@ -918,6 +1388,16 @@
   "organizer": "関東ブロック",
   "url": "https://kdba.jp/sche.html",
   "description": "出典：神奈川県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-09-20",
+  "title": "シニアチャンピオンシップ in 九州（S-1G）・福岡県女子小学生ドッジボール選手権",
+  "prefecture": "福岡県",
+  "venue": "岡垣サンリーアイ",
+  "category": "ガールズ",
+  "organizer": "福岡県ドッジボール協会",
+  "url": "https://jdba-fukuoka.jp/",
+  "description": null
  },
  {
   "date_start": "2026-09-21",
@@ -938,6 +1418,16 @@
   "organizer": "東京都ドッジボール協会",
   "url": "https://www.tdba.jp/schedule_2026.html",
   "description": "出典：東京都ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-09-21",
+  "title": "第12回全琉ジュニアドッジボール大会",
+  "prefecture": "沖縄県",
+  "venue": "西崎総合体育館",
+  "category": "ジュニア",
+  "organizer": "沖縄県ドッジボール協会",
+  "url": "https://okinawadodgeballassociation.jimdofree.com/",
+  "description": null
  },
  {
   "date_start": "2026-09-21",
@@ -1001,6 +1491,16 @@
  },
  {
   "date_start": "2026-09-26",
+  "title": "北海道ドッジボール選手権2026",
+  "prefecture": "北海道",
+  "venue": "野幌総合運動公園体育館",
+  "category": "オフィシャル,ジュニア,中学生,ファイター",
+  "organizer": "北海道ドッジボール協会",
+  "url": "http://www.hdba.server-shared.com/nittei.html",
+  "description": "日程：9月26日〜27日"
+ },
+ {
+  "date_start": "2026-09-26",
   "title": "避球魂'26（ドッジだましい）U15",
   "prefecture": "埼玉県",
   "venue": "上尾市民体育館",
@@ -1008,6 +1508,16 @@
   "organizer": "埼玉県ドッジボール協会",
   "url": "https://members.db-saitama.com/doku.php?id=docs:2026:start",
   "description": "出典：埼玉県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-09-26",
+  "title": "西京カップ",
+  "prefecture": "山口県",
+  "venue": "やまぐちリフレッシュパーク",
+  "category": null,
+  "organizer": null,
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
  },
  {
   "date_start": "2026-09-26",
@@ -1030,6 +1540,26 @@
   "description": "出典：静岡県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
  },
  {
+  "date_start": "2026-09-26",
+  "title": "第21回よっしゃこいジュニアカップ",
+  "prefecture": "高知県",
+  "venue": "高知県立青少年体育館",
+  "category": "ジュニア",
+  "organizer": "高知県ドッジボール協会",
+  "url": "https://sites.google.com/view/kochidodge/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/%E5%A4%A7%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB",
+  "description": null
+ },
+ {
+  "date_start": "2026-09-27",
+  "title": "第13回中国ブロック会長杯 山口県予選会",
+  "prefecture": "山口県",
+  "venue": "ながと総合体育館（ルネッサながと）",
+  "category": "オフィシャル",
+  "organizer": "山口県ドッジボール協会",
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
+ },
+ {
   "date_start": "2026-09-27",
   "title": "第28回 福井県少年少女ドッジボール大会",
   "prefecture": "福井県",
@@ -1038,6 +1568,16 @@
   "organizer": "福井県ドッジボール協会",
   "url": "https://blog.nsk.ne.jp/dodgeball/archive/category5825.html",
   "description": "出典：石川県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-10-03",
+  "title": "栃木県ドッジボール選手権（秋の関東選手権予選）",
+  "prefecture": "栃木県",
+  "venue": "花・花薬局さの体育館（佐野市運動公園体育館）",
+  "category": "オフィシャル",
+  "organizer": "栃木県ドッジボール協会",
+  "url": "https://sites.google.com/view/tdba/%E5%B9%B4%E9%96%93%E4%BA%88%E5%AE%9A",
+  "description": null
  },
  {
   "date_start": "2026-10-04",
@@ -1101,6 +1641,16 @@
  },
  {
   "date_start": "2026-10-12",
+  "title": "ジュニア・U15大会",
+  "prefecture": "栃木県",
+  "venue": "DAIKYOアリーナ佐野",
+  "category": "ジュニア,中学生",
+  "organizer": "佐野市ドッジボール協会",
+  "url": "https://sites.google.com/view/tdba/%E5%B9%B4%E9%96%93%E4%BA%88%E5%AE%9A",
+  "description": null
+ },
+ {
+  "date_start": "2026-10-12",
   "title": "第29回 茨城県ドッジボール選手権大会",
   "prefecture": "茨城県",
   "venue": "内原ヘルスパーク",
@@ -1118,6 +1668,16 @@
   "organizer": "関西ブロック",
   "url": "https://kyoto.cyber-ninja.jp/schedule.html",
   "description": "出典：京都府ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-10-17",
+  "title": "第9回ZERO8CUP",
+  "prefecture": "栃木県",
+  "venue": "日環アリーナ栃木",
+  "category": null,
+  "organizer": "隼'Eight",
+  "url": "https://sites.google.com/view/tdba/%E5%B9%B4%E9%96%93%E4%BA%88%E5%AE%9A",
+  "description": null
  },
  {
   "date_start": "2026-10-18",
@@ -1138,6 +1698,16 @@
   "organizer": "三重県ドッジボール協会",
   "url": "https://jdba-mie.zzzx.jp/",
   "description": "出典：三重県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。2026年度に開催された大会です。結果は主催者・協会の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-10-18",
+  "title": "第13回全日本女子総合ドッジボール選手権 新潟県大会",
+  "prefecture": "新潟県",
+  "venue": "三条市下田体育館",
+  "category": "ガールズ",
+  "organizer": "新潟県ドッジボール協会",
+  "url": "https://jdba-niigata.blogspot.com/",
+  "description": null
  },
  {
   "date_start": "2026-10-18",
@@ -1230,6 +1800,16 @@
   "description": "出典：愛知県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
  },
  {
+  "date_start": "2026-10-25",
+  "title": "第5回三條新聞社杯ドッジボール大会",
+  "prefecture": "新潟県",
+  "venue": "三条市体育文化会館",
+  "category": "リトル",
+  "organizer": "三條新聞社",
+  "url": "https://jdba-niigata.blogspot.com/",
+  "description": null
+ },
+ {
   "date_start": "2026-10-31",
   "title": "第13回 全日本女子総合ドッジボール選手権 三重県大会",
   "prefecture": "三重県",
@@ -1240,6 +1820,36 @@
   "description": "出典：三重県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
  },
  {
+  "date_start": "2026-10-31",
+  "title": "第61回山口県スポーツ・レクリエーションフェスティバル ジュニアドッジボール大会",
+  "prefecture": "山口県",
+  "venue": "下関市豊浦夢が丘スポーツセンター",
+  "category": "ジュニア",
+  "organizer": "山口県ドッジボール協会",
+  "url": "https://jdbayamaguchi.fc2.page/",
+  "description": null
+ },
+ {
+  "date_start": "2026-10-31",
+  "title": "第1回ZERO8Jr",
+  "prefecture": "栃木県",
+  "venue": "日環アリーナ栃木",
+  "category": "ジュニア",
+  "organizer": "隼'Eight",
+  "url": "https://sites.google.com/view/tdba/%E5%B9%B4%E9%96%93%E4%BA%88%E5%AE%9A",
+  "description": null
+ },
+ {
+  "date_start": "2026-10-31",
+  "title": "第13回全日本女子総合ドッジボール選手権 福井県大会",
+  "prefecture": "福井県",
+  "venue": "福井市光陽中学校体育館",
+  "category": "ガールズ",
+  "organizer": "福井県ドッジボール協会",
+  "url": "http://kore.mitene.or.jp/~fdba/schedule.html",
+  "description": null
+ },
+ {
   "date_start": "2026-11-01",
   "title": "第20回 JAバンクよりぞうカップ",
   "prefecture": "和歌山県",
@@ -1248,6 +1858,16 @@
   "organizer": "和歌山県ドッジボール協会",
   "url": "https://www.eonet.ne.jp/~wdba/",
   "description": "出典：和歌山県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-11-01",
+  "title": "シニアチャンピオンシップ in 中国（S-1G）",
+  "prefecture": "広島県",
+  "venue": "平良小学校",
+  "category": "ガールズ",
+  "organizer": "中国ブロック連絡会",
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
  },
  {
   "date_start": "2026-11-01",
@@ -1288,6 +1908,16 @@
   "organizer": "東京都ドッジボール協会",
   "url": "https://www.tdba.jp/schedule_2026.html",
   "description": "出典：東京都ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-11-03",
+  "title": "第11回長堂杯沖縄ドッジボール大会",
+  "prefecture": "沖縄県",
+  "venue": "西崎総合体育館",
+  "category": null,
+  "organizer": null,
+  "url": "https://okinawadodgeballassociation.jimdofree.com/",
+  "description": null
  },
  {
   "date_start": "2026-11-03",
@@ -1421,6 +2051,16 @@
  },
  {
   "date_start": "2026-11-15",
+  "title": "江別市秋季ドッジボール大会",
+  "prefecture": "北海道",
+  "venue": "上江別小学校体育館・中央小学校体育館",
+  "category": null,
+  "organizer": "スーパーダイヤモンズ",
+  "url": "http://www.hdba.server-shared.com/nittei.html",
+  "description": null
+ },
+ {
+  "date_start": "2026-11-15",
   "title": "ZippiX presents 東北ドッジボールリーグ2026",
   "prefecture": "宮城県",
   "venue": "岩沼市総合体育館（岩沼ビッグアリーナ）",
@@ -1431,6 +2071,36 @@
  },
  {
   "date_start": "2026-11-15",
+  "title": "第13回中国ブロック会長杯",
+  "prefecture": "広島県",
+  "venue": "千代田総合運動公園体育館",
+  "category": "オフィシャル",
+  "organizer": "中国ブロック連絡会",
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
+ },
+ {
+  "date_start": "2026-11-15",
+  "title": "2026ドッジフェスinふくい",
+  "prefecture": "福井県",
+  "venue": "福井市体育館",
+  "category": null,
+  "organizer": "福井県ドッジボール協会",
+  "url": "http://kore.mitene.or.jp/~fdba/schedule.html",
+  "description": null
+ },
+ {
+  "date_start": "2026-11-15",
+  "title": "県民スポーツ・レクリエーション祭2026inいさはや ドッジボール",
+  "prefecture": "長崎県",
+  "venue": "諫早市飯盛体育館",
+  "category": "オフィシャル,ジュニア,ファイター",
+  "organizer": "長崎県レクリエーション協会",
+  "url": "https://jdba-nagasaki.com/archives/1912",
+  "description": null
+ },
+ {
+  "date_start": "2026-11-15",
   "title": "ジュニアドッジボール大会",
   "prefecture": "長野県",
   "venue": "信州新町体育館",
@@ -1438,6 +2108,16 @@
   "organizer": "長野市ドッジボール協会",
   "url": "https://dodge.upper.jp/schedule.html",
   "description": "出典：長野県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-11-15",
+  "title": "第29回高知県小学生ドッジボール秋季大会",
+  "prefecture": "高知県",
+  "venue": "高知県立青少年体育館",
+  "category": "オフィシャル",
+  "organizer": "高知県ドッジボール協会",
+  "url": "https://sites.google.com/view/kochidodge/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/%E5%A4%A7%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB",
+  "description": null
  },
  {
   "date_start": "2026-11-21",
@@ -1451,6 +2131,26 @@
  },
  {
   "date_start": "2026-11-21",
+  "title": "2026インターナショナルドッジボール選手権 in JAPAN",
+  "prefecture": "千葉県",
+  "venue": "千葉ポートアリーナ",
+  "category": null,
+  "organizer": null,
+  "url": "http://itn-dodge.com/",
+  "description": "日程：11月21日〜22日"
+ },
+ {
+  "date_start": "2026-11-21",
+  "title": "ぴよこたんカップ",
+  "prefecture": "岐阜県",
+  "venue": "OKB岐阜清流アリーナ",
+  "category": null,
+  "organizer": "岐阜県ドッジボール協会",
+  "url": "https://sites.google.com/view/jdba-gifudodge/%E5%B9%B4%E9%96%93%E3%81%AE%E5%A4%A7%E4%BC%9A%E4%BA%88%E5%AE%9A",
+  "description": null
+ },
+ {
+  "date_start": "2026-11-21",
   "title": "八王子＆多摩カップ",
   "prefecture": "東京都",
   "venue": "エスフォルタアリーナ八王子",
@@ -1458,6 +2158,16 @@
   "organizer": "東京都ドッジボール協会",
   "url": "https://www.tdba.jp/schedule_2026.html",
   "description": "出典：東京都ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-11-21",
+  "title": "第49回おきでん対話旬間ふれあいドッジボール大会（予定）",
+  "prefecture": "沖縄県",
+  "venue": "沖縄県総合体育館",
+  "category": null,
+  "organizer": "沖縄電力・沖縄県ドッジボール協会",
+  "url": "https://okinawadodgeballassociation.jimdofree.com/",
+  "description": null
  },
  {
   "date_start": "2026-11-22",
@@ -1468,6 +2178,16 @@
   "organizer": "三重県ドッジボール協会",
   "url": "https://jdba-mie.zzzx.jp/",
   "description": "出典：三重県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-11-22",
+  "title": "アジアカップ2026 千葉クロスドッジボール大会",
+  "prefecture": "千葉県",
+  "venue": "ちばぎんアリーナ（千葉ポートアリーナ）",
+  "category": null,
+  "organizer": "千葉県ドッジボール協会",
+  "url": "https://www.cdba.jp/2026/10/20/asiacup2026multi/",
+  "description": null
  },
  {
   "date_start": "2026-11-22",
@@ -1521,6 +2241,16 @@
  },
  {
   "date_start": "2026-11-23",
+  "title": "海峡リーグ",
+  "prefecture": "山口県",
+  "venue": "山口県立下関武道館",
+  "category": null,
+  "organizer": null,
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
+ },
+ {
+  "date_start": "2026-11-23",
   "title": "コモカップ2026 兼 東海ブロック選手権",
   "prefecture": "愛知県",
   "venue": "パークアリーナ小牧",
@@ -1551,6 +2281,16 @@
  },
  {
   "date_start": "2026-11-29",
+  "title": "第19回霞渓杯",
+  "prefecture": "岐阜県",
+  "venue": "池田町総合体育館",
+  "category": null,
+  "organizer": "霞渓杯実行委員会",
+  "url": "https://sites.google.com/view/jdba-gifudodge/%E5%B9%B4%E9%96%93%E3%81%AE%E5%A4%A7%E4%BC%9A%E4%BA%88%E5%AE%9A",
+  "description": null
+ },
+ {
+  "date_start": "2026-11-29",
   "title": "三河支部長杯",
   "prefecture": "愛知県",
   "venue": "知立（会場詳細は協会HP）",
@@ -1561,6 +2301,16 @@
  },
  {
   "date_start": "2026-11-29",
+  "title": "第27回沖縄県スポーツ・レクリエーション祭（第8回ドッジボールフェスティバル大会）",
+  "prefecture": "沖縄県",
+  "venue": "具志川ドーム",
+  "category": null,
+  "organizer": "沖縄県レクリエーション協会",
+  "url": "https://okinawadodgeballassociation.jimdofree.com/",
+  "description": null
+ },
+ {
+  "date_start": "2026-11-29",
   "title": "第17回「きらめき杯」ドッジボール大会",
   "prefecture": "福井県",
   "venue": "敦賀市総合運動公園体育館",
@@ -1568,6 +2318,16 @@
   "organizer": "福井県ドッジボール協会",
   "url": "https://www.osaka-dodgeball.com/%E5%A4%A7%E4%BC%9A%E3%81%AE%E3%81%94%E6%A1%88%E5%86%85/%E4%BB%96%E5%BA%9C%E7%9C%8C%E5%8D%94%E4%BC%9A%E5%A4%A7%E4%BC%9A%E6%A1%88%E5%86%85/",
   "description": "出典：大阪府ドッジボール協会「他府県協会からの大会案内」（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-12-05",
+  "title": "第26回バンビ＆ジュニアドッジボール大会",
+  "prefecture": "兵庫県",
+  "venue": "兵庫県立文化体育館",
+  "category": "ジュニア,リトル",
+  "organizer": "兵庫県ドッジボール協会",
+  "url": "http://hyogododge.xrea.jp/tournament.html",
+  "description": null
  },
  {
   "date_start": "2026-12-05",
@@ -1611,6 +2371,26 @@
  },
  {
   "date_start": "2026-12-06",
+  "title": "第20回ウインターカップ",
+  "prefecture": "山口県",
+  "venue": "山口県立下関武道館",
+  "category": null,
+  "organizer": "山口県ドッジボール協会",
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
+ },
+ {
+  "date_start": "2026-12-06",
+  "title": "BEPPIN CUP2026",
+  "prefecture": "岐阜県",
+  "venue": "池田町総合体育館",
+  "category": null,
+  "organizer": "岐阜県ドッジボール協会",
+  "url": "https://sites.google.com/view/jdba-gifudodge/%E5%B9%B4%E9%96%93%E3%81%AE%E5%A4%A7%E4%BC%9A%E4%BA%88%E5%AE%9A",
+  "description": null
+ },
+ {
+  "date_start": "2026-12-06",
   "title": "第8回 関東ジュニアドッジボール選手権 神奈川県大会",
   "prefecture": "神奈川県",
   "venue": "荻野運動公園総合体育館",
@@ -1618,6 +2398,16 @@
   "organizer": "神奈川県ドッジボール協会",
   "url": "https://kdba.jp/sche.html",
   "description": "出典：神奈川県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-12-06",
+  "title": "初心者向けドッジボールイベント",
+  "prefecture": "高知県",
+  "venue": "サンピア高知（予定）",
+  "category": null,
+  "organizer": "高知県スポーツ協会",
+  "url": "https://sites.google.com/view/kochidodge/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/%E5%A4%A7%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB",
+  "description": null
  },
  {
   "date_start": "2026-12-13",
@@ -1678,6 +2468,16 @@
   "organizer": "東京都ドッジボール協会",
   "url": "https://www.tdba.jp/schedule_2026.html",
   "description": "出典：東京都ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-12-19",
+  "title": "第36回すまいる杯・保護者交流大会",
+  "prefecture": "高知県",
+  "venue": "日本トーター体育館",
+  "category": "ジュニア,リトル",
+  "organizer": "高知県ドッジボール協会",
+  "url": "https://sites.google.com/view/kochidodge/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/%E5%A4%A7%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB",
+  "description": null
  },
  {
   "date_start": "2026-12-20",
@@ -1748,6 +2548,36 @@
   "organizer": "山梨県ドッジボール協会",
   "url": "https://ydba.sakura.ne.jp/schedule.html",
   "description": "出典：山梨県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2026-12-27",
+  "title": "ラストバトル2026",
+  "prefecture": "栃木県",
+  "venue": "DAIKYOアリーナ佐野",
+  "category": null,
+  "organizer": "佐野市ドッジボール協会",
+  "url": "https://sites.google.com/view/tdba/%E5%B9%B4%E9%96%93%E4%BA%88%E5%AE%9A",
+  "description": null
+ },
+ {
+  "date_start": "2026-12-27",
+  "title": "糸満市長杯 静岡・沖縄ドッジボール交流会",
+  "prefecture": "沖縄県",
+  "venue": "西崎総合体育館",
+  "category": null,
+  "organizer": "ドッキーズ",
+  "url": "https://okinawadodgeballassociation.jimdofree.com/",
+  "description": null
+ },
+ {
+  "date_start": "2026-12-27",
+  "title": "第25回KTN杯 小学生ドッジボール大会",
+  "prefecture": "長崎県",
+  "venue": "シーハットおおむら",
+  "category": "オフィシャル,ジュニア",
+  "organizer": "長崎県ドッジボール協会",
+  "url": "https://jdba-nagasaki.com/archives/1915",
+  "description": null
  },
  {
   "date_start": "2027-01-10",
@@ -1841,6 +2671,16 @@
  },
  {
   "date_start": "2027-01-24",
+  "title": "江別市冬季ドッジボール大会",
+  "prefecture": "北海道",
+  "venue": "上江別小学校体育館",
+  "category": null,
+  "organizer": "スーパーダイヤモンズ",
+  "url": "http://www.hdba.server-shared.com/nittei.html",
+  "description": null
+ },
+ {
+  "date_start": "2027-01-24",
   "title": "ジュニア関東大会 東京代表決定戦",
   "prefecture": "東京都",
   "venue": "滝野川体育館",
@@ -1891,6 +2731,16 @@
  },
  {
   "date_start": "2027-01-30",
+  "title": "2027ドッジフェスinさばえ",
+  "prefecture": "福井県",
+  "venue": "鯖江市総合体育館",
+  "category": null,
+  "organizer": "福井県ドッジボール協会",
+  "url": "http://kore.mitene.or.jp/~fdba/schedule.html",
+  "description": null
+ },
+ {
+  "date_start": "2027-01-30",
   "title": "第1回 かすみがうら市長杯・SHIMAMURA CUP",
   "prefecture": "茨城県",
   "venue": "リリーアリーナMITO",
@@ -1918,6 +2768,16 @@
   "organizer": "愛知県ドッジボール協会",
   "url": "https://www.aichidba.org/%E5%B9%B4%E9%96%93%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB/",
   "description": "出典：愛知県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2027-01-31",
+  "title": "栃木県ドッジボール選手権（全国大会予選）",
+  "prefecture": "栃木県",
+  "venue": "DAIKYOアリーナ佐野",
+  "category": "オフィシャル",
+  "organizer": "栃木県ドッジボール協会",
+  "url": "https://sites.google.com/view/tdba/%E5%B9%B4%E9%96%93%E4%BA%88%E5%AE%9A",
+  "description": null
  },
  {
   "date_start": "2027-01-31",
@@ -1960,6 +2820,26 @@
   "description": "出典：静岡県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
  },
  {
+  "date_start": "2027-01-31",
+  "title": "高知東ライオンズクラブ杯 第36回春の全国小学生ドッジボール選手権 高知県大会",
+  "prefecture": "高知県",
+  "venue": "くろしおアリーナ",
+  "category": "オフィシャル",
+  "organizer": "高知県ドッジボール協会",
+  "url": "https://sites.google.com/view/kochidodge/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/%E5%A4%A7%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB",
+  "description": null
+ },
+ {
+  "date_start": "2027-02-06",
+  "title": "第36回春の全国小学生ドッジボール選手権 北海道大会",
+  "prefecture": "北海道",
+  "venue": "野幌総合運動公園体育館",
+  "category": "オフィシャル,ジュニア,中学生,ファイター",
+  "organizer": "北海道ドッジボール協会",
+  "url": "http://www.hdba.server-shared.com/nittei.html",
+  "description": "日程：2月6日〜7日"
+ },
+ {
   "date_start": "2027-02-06",
   "title": "テレビ愛媛杯 第36回 春の全国小学生ドッジボール選手権 愛媛県予選",
   "prefecture": "愛媛県",
@@ -1981,6 +2861,16 @@
  },
  {
   "date_start": "2027-02-07",
+  "title": "第36回春の全国小学生ドッジボール選手権 兵庫県大会",
+  "prefecture": "兵庫県",
+  "venue": "兵庫県立文化体育館",
+  "category": "オフィシャル",
+  "organizer": "兵庫県ドッジボール協会",
+  "url": "http://hyogododge.xrea.jp/plan.html",
+  "description": null
+ },
+ {
+  "date_start": "2027-02-07",
   "title": "くらづくり杯！ 第36回 春の全国小学生ドッジボール選手権 埼玉県大会",
   "prefecture": "埼玉県",
   "venue": "行田市総合体育館",
@@ -1998,6 +2888,16 @@
   "organizer": "大阪府ドッジボール協会",
   "url": "https://www.osaka-dodgeball.com/%E5%B9%B4%E9%96%93%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB/",
   "description": "出典：大阪府ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2027-02-07",
+  "title": "第36回春の全国小学生ドッジボール選手権 山口県大会",
+  "prefecture": "山口県",
+  "venue": "やまぐちリフレッシュパーク",
+  "category": "オフィシャル",
+  "organizer": "山口県ドッジボール協会",
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
  },
  {
   "date_start": "2027-02-07",
@@ -2030,6 +2930,16 @@
   "description": "出典：宮城県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
  },
  {
+  "date_start": "2027-02-11",
+  "title": "第36回春の全国小学生ドッジボール選手権 沖縄県大会",
+  "prefecture": "沖縄県",
+  "venue": "西原町民体育館",
+  "category": "オフィシャル",
+  "organizer": "沖縄県ドッジボール協会",
+  "url": "https://okinawadodgeballassociation.jimdofree.com/",
+  "description": null
+ },
+ {
   "date_start": "2027-02-13",
   "title": "第36回 春の全国小学生ドッジボール選手権 山梨県大会",
   "prefecture": "山梨県",
@@ -2038,6 +2948,16 @@
   "organizer": "山梨県ドッジボール協会",
   "url": "https://ydba.sakura.ne.jp/schedule.html",
   "description": "出典：山梨県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2027-02-13",
+  "title": "春の福岡県小学生ドッジボール選手権",
+  "prefecture": "福岡県",
+  "venue": "アクシオン福岡",
+  "category": "オフィシャル",
+  "organizer": "福岡県ドッジボール協会",
+  "url": "https://jdba-fukuoka.jp/",
+  "description": "日程：2月13日〜14日"
  },
  {
   "date_start": "2027-02-13",
@@ -2058,6 +2978,16 @@
   "organizer": "三重県ドッジボール協会",
   "url": "https://jdba-mie.zzzx.jp/",
   "description": "出典：三重県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2027-02-14",
+  "title": "第36回春の全国小学生ドッジボール選手権 岐阜県大会",
+  "prefecture": "岐阜県",
+  "venue": "池田町総合体育館",
+  "category": "オフィシャル",
+  "organizer": "岐阜県ドッジボール協会",
+  "url": "https://sites.google.com/view/jdba-gifudodge/%E5%B9%B4%E9%96%93%E3%81%AE%E5%A4%A7%E4%BC%9A%E4%BA%88%E5%AE%9A",
+  "description": null
  },
  {
   "date_start": "2027-02-14",
@@ -2141,6 +3071,16 @@
  },
  {
   "date_start": "2027-02-21",
+  "title": "全教研カップドッジボール大会",
+  "prefecture": "福岡県",
+  "venue": "福岡市総合体育館",
+  "category": null,
+  "organizer": "福岡県ドッジボール協会",
+  "url": "https://jdba-fukuoka.jp/",
+  "description": null
+ },
+ {
+  "date_start": "2027-02-21",
   "title": "GDBAシニアオープンドッジボール大会（仮）",
   "prefecture": "群馬県",
   "venue": "ALSOKぐんまアリーナ",
@@ -2171,6 +3111,16 @@
  },
  {
   "date_start": "2027-02-23",
+  "title": "第12回全沖ジュニアドッジボール大会",
+  "prefecture": "沖縄県",
+  "venue": "西崎総合体育館",
+  "category": "ジュニア",
+  "organizer": "沖縄県ドッジボール協会",
+  "url": "https://okinawadodgeballassociation.jimdofree.com/",
+  "description": null
+ },
+ {
+  "date_start": "2027-02-23",
   "title": "水戸市長杯",
   "prefecture": "茨城県",
   "venue": "アダストリアみとアリーナ",
@@ -2178,6 +3128,26 @@
   "organizer": "茨城県ドッジボール協会",
   "url": "https://idba.jp/nenkan/",
   "description": "出典：茨城県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2027-02-23",
+  "title": "第5回日本の夜明け杯",
+  "prefecture": "高知県",
+  "venue": "高知県立青少年センター",
+  "category": "ファイター,中学生",
+  "organizer": "高知県ドッジボール協会",
+  "url": "https://sites.google.com/view/kochidodge/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/%E5%A4%A7%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB",
+  "description": null
+ },
+ {
+  "date_start": "2027-02-27",
+  "title": "第36回春の全国小学生ドッジボール選手権 福井県大会",
+  "prefecture": "福井県",
+  "venue": "福井市体育館",
+  "category": "オフィシャル",
+  "organizer": "福井県ドッジボール協会",
+  "url": "http://kore.mitene.or.jp/~fdba/schedule.html",
+  "description": null
  },
  {
   "date_start": "2027-02-27",
@@ -2228,6 +3198,16 @@
   "organizer": "香川県ドッジボール協会",
   "url": "https://godeagle.jimdofree.com/%E6%B4%BB%E5%8B%95%E4%BA%88%E5%AE%9A/",
   "description": "出典：香川県内チームの活動予定ページ（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2027-02-28",
+  "title": "ドッジボール交流会",
+  "prefecture": "高知県",
+  "venue": "高知県立青少年体育館",
+  "category": "オフィシャル,ジュニア",
+  "organizer": "高知県ドッジボール協会",
+  "url": "https://sites.google.com/view/kochidodge/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/%E5%A4%A7%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB",
+  "description": null
  },
  {
   "date_start": "2027-03-06",
@@ -2290,6 +3270,26 @@
   "description": "出典：宮城県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
  },
  {
+  "date_start": "2027-03-13",
+  "title": "さよならドッジ大会",
+  "prefecture": "沖縄県",
+  "venue": "西崎総合体育館",
+  "category": null,
+  "organizer": null,
+  "url": "https://okinawadodgeballassociation.jimdofree.com/",
+  "description": null
+ },
+ {
+  "date_start": "2027-03-13",
+  "title": "2027メモリアルドッジinふくい",
+  "prefecture": "福井県",
+  "venue": "福井市体育館",
+  "category": null,
+  "organizer": "福井県ドッジボール協会",
+  "url": "http://kore.mitene.or.jp/~fdba/schedule.html",
+  "description": null
+ },
+ {
   "date_start": "2027-03-14",
   "title": "令和8年度 六年生送別ドッジボール大会",
   "prefecture": "三重県",
@@ -2341,6 +3341,26 @@
  },
  {
   "date_start": "2027-03-20",
+  "title": "春の小学生ドッジボール選手権 九州大会",
+  "prefecture": "宮崎県",
+  "venue": "宮崎市総合体育館",
+  "category": "オフィシャル",
+  "organizer": "九州ブロック連絡会",
+  "url": "https://jdba-fukuoka.jp/",
+  "description": "日程：3月20日〜21日"
+ },
+ {
+  "date_start": "2027-03-20",
+  "title": "THE FINAL2026",
+  "prefecture": "山口県",
+  "venue": "山口県立下関武道館",
+  "category": null,
+  "organizer": null,
+  "url": "https://jdbayamaguchi.fc2.page/?page_id=137",
+  "description": null
+ },
+ {
+  "date_start": "2027-03-20",
   "title": "シニアオープン",
   "prefecture": "東京都",
   "venue": "ひがしんアリーナ",
@@ -2378,6 +3398,16 @@
   "organizer": "茨城県ドッジボール協会",
   "url": "https://idba.jp/nenkan/",
   "description": "出典：茨城県ドッジボール協会の年間予定（2026年10月時点の掲載内容）。日程・会場・参加条件は変更になる場合があります。必ず主催者の最新の発表をご確認ください。"
+ },
+ {
+  "date_start": "2027-03-21",
+  "title": "第24回黒潮フレンドシップ",
+  "prefecture": "高知県",
+  "venue": "高知県立青少年センター",
+  "category": "オフィシャル",
+  "organizer": "黒潮実行委員会",
+  "url": "https://sites.google.com/view/kochidodge/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC/%E5%A4%A7%E4%BC%9A%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB",
+  "description": null
  },
  {
   "date_start": "2027-03-22",

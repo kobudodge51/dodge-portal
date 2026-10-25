@@ -136,6 +136,19 @@ p { margin: 0 0 1em; }
 /* ───── 大会予定のティッカー（横スクロール） ───── */
 .fixtures { border-bottom: 1px solid var(--line); background: var(--night-2); }
 .fixtures-inner { display: flex; align-items: stretch; gap: 0; }
+.month-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-top: 12px; }
+.month-head h2 { margin: 0; }
+.month-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; padding: 8px 0 4px; }
+@media (max-width: 960px) { .month-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .month-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.mfix { display: block; min-width: 0; padding: 6px 8px; border-radius: var(--r-sm); background: var(--panel); border: 1px solid var(--line); color: var(--text); }
+.mfix:hover { text-decoration: none; border-color: var(--blue); }
+.mfix.done { opacity: .5; }
+.mfix-date { display: block; font-family: var(--display); font-weight: 900; font-size: .95rem; color: var(--cyan); line-height: 1.2; }
+.mfix-date small { font-family: var(--body); font-size: .62rem; font-weight: 700; color: var(--muted); }
+.mfix-title { display: block; font-family: var(--head); font-weight: 700; font-size: .74rem; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mfix-meta { display: block; font-size: .64rem; color: var(--muted); }
+.source-note { font-size: .68rem; color: var(--muted); margin: 4px 0 10px; line-height: 1.6; }
 .fixtures-label { flex: none; display: flex; align-items: center; padding: 0 16px 0 0; font-family: var(--head); font-weight: 900; font-size: .85rem; color: var(--cyan); white-space: nowrap; }
 .rail { display: flex; gap: 10px; overflow-x: auto; padding: 12px 2px; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: #2a3160 transparent; }
 .fixture { scroll-snap-align: start; flex: none; width: 250px; display: grid; grid-template-columns: 52px 1fr; gap: 10px; align-items: center; padding: 8px 12px 8px 8px; border-radius: var(--r-sm); background: var(--panel); border: 1px solid var(--line); color: var(--text); }

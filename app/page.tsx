@@ -21,8 +21,13 @@ async function count(table: string, extra?: (q: any) => any) { // eslint-disable
 
 export default async function Home() {
   const today = todayJST();
+  // 今月（1日〜月末）の範囲
+  const y = Number(today.slice(0, 4));
+  const m = Number(today.slice(5, 7));
+  const monthStart = `${today.slice(0, 7)}-01`;
+  const nextMonth = m === 12 ? `${y + 1}-01-01` : `${y}-${String(m + 1).padStart(2, "0")}-01`;
   const [events, threads, columns, nEvents, nTeams, nThreads, nColumns] = await Promise.all([
-    safeList<EventRow>(() => db().from("portal_events").select(EVENT_COLS).eq("is_hidden", false).gte("date_start", today).order("date_start").limit(12)),
+    safeList<EventRow>(() => db().from("portal_events").select(EVENT_COLS).eq("is_hidden", false).gte("date_start", monthStart).lt("date_start", nextMonth).order("date_start").limit(15)),
     safeList<ThreadRow>(() => db().from("portal_threads").select(THREAD_COLS).eq("is_hidden", false).order("last_activity_at", { ascending: false }).limit(5)),
     safeList<ColumnRow>(() => db().from("portal_columns").select("*").eq("is_published", true).order("published_at", { ascending: false }).limit(4)),
     count("portal_events", (q) => q.eq("is_hidden", false).gte("date_start", today)),
@@ -49,7 +54,7 @@ export default async function Home() {
               <span className="g">Portal</span>
             </h1>
             <p className="hero-sub"><span>全国のドッジボールを、</span><span>ひとつのコートに。</span></p>
-            <p className="hero-lead">大会予定・登録チーム・コラム・交流掲示板。47都道府県の情報が、ここに集まります。</p>
+            <p className="hero-lead">大会予定・登録チーム・コラム・交流掲示板。<br />47都道府県の情報が、ここに集まります。</p>
           </div>
           <nav className="gates" aria-label="コーナー">
             {gates.map((g) => (
@@ -62,33 +67,30 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="fixtures" aria-label="これからの大会">
-        <div className="wrap fixtures-inner">
-          <span className="fixtures-label">次の大会</span>
-          <div className="rail">
-            {events.length ? (
-              events.map((e) => {
+      <section className="fixtures" aria-label="今月の大会予定">
+        <div className="wrap">
+          <div className="month-head">
+            <h2 className="fixtures-label">{m}月の大会予定</h2>
+            <Link href="/events" className="small">すべての大会予定 →</Link>
+          </div>
+          {events.length ? (
+            <div className="month-grid">
+              {events.map((e) => {
                 const d = fmtDateShort(e.date_start);
+                const done = e.date_start < today;
                 return (
-                  <Link key={e.id} href={`/events/${e.id}`} className="fixture">
-                    <span className="fixture-date">{d.md}<small>{d.w}曜</small></span>
-                    <span>
-                      <span className="fixture-title">{e.title}</span>
-                      <span className="fixture-meta">{e.prefecture}{e.venue ? `・${e.venue}` : ""}</span>
-                    </span>
+                  <Link key={e.id} href={`/events/${e.id}`} className={done ? "mfix done" : "mfix"}>
+                    <span className="mfix-date">{d.md}<small>（{d.w}）{done ? " 終了" : ""}</small></span>
+                    <span className="mfix-title">{e.title}</span>
+                    <span className="mfix-meta">{e.prefecture}</span>
                   </Link>
                 );
-              })
-            ) : (
-              <Link href="/events/new" className="fixture" style={{ width: 300 }}>
-                <span className="fixture-date">+<small>投稿</small></span>
-                <span>
-                  <span className="fixture-title">開催予定の大会を投稿してください</span>
-                  <span className="fixture-meta">主催者・協会の発表済みの大会</span>
-                </span>
-              </Link>
-            )}
-          </div>
+              })}
+            </div>
+          ) : (
+            <p className="empty small">今月の大会予定はまだ登録されていません。<Link href="/events/new">大会予定を投稿する</Link></p>
+          )}
+          <p className="source-note">※大会予定・登録チームは、日本ドッジボール協会の公式サイトに掲載されている都道府県協会の情報をもとにしています。協会のホームページがない都道府県や、年間の大会予定が掲載されていない都道府県の大会は入っていません。</p>
         </div>
       </section>
 

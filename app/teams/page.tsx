@@ -69,7 +69,7 @@ export default async function TeamsPage({ searchParams }: { searchParams: SP }) 
           </section>
         ))}
         <p className="small muted">
-          ※掲載内容は<a href={JDBA_URL} target="_blank" rel="noopener noreferrer">日本ドッジボール協会</a>の公式サイトに掲載されている情報をもとにしています。最新の登録状況は協会の発表をご確認ください。掲載内容の誤りは<Link href="/contact">お問い合わせ</Link>からお知らせください。
+          ※掲載内容は<a href={JDBA_URL} target="_blank" rel="noopener noreferrer">日本ドッジボール協会</a>の公式サイトの都道府県協会ページに掲載されている情報（公開を希望したチームのみ）をもとにしています。掲載されていない都道府県・チームは入っていません。最新の登録状況は協会の発表をご確認ください。掲載内容の誤りは<Link href="/contact">お問い合わせ</Link>からお知らせください。
         </p>
       </div>
     </>

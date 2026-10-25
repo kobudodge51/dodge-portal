@@ -75,7 +75,7 @@ export async function createEvent(_: FormState, form: FormData): Promise<FormSta
   const date_start = str(form, "date_start", 10);
   const date_end = str(form, "date_end", 10) || null;
   const venue = str(form, "venue", 80);
-  const category = str(form, "category");
+  const category = [...new Set(form.getAll("category").map(String))].filter((c) => EVENT_CATEGORIES.includes(c)).join(",");
   const organizer = str(form, "organizer", 60);
   const description = str(form, "description", 1500);
   const url = cleanUrl(str(form, "url", 500));
@@ -84,7 +84,6 @@ export async function createEvent(_: FormState, form: FormData): Promise<FormSta
   if (!PREF_NAMES.includes(prefecture)) return { error: "開催都道府県を選んでください。" };
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date_start)) return { error: "開催日を入力してください。" };
   if (date_end && date_end < date_start) return { error: "終了日は開催日より後にしてください。" };
-  if (category && !EVENT_CATEGORIES.includes(category)) return { error: "カテゴリを選び直してください。" };
   if (url === "INVALID") return { error: "URLは https:// から始まる形で入力してください。" };
 
   const g = await guard(form, "event", title, venue, organizer, description);
@@ -352,19 +351,31 @@ export async function adminImportEvents(_: FormState): Promise<FormState> {
     date_start: string; title: string; prefecture: string; venue: string; category: string; organizer: string; url: string; description: string;
   }[];
   const supa = db();
-  const { data: existing, error: e1 } = await supa.from("portal_events").select("title,date_start").gte("date_start", "2026-04-01").limit(5000);
+  const { data: existing, error: e1 } = await supa.from("portal_events").select("id,title,date_start,category").gte("date_start", "2026-04-01").limit(5000);
   if (e1) return { error: "取り込みに失敗しました：" + e1.message };
-  const have = new Set((existing ?? []).map((r) => `${r.date_start}|${r.title}`));
+  const have = new Map((existing ?? []).map((r) => [`${r.date_start}|${r.title}`, r]));
   const rows = list
     .filter((e) => !have.has(`${e.date_start}|${e.title}`))
-    .map((e) => ({ ...e, category: EVENT_CATEGORIES.includes(e.category) ? e.category : "その他", poster_name: "運営（協会HPより）", is_verified: true }));
-  if (rows.length === 0) return { ok: true, message: `新しく追加する大会はありませんでした（全${list.length}件とも登録済み）。` };
+    .map((e) => ({ ...e, poster_name: "運営（協会HPより）", is_verified: true }));
+  // 登録済みの大会は、大会区分だけ最新の内容に直す
+  let updated = 0;
+  for (const e of list) {
+    const cur = have.get(`${e.date_start}|${e.title}`);
+    if (cur && cur.category !== e.category) {
+      const { error } = await supa.from("portal_events").update({ category: e.category }).eq("id", cur.id);
+      if (!error) updated++;
+    }
+  }
+  if (rows.length === 0) {
+    revalidatePath("/events");
+    return { ok: true, message: `新しく追加する大会はありませんでした（全${list.length}件とも登録済み）。${updated ? `大会区分を${updated}件更新しました。` : ""}` };
+  }
   const { error } = await supa.from("portal_events").insert(rows);
   if (error) return { error: "取り込みに失敗しました：" + error.message };
   revalidatePath("/");
   revalidatePath("/events");
   revalidatePath("/admin");
-  return { ok: true, message: `${rows.length}件の大会を追加しました（登録済みの${list.length - rows.length}件はスキップ）。` };
+  return { ok: true, message: `${rows.length}件の大会を追加しました（登録済みの${list.length - rows.length}件はスキップ${updated ? `、大会区分を${updated}件更新` : ""}）。` };
 }
 
 // ───────── 日本ドッジボール協会の登録チームを取り込み ─────────

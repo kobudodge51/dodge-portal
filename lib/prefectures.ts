@@ -56,9 +56,20 @@ export const PREF_NAMES = PREFECTURES.map((p) => p.name);
 export const prefByCode = (code: string) => PREFECTURES.find((p) => p.code === code);
 export const prefByName = (name: string) => PREFECTURES.find((p) => p.name === name);
 
-export const EVENT_CATEGORIES = ["小学生", "中学生", "一般", "ファミリー・親子", "マスターズ", "交流会・練習会", "その他"];
+// 大会区分（1つの大会に複数つけられる。データベースには「,」区切りで保存）
+export const EVENT_CATEGORIES = ["オフィシャル", "ジュニア", "リトル", "中学生", "ファイター", "ガールズ"];
+export const EVENT_CATEGORY_NOTE: Record<string, string> = {
+  オフィシャル: "D-1",
+  ジュニア: "",
+  リトル: "",
+  中学生: "U-15",
+  ファイター: "S-1",
+  ガールズ: "D-1G・S-1G",
+};
+export const splitCategories = (c: string | null | undefined) => (c ?? "").split(",").map((x) => x.trim()).filter((x) => EVENT_CATEGORIES.includes(x));
 export const TEAM_CATEGORIES = ["D-1", "D-1G", "S-1", "S-1G"];
-export const TEAM_CATEGORY_LABEL: Record<string, string> = { "D-1": "小学生", "D-1G": "小学生女子", "S-1": "シニア", "S-1G": "シニア女子" };
+export const TEAM_CATEGORY_LABEL: Record<string, string> = { "D-1": "オフィシャル", "D-1G": "ガールズ・小学生", "S-1": "ファイター", "S-1G": "ガールズ・中学生以上" };
+export const blockPrefNames = (block: string) => PREFECTURES.filter((p) => p.block === block).map((p) => p.name);
 export const BOARD_CATEGORIES = ["みんな教えて！", "大会情報", "指導・練習方法", "その他"];
 export const REPORT_REASONS = [
   "個人情報が書かれている",

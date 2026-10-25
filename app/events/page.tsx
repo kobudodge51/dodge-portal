@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { db, isConfigured, safeList } from "@/lib/supabase";
 import { EVENT_COLS, type EventRow } from "@/lib/types";
 import { todayJST } from "@/lib/format";
-import { EVENT_CATEGORIES } from "@/lib/prefectures";
+import { EVENT_CATEGORIES, EVENT_CATEGORY_NOTE, BLOCKS, blockPrefNames } from "@/lib/prefectures";
 import { EventItem } from "@/components/Items";
 import { PageHead, NotConnected } from "@/components/Layout";
 import PrefSelect from "@/components/PrefSelect";
@@ -11,7 +11,7 @@ import PrefSelect from "@/components/PrefSelect";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "大会予定一覧" };
 
-type SP = Promise<{ pref?: string; cat?: string; past?: string; deleted?: string }>;
+type SP = Promise<{ pref?: string; block?: string; cat?: string; past?: string; deleted?: string }>;
 
 export default async function EventsPage({ searchParams }: { searchParams: SP }) {
   const sp = await searchParams;
@@ -21,9 +21,10 @@ export default async function EventsPage({ searchParams }: { searchParams: SP })
   const events = await safeList<EventRow>(() => {
     let q = db().from("portal_events").select(EVENT_COLS).eq("is_hidden", false);
     if (sp.pref) q = q.eq("prefecture", sp.pref);
-    if (sp.cat) q = q.eq("category", sp.cat);
+    else if (sp.block && (BLOCKS as readonly string[]).includes(sp.block)) q = q.in("prefecture", blockPrefNames(sp.block));
+    if (sp.cat && EVENT_CATEGORIES.includes(sp.cat)) q = q.ilike("category", `%${sp.cat}%`);
     q = past ? q.lt("date_start", today).order("date_start", { ascending: false }) : q.gte("date_start", today).order("date_start");
-    return q.limit(200);
+    return q.limit(500);
   });
 
   // 月ごとにまとめる
@@ -46,14 +47,21 @@ export default async function EventsPage({ searchParams }: { searchParams: SP })
         {!isConfigured() && <NotConnected />}
         <form className="filters" method="get">
           <label>
+            ブロック
+            <select name="block" defaultValue={sp.block ?? ""}>
+              <option value="">すべて</option>
+              {BLOCKS.map((b) => <option key={b}>{b}</option>)}
+            </select>
+          </label>
+          <label>
             都道府県
             <PrefSelect name="pref" required={false} defaultValue={sp.pref ?? ""} emptyLabel="すべて" />
           </label>
           <label>
-            カテゴリ
+            大会区分
             <select name="cat" defaultValue={sp.cat ?? ""}>
               <option value="">すべて</option>
-              {EVENT_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+              {EVENT_CATEGORIES.map((c) => <option key={c} value={c}>{c}{EVENT_CATEGORY_NOTE[c] ? `（${EVENT_CATEGORY_NOTE[c]}）` : ""}</option>)}
             </select>
           </label>
           <label>
@@ -73,7 +81,7 @@ export default async function EventsPage({ searchParams }: { searchParams: SP })
             <ul className="list">{list.map((e) => <EventItem key={e.id} e={e} />)}</ul>
           </section>
         ))}
-        <p className="small muted">※掲載内容は投稿者・各協会の情報をもとにしています。日程や参加条件は必ず主催者の発表をご確認ください。「確認済み」は運営が主催者の発表と照合した大会です。</p>
+        <p className="small muted">※掲載内容は投稿者・各協会の情報をもとにしています。日程や参加条件は必ず主催者の発表をご確認ください。「確認済み」は運営が主催者の発表と照合した大会です。都道府県を選んだ場合は、ブロックより都道府県が優先されます。</p>
       </div>
     </>
   );

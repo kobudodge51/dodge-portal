@@ -1,5 +1,6 @@
 import { TEAM_CATEGORY_LABEL } from "@/lib/prefectures";
 import Link from "next/link";
+import CategoryTags from "./CategoryTags";
 import type { EventRow, TeamRow, ThreadRow, ColumnRow } from "@/lib/types";
 import { fmtDateShort, fmtDateTime, todayJST, excerpt } from "@/lib/format";
 
@@ -17,7 +18,7 @@ export function EventItem({ e }: { e: EventRow }) {
           <p className="row-title">{e.title}</p>
           <div className="row-meta">
             <span className="tag tag-pref">{e.prefecture}</span>
-            {e.category && <span className="tag">{e.category}</span>}
+            <CategoryTags value={e.category} />
             {e.is_verified && <span className="tag tag-ok">確認済み</span>}
             {e.venue && <span>📍{e.venue}</span>}
           </div>
@@ -34,7 +35,7 @@ export function TeamItem({ t }: { t: TeamRow }) {
       <div className="row-meta">
         <span className="tag tag-pref">{t.prefecture}</span>
         {t.city && <span>{t.city}</span>}
-        {t.category && <span className="tag">{t.category}{TEAM_CATEGORY_LABEL[t.category] ? `（${TEAM_CATEGORY_LABEL[t.category]}）` : ""}</span>}
+        {t.category && <span className="tag">{TEAM_CATEGORY_LABEL[t.category] ?? t.category}（{t.category}）</span>}
         {t.is_verified && <span className="tag tag-ok">確認済み</span>}
       </div>
       {t.description && !t.description.startsWith("フリガナ：") && <p className="small muted" style={{ marginTop: 8, marginBottom: 0 }}>{excerpt(t.description, 60)}</p>}

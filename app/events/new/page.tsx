@@ -3,7 +3,7 @@ import { PageHead } from "@/components/Layout";
 import ActionForm from "@/components/ActionForm";
 import PrefSelect from "@/components/PrefSelect";
 import { createEvent } from "@/app/actions";
-import { EVENT_CATEGORIES } from "@/lib/prefectures";
+import { EVENT_CATEGORIES, EVENT_CATEGORY_NOTE } from "@/lib/prefectures";
 
 export const metadata: Metadata = { title: "大会予定を投稿する" };
 
@@ -22,13 +22,17 @@ export default function NewEventPage() {
               <span>開催都道府県<em>必須</em></span>
               <PrefSelect />
             </label>
-            <label className="field">
-              <span>カテゴリ</span>
-              <select name="category" defaultValue="">
-                <option value="">選んでください</option>
-                {EVENT_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
-              </select>
-            </label>
+            <div className="field">
+              <span>大会区分（複数選べます）</span>
+              <div className="check-group">
+                {EVENT_CATEGORIES.map((c) => (
+                  <label key={c} className="check">
+                    <input type="checkbox" name="category" value={c} />
+                    <span>{c}{EVENT_CATEGORY_NOTE[c] ? `（${EVENT_CATEGORY_NOTE[c]}）` : ""}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
           </div>
           <div className="row-2">
             <label className="field">

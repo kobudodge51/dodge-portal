@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { db, isConfigured, safeList } from "@/lib/supabase";
 import { TEAM_COLS, type TeamRow } from "@/lib/types";
-import { PREFECTURES, TEAM_CATEGORIES, TEAM_CATEGORY_LABEL } from "@/lib/prefectures";
+import { PREFECTURES, TEAM_CATEGORIES, TEAM_CATEGORY_LABEL, BLOCKS, blockPrefNames } from "@/lib/prefectures";
 import { JDBA_URL } from "@/lib/associations";
 import { TeamItem } from "@/components/Items";
 import { PageHead, NotConnected } from "@/components/Layout";
@@ -11,13 +11,14 @@ import PrefSelect from "@/components/PrefSelect";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "登録チーム一覧" };
 
-type SP = Promise<{ pref?: string; cat?: string }>;
+type SP = Promise<{ pref?: string; block?: string; cat?: string }>;
 
 export default async function TeamsPage({ searchParams }: { searchParams: SP }) {
   const sp = await searchParams;
   const teams = await safeList<TeamRow>(() => {
     let q = db().from("portal_teams").select(TEAM_COLS).eq("is_hidden", false);
     if (sp.pref) q = q.eq("prefecture", sp.pref);
+    else if (sp.block && (BLOCKS as readonly string[]).includes(sp.block)) q = q.in("prefecture", blockPrefNames(sp.block));
     if (sp.cat) q = q.eq("category", sp.cat);
     return q.order("team_name").limit(2000);
   });
@@ -38,14 +39,21 @@ export default async function TeamsPage({ searchParams }: { searchParams: SP }) 
         {!isConfigured() && <NotConnected />}
         <form className="filters" method="get">
           <label>
+            ブロック
+            <select name="block" defaultValue={sp.block ?? ""}>
+              <option value="">すべて</option>
+              {BLOCKS.map((b) => <option key={b}>{b}</option>)}
+            </select>
+          </label>
+          <label>
             都道府県
             <PrefSelect name="pref" required={false} defaultValue={sp.pref ?? ""} emptyLabel="すべて" />
           </label>
           <label>
-            カテゴリ
+            部門
             <select name="cat" defaultValue={sp.cat ?? ""}>
               <option value="">すべて</option>
-              {TEAM_CATEGORIES.map((c) => <option key={c} value={c}>{c}（{TEAM_CATEGORY_LABEL[c]}）</option>)}
+              {TEAM_CATEGORIES.map((c) => <option key={c} value={c}>{TEAM_CATEGORY_LABEL[c]}（{c}）</option>)}
             </select>
           </label>
           <button className="btn btn-outline btn-sm" type="submit">絞り込む</button>

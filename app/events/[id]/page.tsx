@@ -6,6 +6,7 @@ import { fmtDate, fmtDateTime } from "@/lib/format";
 import { prefByName } from "@/lib/prefectures";
 import { ASSOCIATIONS } from "@/lib/associations";
 import PostTools from "@/components/PostTools";
+import CategoryTags from "@/components/CategoryTags";
 
 export const dynamic = "force-dynamic";
 
@@ -34,7 +35,7 @@ export default async function EventDetail({ params, searchParams }: P) {
       <p className="small"><Link href="/events">← 大会予定一覧</Link></p>
       <div className="row-meta" style={{ marginBottom: 8 }}>
         <span className="tag tag-pref">{e.prefecture}</span>
-        {e.category && <span className="tag">{e.category}</span>}
+        <CategoryTags value={e.category} withNote />
         {e.is_verified && <span className="tag tag-ok">運営確認済み</span>}
       </div>
       <h1 style={{ fontSize: "1.6rem" }}>{e.title}</h1>

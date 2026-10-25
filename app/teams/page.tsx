@@ -58,6 +58,9 @@ export default async function TeamsPage({ searchParams }: { searchParams: SP }) 
           </label>
           <button className="btn btn-outline btn-sm" type="submit">絞り込む</button>
         </form>
+        <p className="small muted" style={{ marginTop: -4 }}>
+          ※日本ドッジボール協会の登録区分ではファイター（S-1）と中学生（U-15）が分かれていないため、U-15のチームもファイター（S-1）と同じ色のバッジで表示しています。
+        </p>
         {teams.length === 0 && <p className="empty">登録チームの情報は準備中です。</p>}
         {sorted.map(([pref, list]) => (
           <section key={pref} style={{ marginBottom: 28 }}>

@@ -1,6 +1,6 @@
 import { splitCategories, EVENT_CATEGORY_NOTE } from "@/lib/prefectures";
 
-const TONE: Record<string, string> = {
+export const CATEGORY_TONE: Record<string, string> = {
   オフィシャル: "cat-official",
   ジュニア: "cat-junior",
   リトル: "cat-little",
@@ -14,7 +14,7 @@ export default function CategoryTags({ value, withNote = false }: { value: strin
   return (
     <>
       {cats.map((c) => (
-        <span key={c} className={`tag ${TONE[c] ?? ""}`}>
+        <span key={c} className={`tag ${CATEGORY_TONE[c] ?? ""}`}>
           {c}
           {withNote && EVENT_CATEGORY_NOTE[c] ? `（${EVENT_CATEGORY_NOTE[c]}）` : ""}
         </span>

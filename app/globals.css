@@ -309,7 +309,8 @@ textarea { min-height: 140px; resize: vertical; }
 .insight-note { font-size: .78rem; color: var(--text-2); margin: 0; line-height: 1.6; }
 
 /* 大会区分のバッジ */
-.cat-official { background: rgba(76, 107, 255, .2); color: #b3c0ff; }
+.cat-official { background: #7dd3fc; color: #062a3d; }
+.cat-d1g { background: #fbcfe8; color: #4a0d2b; }
 .cat-junior { background: rgba(34, 211, 238, .16); color: #8be9f7; }
 .cat-little { background: rgba(184, 255, 60, .14); color: #d4ff8a; }
 .cat-u15 { background: rgba(178, 60, 255, .18); color: #d9a8ff; }

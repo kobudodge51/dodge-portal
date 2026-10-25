@@ -79,3 +79,6 @@ export const REPORT_REASONS = [
   "宣伝・スパム",
   "その他",
 ];
+
+// 登録チームの部門バッジの色
+export const TEAM_CATEGORY_CLASS: Record<string, string> = { "D-1": "cat-official", "D-1G": "cat-d1g", "S-1": "cat-fighter", "S-1G": "cat-girls" };

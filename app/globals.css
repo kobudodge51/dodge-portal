@@ -313,8 +313,8 @@ textarea { min-height: 140px; resize: vertical; }
 .cat-d1g { background: #fbcfe8; color: #4a0d2b; }
 .cat-junior { background: rgba(34, 211, 238, .16); color: #8be9f7; }
 .cat-little { background: rgba(184, 255, 60, .14); color: #d4ff8a; }
-.cat-u15 { background: rgba(178, 60, 255, .18); color: #d9a8ff; }
-.cat-fighter { background: rgba(255, 138, 31, .18); color: #ffbf85; }
-.cat-girls { background: rgba(255, 46, 136, .18); color: #ff9cc6; }
+.cat-u15 { background: linear-gradient(135deg, #f1f3f6, #b9bfc8); color: #1d2129; }
+.cat-fighter { background: linear-gradient(135deg, #ffe58a, #d4a017); color: #3a2a00; }
+.cat-girls { background: #e91e78; color: #fff; }
 .check-group { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 .check-group .check { font-size: .88rem; }

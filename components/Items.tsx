@@ -1,4 +1,4 @@
-import { TEAM_CATEGORY_LABEL, TEAM_CATEGORY_CLASS } from "@/lib/prefectures";
+import { TEAM_CATEGORY_LABEL, TEAM_CATEGORY_LINE } from "@/lib/prefectures";
 import Link from "next/link";
 import CategoryTags from "./CategoryTags";
 import type { EventRow, TeamRow, ThreadRow, ColumnRow } from "@/lib/types";
@@ -30,12 +30,12 @@ export function EventItem({ e }: { e: EventRow }) {
 
 export function TeamItem({ t }: { t: TeamRow }) {
   return (
-    <Link href={`/teams/${t.id}`} className="card team-card">
+    <Link href={`/teams/${t.id}`} className={`card team-card ${t.category ? TEAM_CATEGORY_LINE[t.category] ?? "" : ""}`}>
       <h3>{t.team_name}</h3>
       <div className="row-meta">
         <span className="tag tag-pref">{t.prefecture}</span>
         {t.city && <span>{t.city}</span>}
-        {t.category && <span className={`tag ${TEAM_CATEGORY_CLASS[t.category] ?? ""}`}>{TEAM_CATEGORY_LABEL[t.category] ?? t.category}（{t.category}）</span>}
+        {t.category && <span className="tag">{TEAM_CATEGORY_LABEL[t.category] ?? t.category}（{t.category}）</span>}
         {t.is_verified && <span className="tag tag-ok">確認済み</span>}
       </div>
       {t.description && !t.description.startsWith("フリガナ：") && <p className="small muted" style={{ marginTop: 8, marginBottom: 0 }}>{excerpt(t.description, 60)}</p>}

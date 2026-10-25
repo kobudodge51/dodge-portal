@@ -203,7 +203,11 @@ p { margin: 0 0 1em; }
 .card { border: 1px solid var(--line); border-radius: var(--r-md); padding: 16px; background: var(--panel); color: var(--text); display: block; transition: border-color .15s, transform .15s; }
 a.card:hover { text-decoration: none; border-color: var(--tone); transform: translateY(-2px); }
 .card h3 { margin-bottom: 4px; }
-.team-card { --tone: var(--cyan); border-top: 3px solid var(--cyan); }
+.team-card { --tone: var(--cyan); border-top: 3px solid var(--tone); }
+.team-card.line-d1 { --tone: #7dd3fc; }
+.team-card.line-d1g { --tone: #fbcfe8; }
+.team-card.line-s1 { --tone: #d4a017; }
+.team-card.line-s1g { --tone: #e91e78; }
 .column-card { --tone: var(--magenta); border-top: 3px solid var(--magenta); }
 .rail .card { flex: none; width: 260px; scroll-snap-align: start; }
 

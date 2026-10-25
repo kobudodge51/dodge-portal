@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db, safeOne } from "@/lib/supabase";
 import { TEAM_COLS, type TeamRow } from "@/lib/types";
-import { prefByName, TEAM_CATEGORY_LABEL, TEAM_CATEGORY_CLASS } from "@/lib/prefectures";
+import { prefByName, TEAM_CATEGORY_LABEL } from "@/lib/prefectures";
 import { JDBA_URL } from "@/lib/associations";
 
 export const dynamic = "force-dynamic";
@@ -28,7 +28,7 @@ export default async function TeamDetail({ params }: P) {
       <p className="small"><Link href="/teams">← 登録チーム一覧</Link></p>
       <div className="row-meta" style={{ marginBottom: 8 }}>
         <span className="tag tag-pref">{t.prefecture}</span>
-        {t.category && <span className={`tag ${TEAM_CATEGORY_CLASS[t.category] ?? ""}`}>{TEAM_CATEGORY_LABEL[t.category] ?? t.category}（{t.category}）</span>}
+        {t.category && <span className="tag">{TEAM_CATEGORY_LABEL[t.category] ?? t.category}（{t.category}）</span>}
       </div>
       <h1 style={{ fontSize: "1.6rem" }}>{t.team_name}</h1>
       <table className="detail-table">

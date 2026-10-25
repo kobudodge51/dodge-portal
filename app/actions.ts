@@ -382,19 +382,16 @@ export async function adminImportEvents(_: FormState): Promise<FormState> {
 const JDBA_POSTER = "日本ドッジボール協会 公開情報";
 export async function adminImportTeams(_: FormState): Promise<FormState> {
   await requireAdmin();
-  const { fetchAllJdbaTeams } = await import("@/lib/jdba-teams");
-  const results = await fetchAllJdbaTeams();
+  // 日本ドッジボール協会の公開データ（2026年度）を読み取って保存したもの
+  const data = (await import("@/data/teams-import.json")).default as { prefecture: string; team_name: string; city: string | null; category: string; website_url: string | null }[];
   const seen = new Set<string>();
-  const teams = results.flatMap((r) => r.teams).filter((t) => {
+  const teams = data.filter((t) => {
     const k = `${t.prefecture}|${t.team_name}|${t.category}`;
     if (seen.has(k)) return false;
     seen.add(k);
     return true;
   });
-  const failed = results.filter((r) => r.error).map((r) => r.pref);
-  if (teams.length < 300) {
-    return { error: `協会のデータを十分に読み込めなかったため、取り込みを中止しました（読み込めたのは${teams.length}チーム）。${failed.length ? `読み込めなかった都道府県：${failed.join("・")}` : ""}` };
-  }
+  const failed: string[] = [];
   const supa = db();
   // 前回取り込んだ協会データを入れ替える（管理者が手で追加したチームは残す）
   const del = await supa.from("portal_teams").delete().eq("poster_name", JDBA_POSTER);
@@ -405,7 +402,7 @@ export async function adminImportTeams(_: FormState): Promise<FormState> {
     city: t.city || null,
     category: t.category || null,
     website_url: t.website_url,
-    description: t.kana ? `フリガナ：${t.kana}` : null,
+    description: null,
     poster_name: JDBA_POSTER,
     is_verified: true,
   }));

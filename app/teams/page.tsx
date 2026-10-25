@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { db, isConfigured, safeList } from "@/lib/supabase";
 import { TEAM_COLS, type TeamRow } from "@/lib/types";
-import { PREFECTURES, TEAM_CATEGORIES } from "@/lib/prefectures";
+import { PREFECTURES, TEAM_CATEGORIES, TEAM_CATEGORY_LABEL } from "@/lib/prefectures";
 import { JDBA_URL } from "@/lib/associations";
 import { TeamItem } from "@/components/Items";
 import { PageHead, NotConnected } from "@/components/Layout";
@@ -32,7 +32,7 @@ export default async function TeamsPage({ searchParams }: { searchParams: SP }) 
       <PageHead
         kicker="TEAMS"
         title="登録チーム一覧"
-        lead="日本ドッジボール協会の公式サイトに掲載されている登録チームを、都道府県別にまとめています。"
+        lead="日本ドッジボール協会に登録し、公式サイトでの公開を希望しているチームを、都道府県別にまとめています（2026年度）。"
       />
       <div className="wrap section">
         {!isConfigured() && <NotConnected />}
@@ -45,7 +45,7 @@ export default async function TeamsPage({ searchParams }: { searchParams: SP }) 
             カテゴリ
             <select name="cat" defaultValue={sp.cat ?? ""}>
               <option value="">すべて</option>
-              {TEAM_CATEGORIES.map((c) => <option key={c}>{c}</option>)}
+              {TEAM_CATEGORIES.map((c) => <option key={c} value={c}>{c}（{TEAM_CATEGORY_LABEL[c]}）</option>)}
             </select>
           </label>
           <button className="btn btn-outline btn-sm" type="submit">絞り込む</button>

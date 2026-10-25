@@ -352,7 +352,7 @@ export async function adminImportEvents(_: FormState): Promise<FormState> {
     date_start: string; title: string; prefecture: string; venue: string; category: string; organizer: string; url: string; description: string;
   }[];
   const supa = db();
-  const { data: existing, error: e1 } = await supa.from("portal_events").select("title,date_start").gte("date_start", "2026-10-01").limit(5000);
+  const { data: existing, error: e1 } = await supa.from("portal_events").select("title,date_start").gte("date_start", "2026-04-01").limit(5000);
   if (e1) return { error: "取り込みに失敗しました：" + e1.message };
   const have = new Set((existing ?? []).map((r) => `${r.date_start}|${r.title}`));
   const rows = list
@@ -365,4 +365,46 @@ export async function adminImportEvents(_: FormState): Promise<FormState> {
   revalidatePath("/events");
   revalidatePath("/admin");
   return { ok: true, message: `${rows.length}件の大会を追加しました（登録済みの${list.length - rows.length}件はスキップ）。` };
+}
+
+// ───────── 日本ドッジボール協会の登録チームを取り込み ─────────
+const JDBA_POSTER = "日本ドッジボール協会 公開情報";
+export async function adminImportTeams(_: FormState): Promise<FormState> {
+  await requireAdmin();
+  const { fetchAllJdbaTeams } = await import("@/lib/jdba-teams");
+  const results = await fetchAllJdbaTeams();
+  const seen = new Set<string>();
+  const teams = results.flatMap((r) => r.teams).filter((t) => {
+    const k = `${t.prefecture}|${t.team_name}|${t.category}`;
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+  const failed = results.filter((r) => r.error).map((r) => r.pref);
+  if (teams.length < 300) {
+    return { error: `協会のデータを十分に読み込めなかったため、取り込みを中止しました（読み込めたのは${teams.length}チーム）。${failed.length ? `読み込めなかった都道府県：${failed.join("・")}` : ""}` };
+  }
+  const supa = db();
+  // 前回取り込んだ協会データを入れ替える（管理者が手で追加したチームは残す）
+  const del = await supa.from("portal_teams").delete().eq("poster_name", JDBA_POSTER);
+  if (del.error) return { error: "取り込みに失敗しました：" + del.error.message };
+  const rows = teams.map((t) => ({
+    team_name: t.team_name,
+    prefecture: t.prefecture,
+    city: t.city || null,
+    category: t.category || null,
+    website_url: t.website_url,
+    description: t.kana ? `フリガナ：${t.kana}` : null,
+    poster_name: JDBA_POSTER,
+    is_verified: true,
+  }));
+  for (let i = 0; i < rows.length; i += 500) {
+    const { error } = await supa.from("portal_teams").insert(rows.slice(i, i + 500));
+    if (error) return { error: "取り込みに失敗しました：" + error.message };
+  }
+  revalidatePath("/");
+  revalidatePath("/teams");
+  revalidatePath("/admin");
+  const byCat = ["D-1", "D-1G", "S-1", "S-1G"].map((c) => `${c} ${rows.filter((r) => r.category === c).length}`).join("・");
+  return { ok: true, message: `${rows.length}チームを取り込みました（${byCat}）。${failed.length ? `読み込めなかった都道府県：${failed.join("・")}` : ""}` };
 }

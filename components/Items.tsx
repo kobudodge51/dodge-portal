@@ -1,3 +1,4 @@
+import { TEAM_CATEGORY_LABEL } from "@/lib/prefectures";
 import Link from "next/link";
 import type { EventRow, TeamRow, ThreadRow, ColumnRow } from "@/lib/types";
 import { fmtDateShort, fmtDateTime, todayJST, excerpt } from "@/lib/format";
@@ -33,10 +34,10 @@ export function TeamItem({ t }: { t: TeamRow }) {
       <div className="row-meta">
         <span className="tag tag-pref">{t.prefecture}</span>
         {t.city && <span>{t.city}</span>}
-        {t.category && <span className="tag">{t.category}</span>}
+        {t.category && <span className="tag">{t.category}{TEAM_CATEGORY_LABEL[t.category] ? `（${TEAM_CATEGORY_LABEL[t.category]}）` : ""}</span>}
         {t.is_verified && <span className="tag tag-ok">確認済み</span>}
       </div>
-      {t.description && <p className="small muted" style={{ marginTop: 8, marginBottom: 0 }}>{excerpt(t.description, 60)}</p>}
+      {t.description && !t.description.startsWith("フリガナ：") && <p className="small muted" style={{ marginTop: 8, marginBottom: 0 }}>{excerpt(t.description, 60)}</p>}
     </Link>
   );
 }

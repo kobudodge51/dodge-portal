@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { isAdmin } from "@/lib/admin";
 import { db, isConfigured, safeList, safeOne } from "@/lib/supabase";
 import { fmtDateTime, excerpt } from "@/lib/format";
-import { adminLogin, adminLogout, adminSet, adminDelete, adminSaveColumn, adminAddTeam, adminImportEvents } from "@/app/actions";
+import { adminLogin, adminLogout, adminSet, adminDelete, adminSaveColumn, adminAddTeam, adminImportEvents, adminImportTeams } from "@/app/actions";
 import PrefSelect from "@/components/PrefSelect";
 import { TEAM_CATEGORIES } from "@/lib/prefectures";
 import ActionForm from "@/components/ActionForm";
@@ -151,6 +151,13 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
           </div>
         )}
 
+        {tab === "teams" && (
+          <div className="panel" style={{ marginBottom: 16, maxWidth: 680 }}>
+            <h3 style={{ marginTop: 0 }}>日本ドッジボール協会の登録チームを取り込む</h3>
+            <p className="small muted">日本ドッジボール協会の都道府県協会ページに公開されている登録チーム（D-1・D-1G・S-1・S-1G）を、47都道府県分まとめて読み込みます。押すたびに最新の内容に入れ替わります（手で追加したチームは残ります）。</p>
+            <ActionForm action={adminImportTeams} submitLabel="取り込む" />
+          </div>
+        )}
         {tab === "teams" && (
           <details style={{ marginBottom: 20 }}>
             <summary className="btn btn-primary btn-sm">＋ 登録チームを追加する</summary>

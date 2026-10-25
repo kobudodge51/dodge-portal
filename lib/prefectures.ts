@@ -57,7 +57,8 @@ export const prefByCode = (code: string) => PREFECTURES.find((p) => p.code === c
 export const prefByName = (name: string) => PREFECTURES.find((p) => p.name === name);
 
 export const EVENT_CATEGORIES = ["小学生", "中学生", "一般", "ファミリー・親子", "マスターズ", "交流会・練習会", "その他"];
-export const TEAM_CATEGORIES = ["小学生", "中学生", "一般", "その他"];
+export const TEAM_CATEGORIES = ["D-1", "D-1G", "S-1", "S-1G"];
+export const TEAM_CATEGORY_LABEL: Record<string, string> = { "D-1": "小学生", "D-1G": "小学生女子", "S-1": "シニア", "S-1G": "シニア女子" };
 export const BOARD_CATEGORIES = ["みんな教えて！", "大会情報", "指導・練習方法", "その他"];
 export const REPORT_REASONS = [
   "個人情報が書かれている",

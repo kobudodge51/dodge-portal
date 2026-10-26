@@ -4,6 +4,7 @@ import { EVENT_COLS, THREAD_COLS, type EventRow, type ThreadRow, type ColumnRow 
 import { todayJST, fmtDateShort, fmtDateTime } from "@/lib/format";
 import { BLOCKS, PREFECTURES } from "@/lib/prefectures";
 import { ThreadItem } from "@/components/Items";
+import SpecialBanner from "@/components/SpecialBanner";
 
 export const dynamic = "force-dynamic";
 
@@ -70,6 +71,8 @@ export default async function Home() {
           </nav>
         </div>
       </section>
+
+      <SpecialBanner today={today} />
 
       <section className="fixtures" aria-label="直近の大会">
         <div className="wrap">

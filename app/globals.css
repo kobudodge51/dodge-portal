@@ -406,3 +406,81 @@ textarea { min-height: 140px; resize: vertical; }
 .btn-ok { background: #1fa463; color: #fff; border: 0; }
 .btn-ng { background: #d93a5b; color: #fff; border: 0; }
 @media (max-width: 560px) { .review-actions { grid-template-columns: 1fr; } }
+
+/* ───── 特設：全日本女子総合（ローズ系のさし色・濃淡） ───── */
+.joshi, .sp-banner { --rose-1: #ffd6e7; --rose-2: #ff8fbf; --rose-3: #ff4f9a; --rose-4: #d81b74; --rose-5: #6d0f3e; --rose-grad: linear-gradient(120deg, #ffd6e7 0%, #ff8fbf 35%, #ff4f9a 65%, #b5179e 100%); }
+.sp-banner { position: relative; display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 14px; margin: 14px 0; padding: 12px 16px; border-radius: var(--r-md); color: var(--text); overflow: hidden; background: linear-gradient(100deg, rgba(109,15,62,.85), rgba(26,12,40,.9) 55%, rgba(12,16,40,.9)); border: 1px solid rgba(255,79,154,.45); box-shadow: 0 0 24px rgba(255,79,154,.15); }
+.sp-banner::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 92% 50%, rgba(255,143,191,.25), transparent 40%); pointer-events: none; }
+.sp-banner:hover { text-decoration: none; border-color: var(--rose-2); }
+.sp-tag { font-family: var(--display); font-weight: 900; font-size: .72rem; letter-spacing: .14em; padding: 4px 8px; border-radius: 4px; background: var(--rose-grad); color: #2a0618; }
+.sp-body { min-width: 0; display: grid; }
+.sp-title { font-family: var(--head); font-weight: 900; font-size: 1.02rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sp-title b { color: var(--rose-2); }
+.sp-meta { font-size: .74rem; color: var(--rose-1); opacity: .8; }
+.sp-count { font-size: .78rem; color: var(--rose-1); white-space: nowrap; }
+.sp-count b { font-family: var(--display); font-size: 1.5rem; margin: 0 2px; background: var(--rose-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sp-go { font-size: 1.2rem; color: var(--rose-2); }
+@media (max-width: 640px) { .sp-banner { grid-template-columns: 1fr auto; gap: 6px 10px; } .sp-tag { justify-self: start; } .sp-body { grid-column: 1 / -1; grid-row: 2; } .sp-title { white-space: normal; } .sp-go { display: none; } }
+
+.jh { position: relative; overflow: hidden; border-bottom: 1px solid rgba(255,79,154,.3); background: radial-gradient(ellipse at 85% 10%, rgba(255,79,154,.28), transparent 50%), radial-gradient(ellipse at 10% 100%, rgba(181,23,158,.25), transparent 55%), var(--night); }
+.jh-glow { position: absolute; right: -120px; top: -120px; width: 420px; height: 420px; border-radius: 50%; border: 2px solid rgba(255,143,191,.25); box-shadow: 0 0 0 40px rgba(255,143,191,.05), 0 0 0 90px rgba(255,143,191,.03); }
+.jh-inner { position: relative; padding-top: 34px; padding-bottom: 30px; }
+.jh-kicker { margin: 0 0 8px; font-family: var(--display); font-weight: 900; letter-spacing: .2em; font-size: .8rem; color: var(--rose-2); }
+.jh-kicker span { margin-left: 10px; letter-spacing: .05em; font-family: var(--head); color: var(--rose-1); opacity: .8; }
+.jh-title { margin: 0; font-family: var(--head); font-weight: 900; font-size: clamp(1.8rem, 5.4vw, 3.4rem); line-height: 1.15; letter-spacing: .02em; }
+.jh-title small { display: block; font-size: .42em; color: var(--rose-1); letter-spacing: .12em; margin-bottom: 4px; }
+.jh-title b { background: var(--rose-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.jh-facts { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; margin-top: 20px; max-width: 760px; }
+.jh-facts > div { padding: 10px 14px; border-radius: var(--r-md); background: rgba(255,255,255,.04); border: 1px solid rgba(255,143,191,.25); display: grid; align-content: center; min-width: 0; }
+.jh-facts span { font-family: var(--display); font-size: .62rem; letter-spacing: .16em; color: var(--rose-2); }
+.jh-facts b { font-family: var(--display); font-size: 1.6rem; line-height: 1.1; }
+.jh-facts b.jh-venue { font-family: var(--head); font-size: 1.05rem; }
+.jh-facts em { font-style: normal; font-size: .72rem; color: var(--muted); }
+.jh-count { background: linear-gradient(140deg, rgba(255,79,154,.35), rgba(109,15,62,.5)) !important; border-color: var(--rose-3) !important; text-align: center; }
+.jh-count span { color: var(--rose-1); }
+.jh-count b { font-size: 2.2rem; color: #fff; }
+.jh-count b small { font-size: .9rem; margin-left: 2px; }
+.jh-cats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.jh-cat { display: inline-flex; align-items: center; gap: 8px; font-size: .8rem; padding: 4px 12px 4px 4px; border-radius: 999px; }
+.jh-cat b { font-family: var(--display); padding: 2px 8px; border-radius: 999px; }
+.jh-cat.d1g { background: rgba(255,214,231,.12); color: var(--rose-1); }
+.jh-cat.d1g b { background: var(--rose-1); color: #4a0d2b; }
+.jh-cat.s1g { background: rgba(216,27,116,.18); color: var(--rose-2); }
+.jh-cat.s1g b { background: var(--rose-4); color: #fff; }
+@media (max-width: 640px) { .jh-facts { grid-template-columns: 1fr 1fr; } .jh-facts .jh-count { grid-column: 1 / -1; } }
+
+.j-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 14px; }
+@media (max-width: 860px) { .j-grid { grid-template-columns: 1fr; } }
+.j-card { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--rose-2); border-radius: var(--r-lg); padding: 16px; min-width: 0; }
+.j-card-accent { background: linear-gradient(160deg, rgba(109,15,62,.55), var(--panel) 60%); border-top-color: var(--rose-3); }
+.j-h { margin: 0 0 10px; font-family: var(--head); font-weight: 900; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+.j-h::before { content: ""; width: 4px; height: 1.1em; border-radius: 2px; background: var(--rose-grad); box-shadow: 0 0 10px var(--rose-3); }
+.j-h-lg { font-size: 1.25rem; flex-wrap: wrap; }
+.j-h span { font-size: .72rem; font-weight: 700; color: var(--rose-1); opacity: .75; }
+.j-dl { display: grid; grid-template-columns: 5em 1fr; gap: 8px 12px; margin: 0 0 12px; font-size: .9rem; }
+.j-dl dt { color: var(--rose-2); font-weight: 700; font-size: .8rem; padding-top: 2px; }
+.j-dl dd { margin: 0; }
+.j-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.j-stats div { text-align: center; padding: 10px 4px; border-radius: var(--r-sm); background: rgba(255,255,255,.04); }
+.j-stats b { display: block; font-family: var(--display); font-size: 2rem; line-height: 1; color: var(--rose-1); }
+.j-stats div:first-child b { background: var(--rose-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.j-stats span { font-size: .68rem; color: var(--muted); font-weight: 700; }
+.j-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.btn-joshi { background: var(--rose-grad); color: #2a0618; border: 0; font-weight: 800; }
+.j-section { margin-top: 28px; }
+.jq-blocks { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+.jq-block { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-md); padding: 10px 12px; min-width: 0; }
+.jq-block h3 { margin: 0 0 6px; font-size: .8rem; color: var(--rose-2); letter-spacing: .08em; }
+.jq-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.jq-item { display: grid; grid-template-columns: 52px 1fr auto; gap: 10px; align-items: center; padding: 8px 10px; border-radius: var(--r-sm); background: rgba(255,255,255,.03); border: 1px solid rgba(255,143,191,.18); color: var(--text); }
+.jq-item:hover { text-decoration: none; border-color: var(--rose-2); background: rgba(255,79,154,.08); }
+.jq-item.done { opacity: .55; }
+.jq-date { text-align: center; line-height: 1.1; border-radius: 6px; padding: 4px 0; background: linear-gradient(160deg, var(--rose-4), var(--rose-5)); color: #fff; }
+.jq-item.done .jq-date { background: #2a2f52; }
+.jq-date b { display: block; font-family: var(--display); font-size: 1rem; }
+.jq-date small { font-size: .62rem; }
+.jq-main { min-width: 0; display: grid; }
+.jq-title { font-family: var(--head); font-weight: 700; font-size: .88rem; line-height: 1.35; }
+.jq-meta { font-size: .72rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.jq-state { font-size: .66rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; background: rgba(255,255,255,.08); color: var(--muted); white-space: nowrap; }
+.jq-state.up { background: var(--rose-1); color: #4a0d2b; }

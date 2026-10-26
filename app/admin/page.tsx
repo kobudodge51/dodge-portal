@@ -10,6 +10,7 @@ import ActionForm from "@/components/ActionForm";
 import ConfirmButton from "@/components/ConfirmButton";
 import InsightsView from "./InsightsView";
 import DevicesView from "./DevicesView";
+import LineView from "./LineView";
 import { PageHead, NotConnected } from "@/components/Layout";
 
 export const dynamic = "force-dynamic";
@@ -25,6 +26,7 @@ const TABS = [
   { key: "replies", label: "返信" },
   { key: "columns", label: "コラム" },
   { key: "contacts", label: "お問い合わせ" },
+  { key: "line", label: "LINE通知" },
 ];
 
 type Row = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -89,7 +91,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   const tab = TABS.some((t) => t.key === sp.tab) ? sp.tab! : "insights";
 
   let rows: Row[] = [];
-  if (tab === "insights" || tab === "devices") {
+  if (tab === "insights" || tab === "devices" || tab === "line") {
     rows = [];
   } else if (tab === "reports") {
     rows = await safeList<Row>(() => db().from("portal_reports").select("*").eq("is_resolved", false).order("created_at", { ascending: false }).limit(200));
@@ -117,6 +119,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
         </div>
 
         {tab === "insights" && <InsightsView />}
+        {tab === "line" && <LineView />}
         {tab === "devices" && <DevicesView show={sp.show === "all" || sp.show === "blocked" ? sp.show : ""} />}
 
         {tab === "reports" && (

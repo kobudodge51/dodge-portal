@@ -3,18 +3,16 @@ import type { Metadata } from "next";
 import { db, isConfigured, safeList } from "@/lib/supabase";
 import { EVENT_COLS, type EventRow } from "@/lib/types";
 import { todayJST } from "@/lib/format";
-import { EVENT_CATEGORIES, EVENT_CATEGORY_NOTE, BLOCKS, blockPrefNames, splitCategories } from "@/lib/prefectures";
-import { EventItem } from "@/components/Items";
+import { EVENT_CATEGORIES, EVENT_CATEGORY_NOTE, BLOCKS, blockPrefNames } from "@/lib/prefectures";
 import { PageHead, NotConnected } from "@/components/Layout";
 import PrefSelect from "@/components/PrefSelect";
-import { CATEGORY_TONE } from "@/components/CategoryTags";
+import EventCalendar from "@/components/EventCalendar";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "大会予定カレンダー" };
 
 type SP = Promise<{ pref?: string; block?: string; cat?: string; m?: string; deleted?: string }>;
 
-const WEEK = ["日", "月", "火", "水", "木", "金", "土"];
 const pad = (n: number) => String(n).padStart(2, "0");
 const ym = (y: number, m: number) => `${y}-${pad(m)}`;
 function shift(y: number, m: number, d: number) {
@@ -42,16 +40,6 @@ export default async function EventsPage({ searchParams }: { searchParams: SP })
     return q.order("date_start").order("prefecture").limit(1000);
   });
 
-  // 日付ごとにまとめる
-  const byDay = new Map<number, EventRow[]>();
-  for (const e of events) {
-    const d = Number(e.date_start.slice(8, 10));
-    byDay.set(d, [...(byDay.get(d) ?? []), e]);
-  }
-  const firstDow = new Date(Date.UTC(y, m - 1, 1)).getUTCDay();
-  const days = new Date(Date.UTC(y, m, 0)).getUTCDate();
-  const cells: (number | null)[] = [...Array(firstDow).fill(null), ...Array.from({ length: days }, (_, i) => i + 1)];
-  while (cells.length % 7) cells.push(null);
 
   // 絞り込み条件を保ったまま月を移動するリンク
   const qs = (target: string) => {
@@ -62,7 +50,6 @@ export default async function EventsPage({ searchParams }: { searchParams: SP })
     p.set("m", target);
     return `/events?${p.toString()}`;
   };
-  const MAX = 3;
 
   return (
     <>
@@ -105,44 +92,8 @@ export default async function EventsPage({ searchParams }: { searchParams: SP })
         </div>
         {(y !== ty || m !== tm) && <p className="small" style={{ textAlign: "center", margin: "-6px 0 8px" }}><Link href={qs(ym(ty, tm))}>今月に戻る</Link></p>}
 
-        <div className="cal" role="table" aria-label={`${y}年${m}月の大会予定`}>
-          {WEEK.map((w, i) => <div key={w} className={`cal-dow${i === 0 ? " sun" : i === 6 ? " sat" : ""}`} role="columnheader">{w}</div>)}
-          {cells.map((d, i) => {
-            if (d === null) return <div key={`e${i}`} className="cal-cell empty" />;
-            const list = byDay.get(d) ?? [];
-            const iso = `${ym(y, m)}-${pad(d)}`;
-            const dow = i % 7;
-            return (
-              <div key={iso} className={`cal-cell${iso === today ? " today" : ""}${iso < today ? " past" : ""}${list.length ? " has" : ""}`} role="cell">
-                <span className={`cal-day${dow === 0 ? " sun" : dow === 6 ? " sat" : ""}`}>{d}</span>
-                {list.length > 0 && <a href={`#d${d}`} className="cal-count" aria-label={`${d}日の大会 ${list.length}件`}>{list.length}</a>}
-                <div className="cal-items">
-                  {list.slice(0, MAX).map((e) => {
-                    const c = splitCategories(e.category)[0];
-                    return (
-                      <Link key={e.id} href={`/events/${e.id}`} className={`cal-ev ${c ? CATEGORY_TONE[c] : ""}`} title={`${e.title}（${e.prefecture}）`}>
-                        <span className="cal-ev-pref">{e.prefecture.replace(/[都府県]$/, "")}</span>{e.title}
-                      </Link>
-                    );
-                  })}
-                  {list.length > MAX && <a href={`#d${d}`} className="cal-more">ほか{list.length - MAX}件</a>}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <div className="cal-legend">
-          {EVENT_CATEGORIES.map((c) => <span key={c} className={`tag ${CATEGORY_TONE[c]}`}>{c}</span>)}
-          <span className="tag">区分なし</span>
-        </div>
+        <EventCalendar y={y} m={m} today={today} events={events} />
 
-        <h2 style={{ marginTop: 28 }}>{m}月の大会一覧</h2>
-        {events.length === 0 && <p className="empty">この月の大会予定はまだありません。</p>}
-        {[...byDay.entries()].map(([d, list]) => (
-          <section key={d} id={`d${d}`} style={{ marginBottom: 14, scrollMarginTop: 80 }}>
-            <ul className="list">{list.map((e) => <EventItem key={e.id} e={e} />)}</ul>
-          </section>
-        ))}
         <p className="small muted">※大会予定は、日本ドッジボール協会の公式サイトに掲載されている都道府県協会の情報と、閲覧者のみなさんからの投稿をもとにしています。協会のホームページがない都道府県や、年間の大会予定が掲載されていない都道府県の大会は入っていない場合があります。日程や参加条件は必ず主催者の発表をご確認ください。「確認済み」は運営が主催者の発表と照合した大会です。都道府県を選んだ場合は、ブロックより都道府県が優先されます。</p>
       </div>
     </>

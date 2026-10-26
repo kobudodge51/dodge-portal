@@ -1,10 +1,14 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { after } from "next/server";
 import { revalidatePath } from "next/cache";
 import { db, isConfigured } from "@/lib/supabase";
 import { checkDeleteKey, checkText, cleanUrl, getIpHash, hashDeleteKey, isBot, rateLimit, str } from "@/lib/security";
 import { isAdmin, setAdminCookie, clearAdminCookie, adminToken } from "@/lib/admin";
+import { notifyAdmin, lineReady, ADMIN_KEY } from "@/lib/line";
+import { applyReview, REVIEW_TYPES, type ReviewType } from "@/lib/review";
+import { setSetting } from "@/lib/settings";
 import { PREF_NAMES, EVENT_CATEGORIES, TEAM_CATEGORIES, BOARD_CATEGORIES, REPORT_REASONS } from "@/lib/prefectures";
 
 export type FormState = { ok?: boolean; error?: string; message?: string };
@@ -99,6 +103,7 @@ export async function createEvent(_: FormState, form: FormData): Promise<FormSta
     return { error: `保存に失敗しました。時間をおいて再度お試しください。（${error?.code ?? "no-data"}）` };
   }
   revalidatePath("/");
+  after(() => notifyAdmin({ kind: "大会予定の投稿", title, body: [`${date_start}　${prefecture}`, venue, organizer && `主催：${organizer}`].filter(Boolean).join("\n"), review: { type: "event", id: data.id } }));
   redirect(`/events/${data.id}?posted=1`);
 }
 
@@ -148,6 +153,7 @@ export async function createThread(_: FormState, form: FormData): Promise<FormSt
     console.error("insert failed", error);
     return { error: `保存に失敗しました。時間をおいて再度お試しください。（${error?.code ?? "no-data"}）` };
   }
+  after(() => notifyAdmin({ kind: "掲示板：新しいスレッド", title, body: `［${category}］${body}`, review: { type: "thread", id: data.id } }));
   redirect(`/board/${data.id}`);
 }
 
@@ -162,10 +168,11 @@ export async function createReply(_: FormState, form: FormData): Promise<FormSta
   const supa = db();
   const { data: th } = await supa.from("portal_threads").select("id, reply_count, is_hidden").eq("id", thread_id).single();
   if (!th || th.is_hidden) return { error: "このスレッドには返信できません。" };
-  const { error } = await supa.from("portal_replies").insert({ thread_id, body, ...commonPoster(form), ip_hash: g.ipHash });
-  if (error) return { error: "保存に失敗しました。時間をおいて再度お試しください。" };
+  const { data: rep, error } = await supa.from("portal_replies").insert({ thread_id, body, ...commonPoster(form), ip_hash: g.ipHash }).select("id").single();
+  if (error || !rep) return { error: "保存に失敗しました。時間をおいて再度お試しください。" };
   await supa.from("portal_threads").update({ reply_count: (th.reply_count ?? 0) + 1, last_activity_at: new Date().toISOString() }).eq("id", thread_id);
   revalidatePath(`/board/${thread_id}`);
+  after(() => notifyAdmin({ kind: "掲示板：返信", title: "スレッドへの返信", body, review: { type: "reply", id: rep.id } }));
   return { ok: true, message: "返信を投稿しました。" };
 }
 
@@ -180,8 +187,9 @@ export async function submitColumn(_: FormState, form: FormData): Promise<FormSt
   const g = await guard(form, "column", title, author, body);
   if ("error" in g) return { error: g.error };
 
-  const { error } = await db().from("portal_columns").insert({ title, author, body, is_published: false, is_submission: true, ip_hash: g.ipHash });
-  if (error) return { error: "送信に失敗しました。時間をおいて再度お試しください。" };
+  const { data: col, error } = await db().from("portal_columns").insert({ title, author, body, is_published: false, is_submission: true, ip_hash: g.ipHash }).select("id").single();
+  if (error || !col) return { error: "送信に失敗しました。時間をおいて再度お試しください。" };
+  after(() => notifyAdmin({ kind: "コラムの寄稿（OKで掲載）", title, body: `ペンネーム：${author}\n${body}`, review: { type: "column", id: col.id } }));
   return { ok: true, message: "寄稿を受け付けました。運営が内容を確認のうえ、掲載する場合はコラム一覧に公開されます。" };
 }
 
@@ -202,13 +210,14 @@ export async function reportItem(_: FormState, form: FormData): Promise<FormStat
   const { count } = await supa.from("portal_reports").select("id", { count: "exact", head: true }).eq("target_id", target_id).eq("ip_hash", ipHash);
   if ((count ?? 0) > 0) return { ok: true, message: "通報を受け付け済みです。ご協力ありがとうございます。" };
 
-  await supa.from("portal_reports").insert({ target_type, target_id, reason, detail, ip_hash: ipHash });
+  const { data: rp } = await supa.from("portal_reports").insert({ target_type, target_id, reason, detail, ip_hash: ipHash }).select("id").single();
   const { data: row } = await supa.from(table).select("report_count").eq("id", target_id).single();
   const next = (row?.report_count ?? 0) + 1;
   const patch: Record<string, unknown> = { report_count: next };
   // 「個人情報」「子どもの安全」の通報は1件で、それ以外は3件で自動的に非表示にする
   if (next >= AUTO_HIDE_REPORTS || reason === "個人情報が書かれている" || reason === "子どもの安全に関わる内容") patch.is_hidden = true;
   await supa.from(table).update(patch).eq("id", target_id);
+  if (rp) after(() => notifyAdmin({ kind: patch.is_hidden ? "通報（自動で非表示中）" : "通報", title: reason, body: `${detail ? `補足：${detail}\n` : ""}通報数：${next}件\nOK＝問題なし（表示に戻す）／NG＝非表示`, review: { type: "report", id: rp.id } }));
   return { ok: true, message: "通報を受け付けました。運営が確認します。ご協力ありがとうございます。" };
 }
 
@@ -247,6 +256,7 @@ export async function sendContact(_: FormState, form: FormData): Promise<FormSta
   if (!r.ok) return { error: r.error };
   const { error } = await db().from("portal_contacts").insert({ name, reply_to, subject, body, ip_hash: ipHash });
   if (error) return { error: "送信に失敗しました。時間をおいて再度お試しください。" };
+  after(() => notifyAdmin({ kind: "お問い合わせ", title: subject, body: `${name ? `${name}さん\n` : ""}${body}`, link: "/admin?tab=contacts" }));
   return { ok: true, message: "お問い合わせを受け付けました。内容によっては返信できない場合があります。" };
 }
 
@@ -259,7 +269,8 @@ export async function adminLogin(_: FormState, form: FormData): Promise<FormStat
     return { error: "パスワードが違います。" };
   }
   await setAdminCookie();
-  redirect("/admin");
+  const next = str(form, "next", 200);
+  redirect(/^\/admin(\/[\w\-/]*)?(\?[\w=&\-]*)?$/.test(next) ? next : "/admin");
 }
 
 export async function adminLogout() {
@@ -415,4 +426,29 @@ export async function adminImportTeams(_: FormState): Promise<FormState> {
   revalidatePath("/admin");
   const byCat = ["D-1", "D-1G", "S-1", "S-1G"].map((c) => `${c} ${rows.filter((r) => r.category === c).length}`).join("・");
   return { ok: true, message: `${rows.length}チームを取り込みました（${byCat}）。${failed.length ? `読み込めなかった都道府県：${failed.join("・")}` : ""}` };
+}
+
+// ───────── 確認ページ・LINE連携 ─────────
+export async function adminReview(form: FormData) {
+  await requireAdmin();
+  const type = str(form, "type", 10) as ReviewType;
+  const id = str(form, "id", 40);
+  const decision = str(form, "decision", 4);
+  if (!REVIEW_TYPES.includes(type) || (decision !== "ok" && decision !== "ng")) return;
+  const msg = await applyReview(type, id, decision);
+  revalidatePath("/", "layout");
+  redirect(`/admin/review/${type}/${id}?done=${encodeURIComponent(msg)}`);
+}
+
+export async function adminLineTest(_: FormState): Promise<FormState> {
+  await requireAdmin();
+  if (!lineReady()) return { error: "LINEの設定（LINE_CHANNEL_ACCESS_TOKEN と LINE_CHANNEL_SECRET）がまだです。" };
+  await notifyAdmin({ kind: "テスト通知", title: "LINE通知のテストです", body: "このお知らせが届いていれば設定は完了です。", link: "/admin?tab=line" });
+  return { ok: true, message: "テスト通知を送りました。LINEを確認してください（届かない場合は連携の手順をもう一度確認してください）。" };
+}
+
+export async function adminLineUnlink() {
+  await requireAdmin();
+  await setSetting(ADMIN_KEY, null);
+  revalidatePath("/admin");
 }

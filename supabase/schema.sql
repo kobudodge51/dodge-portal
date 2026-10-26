@@ -135,3 +135,11 @@ alter table portal_columns enable row level security;
 alter table portal_reports enable row level security;
 alter table portal_contacts enable row level security;
 alter table portal_post_logs enable row level security;
+
+-- サイトの設定（LINE通知の送り先など）
+create table if not exists portal_settings (
+  key text primary key,
+  value text,
+  updated_at timestamptz not null default now()
+);
+alter table portal_settings enable row level security;

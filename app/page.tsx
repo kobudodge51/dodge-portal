@@ -21,13 +21,9 @@ async function count(table: string, extra?: (q: any) => any) { // eslint-disable
 
 export default async function Home() {
   const today = todayJST();
-  // 今月（1日〜月末）の範囲
-  const y = Number(today.slice(0, 4));
-  const m = Number(today.slice(5, 7));
-  const monthStart = `${today.slice(0, 7)}-01`;
-  const nextMonth = m === 12 ? `${y + 1}-01-01` : `${y}-${String(m + 1).padStart(2, "0")}-01`;
-  const [events, threads, columns, nEvents, nTeams, nThreads, nColumns] = await Promise.all([
-    safeList<EventRow>(() => db().from("portal_events").select(EVENT_COLS).eq("is_hidden", false).gte("date_start", monthStart).lt("date_start", nextMonth).order("date_start").limit(15)),
+  const [pastList, upcomingList, threads, columns, nEvents, nTeams, nThreads, nColumns] = await Promise.all([
+    safeList<EventRow>(() => db().from("portal_events").select(EVENT_COLS).eq("is_hidden", false).lt("date_start", today).order("date_start", { ascending: false }).limit(15)),
+    safeList<EventRow>(() => db().from("portal_events").select(EVENT_COLS).eq("is_hidden", false).gte("date_start", today).order("date_start").limit(15)),
     safeList<ThreadRow>(() => db().from("portal_threads").select(THREAD_COLS).eq("is_hidden", false).order("last_activity_at", { ascending: false }).limit(5)),
     safeList<ColumnRow>(() => db().from("portal_columns").select("*").eq("is_published", true).order("published_at", { ascending: false }).limit(4)),
     count("portal_events", (q) => q.eq("is_hidden", false).gte("date_start", today)),
@@ -35,6 +31,14 @@ export default async function Home() {
     count("portal_threads"),
     count("portal_columns", (q) => q.eq("is_published", true)),
   ]);
+
+  // 今日をはさんだ前後の大会を合計15件（終わった大会は最大5件、残りはこれからの大会）
+  const TOTAL = 15;
+  let nPast = Math.min(5, pastList.length);
+  const nUp = Math.min(TOTAL - nPast, upcomingList.length);
+  nPast = Math.min(pastList.length, TOTAL - nUp);
+  const events = [...pastList.slice(0, nPast).reverse(), ...upcomingList.slice(0, nUp)];
+  const nextId = upcomingList[0]?.id;
 
   const gates = [
     { href: "/events", name: "大会予定", num: nEvents, unit: "件 開催予定", tone: "blue" },
@@ -67,10 +71,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="fixtures" aria-label="今月の大会予定">
+      <section className="fixtures" aria-label="直近の大会">
         <div className="wrap">
           <div className="month-head">
-            <h2 className="fixtures-label">{m}月の大会予定</h2>
+            <h2 className="fixtures-label">直近の大会<span className="fixtures-sub">きょうの前後{events.length}大会</span></h2>
             <Link href="/events" className="small">すべての大会予定 →</Link>
           </div>
           {events.length ? (
@@ -79,8 +83,8 @@ export default async function Home() {
                 const d = fmtDateShort(e.date_start);
                 const done = e.date_start < today;
                 return (
-                  <Link key={e.id} href={`/events/${e.id}`} className={done ? "mfix done" : "mfix"}>
-                    <span className="mfix-date">{d.md}<small>（{d.w}）{done ? " 終了" : ""}</small></span>
+                  <Link key={e.id} href={`/events/${e.id}`} className={`mfix${done ? " done" : ""}${e.id === nextId ? " next" : ""}`}>
+                    <span className="mfix-date">{d.md}<small>（{d.w}）{done ? " 終了" : e.date_start === today ? " 本日" : ""}</small>{e.id === nextId && <em className="mfix-next">NEXT</em>}</span>
                     <span className="mfix-title">{e.title}</span>
                     <span className="mfix-meta">{e.prefecture}</span>
                   </Link>
@@ -88,7 +92,7 @@ export default async function Home() {
               })}
             </div>
           ) : (
-            <p className="empty small">今月の大会予定はまだ登録されていません。<Link href="/events/new">大会予定を投稿する</Link></p>
+            <p className="empty small">大会予定はまだ登録されていません。<Link href="/events/new">大会予定を投稿する</Link></p>
           )}
           <p className="source-note">※大会予定・登録チームは、日本ドッジボール協会の公式サイトに掲載されている都道府県協会の情報をもとにしています。協会のホームページがない都道府県や、年間の大会予定が掲載されていない都道府県の大会は入っていません。</p>
         </div>

@@ -20,7 +20,7 @@ export async function setAdminCookie() {
   const token = adminToken();
   if (!token) return;
   const c = await cookies();
-  c.set(COOKIE, token, { httpOnly: true, secure: true, sameSite: "strict", path: "/", maxAge: 60 * 60 * 24 * 14 });
+  c.set(COOKIE, token, { httpOnly: true, secure: true, sameSite: "lax", path: "/", maxAge: 60 * 60 * 24 * 14 });
 }
 
 export async function clearAdminCookie() {

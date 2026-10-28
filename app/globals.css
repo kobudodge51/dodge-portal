@@ -704,15 +704,15 @@ html[data-theme="light"] .j-card-accent { background: linear-gradient(160deg, #f
 
 /* 白い画面：区分・カテゴリの色を濃くして見やすく */
 html[data-theme="light"] .team-card.line-d1 { --tone: #0284c7; }
-html[data-theme="light"] .team-card.line-d1g { --tone: #ec4899; }
+html[data-theme="light"] .team-card.line-d1g { --tone: #f9a8d4; }
 html[data-theme="light"] .team-card.line-s1 { --tone: #b8860b; }
-html[data-theme="light"] .team-card.line-s1g { --tone: #be185d; }
+html[data-theme="light"] .team-card.line-s1g { --tone: #e91e78; }
 html[data-theme="light"] .ev-cat-official { --c: #0284c7; }
 html[data-theme="light"] .ev-cat-junior { --c: #16a34a; }
 html[data-theme="light"] .ev-cat-little { --c: #ca8a04; }
 html[data-theme="light"] .ev-cat-u15 { --c: #6b7280; }
 html[data-theme="light"] .ev-cat-fighter { --c: #b8860b; }
-html[data-theme="light"] .ev-cat-girls { --c: #be185d; }
+html[data-theme="light"] .ev-cat-girls { --c: #e91e78; }
 html[data-theme="light"] .legend-item { --c: #8a90ad; }
 html[data-theme="light"] .cat-official { background: #38bdf8; color: #062a3d; }
 html[data-theme="light"] .cat-d1g { background: #f9a8d4; color: #4a0d2b; }

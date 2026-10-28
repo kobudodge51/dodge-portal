@@ -701,3 +701,40 @@ html[data-theme="light"] .j-stats b { color: #a3155a; }
 html[data-theme="light"] .jq-item { background: #fff; }
 html[data-theme="light"] .jq-item.done .jq-date { background: #b8bccf; }
 html[data-theme="light"] .j-card-accent { background: linear-gradient(160deg, #ffe3ef, #fff 60%); }
+
+/* 白い画面：区分・カテゴリの色を濃くして見やすく */
+html[data-theme="light"] .team-card.line-d1 { --tone: #0284c7; }
+html[data-theme="light"] .team-card.line-d1g { --tone: #ec4899; }
+html[data-theme="light"] .team-card.line-s1 { --tone: #b8860b; }
+html[data-theme="light"] .team-card.line-s1g { --tone: #be185d; }
+html[data-theme="light"] .ev-cat-official { --c: #0284c7; }
+html[data-theme="light"] .ev-cat-junior { --c: #16a34a; }
+html[data-theme="light"] .ev-cat-little { --c: #ca8a04; }
+html[data-theme="light"] .ev-cat-u15 { --c: #6b7280; }
+html[data-theme="light"] .ev-cat-fighter { --c: #b8860b; }
+html[data-theme="light"] .ev-cat-girls { --c: #be185d; }
+html[data-theme="light"] .legend-item { --c: #8a90ad; }
+html[data-theme="light"] .cat-official { background: #38bdf8; color: #062a3d; }
+html[data-theme="light"] .cat-d1g { background: #f9a8d4; color: #4a0d2b; }
+html[data-theme="light"] .cat-junior { background: #4ade80; color: #052e16; }
+html[data-theme="light"] .cat-little { background: #facc15; color: #3a3000; }
+html[data-theme="light"] .cat-u15 { background: linear-gradient(135deg, #e5e7eb, #9ca3af); color: #111827; }
+html[data-theme="light"] .cat-fighter { background: linear-gradient(135deg, #fcd34d, #b8860b); color: #2a1f00; }
+html[data-theme="light"] .topic-meta { color: var(--text-2); }
+html[data-theme="light"] .chip-radio i, html[data-theme="light"] .topic-meta::before { filter: saturate(1.4) brightness(.85); }
+html[data-theme="light"] .mini-gate em { filter: brightness(.85) saturate(1.3); }
+
+/* 投稿メニュー（真ん中の＋） */
+.post-sheet-bg { position: fixed; inset: 0; z-index: 45; background: rgba(3,4,12,.55); }
+.post-sheet { position: fixed; z-index: 46; left: 10px; right: 10px; bottom: calc(80px + env(safe-area-inset-bottom)); padding: 10px; border-radius: 18px; background: var(--panel); border: 1px solid var(--line-2); box-shadow: 0 16px 40px rgba(0,0,0,.45); display: grid; gap: 6px; }
+.post-sheet p { margin: 2px 6px 4px; font-size: .74rem; color: var(--muted); font-weight: 700; }
+.post-sheet a { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 12px; border-radius: 12px; background: rgba(255,255,255,.04); color: var(--text); font-weight: 700; }
+.post-sheet a:hover { text-decoration: none; background: rgba(255,255,255,.09); }
+.post-sheet a small { margin-left: auto; font-weight: 400; font-size: .7rem; color: var(--muted); }
+.post-sheet a i { width: 30px; height: 30px; flex: none; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-style: normal; color: #fff; font-size: .9rem; }
+html[data-theme="light"] .post-sheet a { background: rgba(21,23,58,.04); }
+button.bn-post { border-color: var(--night); cursor: pointer; }
+
+/* パンくず */
+.crumb { display: inline-flex; align-items: center; gap: 4px; min-height: 36px; font-size: .82rem; font-weight: 700; color: var(--text-2); }
+.crumb:hover { text-decoration: none; color: var(--text); }

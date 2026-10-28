@@ -52,7 +52,9 @@ export function parseTeams(js: string, prefecture: string): JdbaTeam[] {
 export async function fetchAllJdbaTeams() {
   const results = await Promise.all(
     PREFECTURES.map(async (p, i) => {
-      const n = String(i + 1).padStart(2, "0");
+      // 日本協会の番号は 15=山梨・16=新潟・17=富山・18=石川・19=福井（JIS番号と並びが違う）
+      const JDBA_NO: Record<string, number> = { 山梨県: 15, 新潟県: 16, 富山県: 17, 石川県: 18, 福井県: 19 };
+      const n = String(JDBA_NO[p.name] ?? i + 1).padStart(2, "0");
       try {
         const res = await fetch(`https://www.jdba-member.net/profile/prof${n}-2.js`, { cache: "no-store", headers: { "user-agent": "Mozilla/5.0 DODGE PORTAL" } });
         if (!res.ok) return { pref: p.name, teams: [] as JdbaTeam[], error: `HTTP ${res.status}` };

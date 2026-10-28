@@ -29,3 +29,17 @@ export function excerpt(text: string, n = 80) {
   const t = text.replace(/\s+/g, " ").trim();
   return t.length > n ? t.slice(0, n) + "…" : t;
 }
+
+// 「3分前」「2時間前」「昨日」などの短い表記
+export function fmtAgo(iso: string) {
+  const diff = Date.now() - new Date(iso).getTime();
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return "たった今";
+  if (m < 60) return `${m}分前`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}時間前`;
+  const d = Math.floor(h / 24);
+  if (d === 1) return "昨日";
+  if (d < 30) return `${d}日前`;
+  return fmtDateTime(iso).split(" ")[0];
+}

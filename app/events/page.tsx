@@ -4,7 +4,7 @@ import { db, isConfigured, safeList } from "@/lib/supabase";
 import { EVENT_COLS, type EventRow } from "@/lib/types";
 import { todayJST } from "@/lib/format";
 import { EVENT_CATEGORIES, EVENT_CATEGORY_NOTE, BLOCKS, blockPrefNames } from "@/lib/prefectures";
-import { PageHead, NotConnected } from "@/components/Layout";
+import { NotConnected } from "@/components/Layout";
 import PrefSelect from "@/components/PrefSelect";
 import EventCalendar from "@/components/EventCalendar";
 
@@ -53,13 +53,11 @@ export default async function EventsPage({ searchParams }: { searchParams: SP })
 
   return (
     <>
-      <PageHead
-        kicker="SCHEDULE"
-        title="大会予定カレンダー"
-        lead="全国のドッジボール大会・交流会の予定です。各都道府県協会の発表や、閲覧者のみなさんからの投稿で作られています。"
-        action={<Link href="/events/new" className="btn btn-primary">＋ 大会予定を投稿する</Link>}
-      />
       <div className="wrap section">
+        <div className="board-tools">
+          <h1 className="disp-head" style={{ margin: 0 }}><span>SCHEDULE</span>大会予定カレンダー</h1>
+          <Link href="/events/new" className="btn btn-primary btn-sm">＋ 大会予定を投稿</Link>
+        </div>
         {sp.deleted && <p className="banner-ok">投稿を削除しました。</p>}
         {!isConfigured() && <NotConnected />}
         <form className="filters" method="get">

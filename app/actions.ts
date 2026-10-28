@@ -452,3 +452,13 @@ export async function adminLineUnlink() {
   await setSetting(ADMIN_KEY, null);
   revalidatePath("/admin");
 }
+
+// 「今週のお題」にするスレッドを決める（空にすると外す）
+export async function adminSetPickup(form: FormData) {
+  await requireAdmin();
+  const id = str(form, "id", 40);
+  await setSetting("pickup_thread", /^[0-9a-f-]{36}$/.test(id) ? id : null);
+  revalidatePath("/");
+  revalidatePath("/board");
+  revalidatePath("/admin");
+}

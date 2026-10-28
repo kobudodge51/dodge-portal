@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { isAdmin } from "@/lib/admin";
 import { db, isConfigured, safeList, safeOne } from "@/lib/supabase";
 import { fmtDateTime, excerpt } from "@/lib/format";
-import { adminLogin, adminLogout, adminSet, adminDelete, adminSaveColumn, adminAddTeam, adminImportEvents, adminImportTeams } from "@/app/actions";
+import { adminLogin, adminLogout, adminSet, adminDelete, adminSaveColumn, adminAddTeam, adminImportEvents, adminImportTeams, adminSetPickup } from "@/app/actions";
+import { getSetting } from "@/lib/settings";
 import PrefSelect from "@/components/PrefSelect";
 import { TEAM_CATEGORIES } from "@/lib/prefectures";
 import ActionForm from "@/components/ActionForm";
@@ -103,6 +104,8 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
     rows = await safeList<Row>(() => db().from(`portal_${tab}`).select("*").order("created_at", { ascending: false }).limit(200));
   }
 
+  const pickupId = tab === "threads" ? await getSetting("pickup_thread") : null;
+
   const editing = tab === "columns" && sp.edit && sp.edit !== "new"
     ? await safeOne<Row>(() => db().from("portal_columns").select("*").eq("id", sp.edit!).single())
     : null;
@@ -198,11 +201,18 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                       {r.is_hidden ? <span className="tag" style={{ color: "var(--danger)" }}>非表示</span> : <span className="tag tag-ok">公開中</span>}
                       {r.report_count > 0 && <><br /><span className="small">通報 {r.report_count}件</span></>}
                       {r.is_verified && <><br /><span className="tag tag-ok">確認済み</span></>}
+                      {tab === "threads" && pickupId === r.id && <><br /><span className="tag" style={{ color: "#ff8fbf" }}>今週のお題</span></>}
                     </td>
                     <td>
                       <div className="admin-actions">
                         <Toggle table={`portal_${tab}`} id={r.id} field="is_hidden" value={r.is_hidden} on="公開に戻す" off="非表示にする" />
                         {(tab === "events" || tab === "teams") && <Toggle table={`portal_${tab}`} id={r.id} field="is_verified" value={r.is_verified} on="確認済みを外す" off="確認済みにする" />}
+                        {tab === "threads" && (
+                          <form action={adminSetPickup}>
+                            <input type="hidden" name="id" value={pickupId === r.id ? "" : r.id} />
+                            <button className="btn btn-outline btn-sm" type="submit">{pickupId === r.id ? "お題から外す" : "今週のお題にする"}</button>
+                          </form>
+                        )}
                         <Del table={`portal_${tab}`} id={r.id} />
                       </div>
                     </td>

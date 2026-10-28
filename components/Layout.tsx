@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Timer from "./Timer";
+import ThemeToggle from "./ThemeToggle";
 import { db, isConfigured } from "@/lib/supabase";
 
 async function totalViews() {
@@ -36,9 +37,6 @@ export async function Header() {
             DODGE<b>PORTAL</b>
           </span>
         </Link>
-        <div className="header-timer">
-          <Timer value={views} label="閲覧数" />
-        </div>
         <nav className="nav" aria-label="メインメニュー">
           {NAV.map((n) => (
             <Link key={n.href} href={n.href} className={`tone-${n.tone}`}>
@@ -46,6 +44,12 @@ export async function Header() {
             </Link>
           ))}
         </nav>
+        <div className="header-tools">
+          <ThemeToggle />
+          <div className="header-timer">
+            <Timer value={views} label="閲覧数" />
+          </div>
+        </div>
       </div>
     </header>
   );

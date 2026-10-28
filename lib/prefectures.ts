@@ -70,7 +70,9 @@ export const splitCategories = (c: string | null | undefined) => (c ?? "").split
 export const TEAM_CATEGORIES = ["D-1", "D-1G", "S-1", "S-1G"];
 export const TEAM_CATEGORY_LABEL: Record<string, string> = { "D-1": "オフィシャル", "D-1G": "ガールズ・小学生", "S-1": "ファイター", "S-1G": "ガールズ・中学生以上" };
 export const blockPrefNames = (block: string) => PREFECTURES.filter((p) => p.block === block).map((p) => p.name);
-export const BOARD_CATEGORIES = ["みんな教えて！", "大会情報", "指導・練習方法", "その他"];
+export const BOARD_CATEGORIES = ["みんな教えて！", "指導・練習方法", "ルール・用品", "その他"];
+// 掲示板カテゴリの色（点の色）
+export const BOARD_CATEGORY_DOT: Record<string, string> = { "みんな教えて！": "#9b7bff", "指導・練習方法": "#22d3ee", "ルール・用品": "#ff8a1f", "その他": "#aab2d8", "大会情報": "#4c6bff" };
 export const REPORT_REASONS = [
   "個人情報が書かれている",
   "誹謗中傷・攻撃的な内容",

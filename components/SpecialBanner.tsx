@@ -8,7 +8,6 @@ export default function SpecialBanner({ today }: { today: string }) {
   const b = Date.UTC(+J.date.slice(0, 4), +J.date.slice(5, 7) - 1, +J.date.slice(8, 10));
   const left = Math.round((b - a) / 86400000);
   return (
-    <div className="wrap">
       <Link href={`/special/${J.slug}`} className="sp-banner">
         <span className="sp-tag">SPECIAL</span>
         <span className="sp-body">
@@ -18,6 +17,5 @@ export default function SpecialBanner({ today }: { today: string }) {
         <span className="sp-count">{left > 0 ? <>あと<b>{left}</b>日</> : <b>本日</b>}</span>
         <span className="sp-go" aria-hidden="true">→</span>
       </Link>
-    </div>
   );
 }

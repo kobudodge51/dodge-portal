@@ -13,6 +13,7 @@ export type RepRow = {
   date?: string; // 代表決定戦の日付
   teams?: string; // 決まった代表チーム（「、」区切り）
   note?: string; // 決定時期などの補足
+  resultUrl?: string; // 結果が載っているページ
 };
 
 export const PREF_NOTE = "県協会の推薦で決定（時期は未発表）";
@@ -62,7 +63,7 @@ export const S1G_ROWS: RepRow[] = [
   { id: "s-tohoku", div: "S-1G", area: "東北ブロック", block: "東北", slots: 2, note: "予選の日程は未発表" },
   { id: "s-kanto", div: "S-1G", area: "関東ブロック", block: "関東", slots: 2, qual: "2026シニアチャンピオンシップ in 関東", qualPref: "神奈川県", date: "2026-08-30" },
   { id: "s-hokushinetsu", div: "S-1G", area: "北信越ブロック", block: "北信越", slots: 2, qual: "2026シニアチャンピオンシップ in 北信越（女子総合 北信越予選）", qualPref: "長野県", date: "2026-11-03" },
-  { id: "s-tokai", div: "S-1G", area: "東海ブロック", block: "東海", slots: 2, qual: "2026シニアチャンピオンシップ in 東海（S-1Gの部）", qualPref: "愛知県", date: "2026-10-25" },
+  { id: "s-tokai", div: "S-1G", area: "東海ブロック", block: "東海", slots: 2, qual: "第13回全日本女子総合 東海ブロック大会（S-1G）", qualPref: "愛知県", date: "2026-10-25", resultUrl: encodeURI("http://www.aichidba.org/wp-content/uploads/2026/10/【結果】第13回全日本女子総合-ﾄｰﾅﾒﾝﾄ-2026.10.25.pdf") },
   { id: "s-kansai", div: "S-1G", area: "関西ブロック（開催ブロック枠＋1）", block: "関西", slots: 3, qual: "全日本女子総合選手権 関西ブロック予選", qualPref: "奈良県", date: "2026-10-17" },
   { id: "s-chugoku", div: "S-1G", area: "中国ブロック", block: "中国", slots: 2, qual: "シニアチャンピオンシップ in 中国（S-1G）", qualPref: "広島県", date: "2026-11-01" },
   { id: "s-shikoku", div: "S-1G", area: "四国ブロック", block: "四国", slots: 2, note: "予選の日程は未発表" },

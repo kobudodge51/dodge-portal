@@ -785,3 +785,4 @@ html[data-theme="light"] .rep-st.check { background: #f4f4f6; }
   .rep-blank { display: none; }
   .rep-team:has(.rep-blank) { display: none; }
 }
+.rep-res { display: inline-block; font-size: .72rem; font-weight: 800; margin-right: 6px; white-space: nowrap; }

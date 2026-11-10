@@ -58,6 +58,7 @@ function RepTable({ rows, events, today, label }: { rows: RepRow[]; events: Even
                 <td className="rep-team">{teams.length ? teams.map((t) => <b key={t}>{t}</b>) : <span className="rep-blank" aria-label="未定">　</span>}</td>
                 <td className="rep-how">
                   <span className={`rep-st ${st.tone}`}>{st.label}</span>
+                  {r.resultUrl && <a href={r.resultUrl} target="_blank" rel="noopener noreferrer" className="rep-res">結果PDF ↗</a>}
                   {r.qual && (ev ? <Link href={`/events/${ev.id}`} className="rep-qual">{r.qual}</Link> : <span className="rep-qual">{r.qual}</span>)}
                 </td>
               </tr>

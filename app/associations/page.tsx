@@ -32,7 +32,7 @@ export default async function AssociationsPage() {
           全国組織：<a href={JDBA_URL} target="_blank" rel="noopener noreferrer">一般財団法人 日本ドッジボール協会</a>
         </p>
         <h2 className="disp-head" style={{ fontSize: "1.1rem", marginTop: 18 }}><span>BLOCKS</span>ブロック（地域連盟・連絡会）</h2>
-        <p className="small muted" style={{ marginTop: 0 }}>北海道から九州・沖縄まで9つのブロックの窓口と、ブロック単位の大会（ブロック選手権・シニアチャンピオンシップなど）です。2026年11月時点で、ブロック専用のホームページは見つかりませんでした（九州はFacebookページあり）。</p>
+        <p className="small muted" style={{ marginTop: 0 }}>北海道から九州・沖縄まで9つのブロックの窓口と、ブロック単位の大会（ブロック選手権・シニアチャンピオンシップなど）です。ブロックの窓口ページがあるのは、北海道（北海道協会）・東海（愛知県協会HP内）・九州（Facebook）です。ほかのブロックは各県の協会が案内しています。</p>
         <div className="blocks" style={{ marginBottom: 22 }}>
           {BLOCK_ASSOCIATIONS.map((b) => {
             const re = BLOCK_EVENT(b.pattern);

@@ -54,15 +54,14 @@ export const ASSOCIATIONS: Record<string, string | null> = {
 export const JDBA_URL = "https://www.dodgeball.or.jp/";
 
 // ブロック（地域連盟・連絡会）
-// 2026年11月時点で、ブロック単位の専用ホームページは確認できませんでした。
-// 九州ブロック連絡会のみFacebookページあり。北海道は北海道協会がブロックを兼ねる。
+// 2026年11月時点。東海は愛知県協会HP内のページ、九州ブロック連絡会はFacebookページ。北海道は北海道協会がブロックを兼ねる。
 export type BlockAssoc = { block: string; name: string; url?: string; urlLabel?: string; note: string; pattern: string };
 export const BLOCK_ASSOCIATIONS: BlockAssoc[] = [
   { block: "北海道", name: "北海道ドッジボール協会（北海道ブロック）", url: "http://www.hdba.server-shared.com/", urlLabel: "協会HP", note: "北海道は1道で1ブロック。北海道協会のホームページがブロックの窓口です。", pattern: "北海道" },
   { block: "東北", name: "東北ブロック", note: "専用ホームページなし。各県協会（宮城・岩手など）が大会を案内しています。", pattern: "東北" },
   { block: "関東", name: "関東ブロック", note: "専用ホームページなし。関東選手権などは開催県の協会が案内しています（山梨県は関東ブロック）。", pattern: "関東" },
   { block: "北信越", name: "北信越ブロック", note: "専用ホームページなし。開催県の協会（新潟・長野・富山など）が案内しています。", pattern: "北信越" },
-  { block: "東海", name: "東海ブロック連絡会", note: "専用ホームページなし。愛知・三重・静岡・岐阜の各協会が案内しています。", pattern: "東海" },
+  { block: "東海", name: "東海ブロック連絡会", url: encodeURI("https://www.aichidba.org/東海ブロック大会etc/"), urlLabel: "大会ページ", note: "愛知県協会のホームページ内「東海ブロック大会etc」に、東海ブロックの大会日程と結果（PDF）がまとめて載っています。", pattern: "東海" },
   { block: "関西", name: "関西ブロック", note: "専用ホームページなし。開催府県の協会が案内しています。", pattern: "関西" },
   { block: "中国", name: "中国ブロック", note: "専用ホームページなし。広島・山口などの各県協会が案内しています。", pattern: "中国" },
   { block: "四国", name: "四国ブロック", note: "専用ホームページなし。愛媛・香川などの各県協会が案内しています。", pattern: "四国" },

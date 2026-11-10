@@ -1,4 +1,4 @@
-// 特設ページの基本情報（出典：日本ドッジボール協会 大会ページ 最終更新 2026/10/13）
+// 特設ページの基本情報（出典：日本ドッジボール協会 大会ページ 最終更新 2026/11/06）
 export const JOSHI_SOGO = {
   slug: "joshi-sogo",
   edition: "第13回",
@@ -9,7 +9,7 @@ export const JOSHI_SOGO = {
   address: "〒520-2164 滋賀県大津市上田上中野町779番地",
   official: "https://dodgeball.or.jp/tournament/zennihon-sogo-joshi/13-zennihon-sogo-joshi/",
   visitors: "https://dodgeball.or.jp/requests-for-visitors/",
-  updated: "2026/10/13",
+  updated: "2026/11/06",
   // 予選として集める期間
   qualFrom: "2026-08-01",
 };

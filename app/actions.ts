@@ -462,3 +462,20 @@ export async function adminSetPickup(form: FormData) {
   revalidatePath("/board");
   revalidatePath("/admin");
 }
+
+// 全日本女子総合 代表チーム一覧の更新
+export async function adminSaveJoshiReps(form: FormData) {
+  await requireAdmin();
+  const { ALL_REP_ROWS } = await import("@/lib/joshi-reps");
+  const out: Record<string, { teams?: string; note?: string }> = {};
+  for (const r of ALL_REP_ROWS) {
+    const teams = str(form, `t_${r.id}`, 200);
+    const note = str(form, `n_${r.id}`, 120);
+    const def = r.teams ?? "";
+    if (teams !== def || note) out[r.id] = { teams, ...(note ? { note } : {}) };
+  }
+  await setSetting("joshi_reps", JSON.stringify(out));
+  revalidatePath("/special/joshi-sogo");
+  revalidatePath("/admin");
+  redirect("/admin?tab=joshi&saved=1");
+}

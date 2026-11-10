@@ -3,6 +3,7 @@ import type { EventRow } from "@/lib/types";
 import { fmtDateShort } from "@/lib/format";
 import { PREFECTURES } from "@/lib/prefectures";
 import { JOSHI_SOGO as J } from "@/lib/specials";
+import { repStatus, type RepRow } from "@/lib/joshi-reps";
 
 
 // 予選会らしい大会を見分ける
@@ -34,7 +35,42 @@ function Qual({ e, today }: { e: EventRow; today: string }) {
   );
 }
 
-export default function JoshiView({ events, today }: { events: EventRow[]; today: string }) {
+function RepTable({ rows, events, today, label }: { rows: RepRow[]; events: EventRow[]; today: string; label: string }) {
+  let lastBlock = "";
+  return (
+    <div className="table-scroll">
+      <table className="rep-table" aria-label={label}>
+        <thead>
+          <tr><th>ブロック</th><th>地区</th><th className="num">枠</th><th>代表チーム</th><th>代表の決まり方・時期</th></tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => {
+            const st = repStatus(r, today);
+            const ev = r.date ? events.find((e) => e.date_start === r.date && e.prefecture === r.qualPref) : undefined;
+            const showBlock = r.block !== lastBlock;
+            lastBlock = r.block;
+            const teams = (r.teams || "").split(/[、,，]/).map((t) => t.trim()).filter(Boolean);
+            return (
+              <tr key={r.id} className={showBlock ? "blk-start" : ""}>
+                <td className="rep-blk">{showBlock ? r.block : ""}</td>
+                <td className="rep-area">{r.area}</td>
+                <td className="num">{r.slots ? r.slots : "−"}</td>
+                <td className="rep-team">{teams.length ? teams.map((t) => <b key={t}>{t}</b>) : <span className="rep-blank" aria-label="未定">　</span>}</td>
+                <td className="rep-how">
+                  <span className={`rep-st ${st.tone}`}>{st.label}</span>
+                  {r.qual && (ev ? <Link href={`/events/${ev.id}`} className="rep-qual">{r.qual}</Link> : <span className="rep-qual">{r.qual}</span>)}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default function JoshiView({ events, today, d1g, s1g }: { events: EventRow[]; today: string; d1g: RepRow[]; s1g: RepRow[] }) {
+  const fixed = [...d1g, ...s1g].filter((r) => r.teams && r.teams.trim()).length;
   const left = daysLeft(today, J.date);
   const quals = events.filter((e) => QUAL.test(e.title));
   const blockQuals = quals.filter((e) => BLOCK.test(e.title));
@@ -77,6 +113,8 @@ export default function JoshiView({ events, today }: { events: EventRow[]; today
               <dt>開催日</dt><dd>{J.dateLabel}</dd>
               <dt>会場</dt><dd>{J.venue}<br /><span className="muted small">{J.address}</span><br /><a href={map} target="_blank" rel="noopener noreferrer" className="small">地図を開く →</a></dd>
               <dt>部門</dt><dd>D-1G（小学生女子）／S-1G（中学生以上女子）</dd>
+              <dt>出場数</dt><dd>D-1G 32チーム＋日本協会推薦／S-1G 20チーム</dd>
+              <dt>変更締切</dt><dd>登録スタッフなどの変更は 11月30日まで</dd>
             </dl>
             <p className="small muted" style={{ marginBottom: 0 }}>試合方式・タイムスケジュールなどの詳細は、日本ドッジボール協会から発表され次第ここに追記します。</p>
           </section>
@@ -94,6 +132,16 @@ export default function JoshiView({ events, today }: { events: EventRow[]; today
             </div>
           </section>
         </div>
+
+        <section className="j-section" id="reps">
+          <h2 className="j-h j-h-lg">代表チーム一覧<span>決まったところから順に掲載（{fixed}地区決定）</span></h2>
+          <p className="small" style={{ margin: "0 0 10px" }}>空欄はまだ代表が決まっていない（または結果を確認できていない）地区です。右の列に、いつ・どの大会で決まるかを載せています。</p>
+          <h3 className="rep-h"><span className="jh-cat d1g"><b>D-1G</b>小学生女子</span>都道府県協会の推薦 32チーム＋日本協会推薦</h3>
+          <RepTable rows={d1g} events={events} today={today} label="D-1G 代表チーム" />
+          <h3 className="rep-h"><span className="jh-cat s1g"><b>S-1G</b>中学生以上女子</span>ブロック代表 20チーム</h3>
+          <RepTable rows={s1g} events={events} today={today} label="S-1G 代表チーム" />
+          <p className="small muted">※枠数は大会要項と前回（第12回）の出場チームをもとにした目安です。D-1Gは前回、愛知県・神奈川県が2チームでした。S-1Gは各ブロックのシニアチャンピオンシップ女子の部から2チーム、開催ブロック（関西）に1チーム、参加チームの多い予選から追加の枠があります。代表チームをご存じの方は<Link href="/contact">お問い合わせ</Link>からお知らせください。</p>
+        </section>
 
         <section className="j-section">
           <h2 className="j-h j-h-lg">ブロック予選<span>ブロック単位の代表決定戦（S-1Gなど）</span></h2>

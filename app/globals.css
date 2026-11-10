@@ -738,3 +738,50 @@ button.bn-post { border-color: var(--night); cursor: pointer; }
 /* パンくず */
 .crumb { display: inline-flex; align-items: center; gap: 4px; min-height: 36px; font-size: .82rem; font-weight: 700; color: var(--text-2); }
 .crumb:hover { text-decoration: none; color: var(--text); }
+
+/* 女子総合 代表チーム一覧 */
+.rep-h { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 16px 0 8px; font-size: .85rem; font-weight: 700; }
+.rep-h .jh-cat { font-size: .78rem; }
+.rep-table { width: 100%; border-collapse: collapse; font-size: .82rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; }
+.rep-table th { text-align: left; font-size: .7rem; letter-spacing: .06em; color: var(--muted); background: rgba(255,79,154,.08); padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.rep-table td { padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.rep-table tr.blk-start td { border-top: 2px solid rgba(255,79,154,.35); }
+.rep-table tbody tr:first-child td { border-top: 0; }
+.rep-table .num { text-align: center; width: 36px; }
+.rep-blk { font-weight: 800; color: var(--rose-2); white-space: nowrap; width: 70px; }
+.rep-area { font-weight: 700; white-space: nowrap; }
+.rep-team { min-width: 120px; }
+.rep-team b { display: inline-block; margin: 0 6px 2px 0; padding: 1px 8px; border-radius: 999px; background: var(--rose-grad); color: #2a0618; font-weight: 800; }
+.rep-blank { display: inline-block; min-width: 90px; border-bottom: 1px dashed var(--line); }
+.rep-how { min-width: 200px; }
+.rep-st { display: inline-block; font-size: .7rem; font-weight: 800; padding: 1px 7px; border-radius: 4px; margin-right: 6px; white-space: nowrap; }
+.rep-st.done { background: var(--rose-3); color: #fff; }
+.rep-st.soon { background: rgba(255,143,191,.18); color: var(--rose-2); border: 1px solid var(--rose-2); }
+.rep-st.check { background: rgba(255,255,255,.06); color: var(--text); border: 1px solid var(--line); }
+.rep-st.tbd { color: var(--muted); padding-left: 0; font-weight: 600; }
+.rep-qual { font-size: .76rem; }
+span.rep-qual { color: var(--muted); }
+html[data-theme="light"] .rep-blk, html[data-theme="light"] .rep-st.soon { color: #a3155a; border-color: #d81b74; }
+html[data-theme="light"] .rep-table th { background: #ffeef6; }
+html[data-theme="light"] .rep-st.check { background: #f4f4f6; }
+.rep-admin input { width: 100%; padding: 4px 6px; font-size: .8rem; }
+.blk-body { padding: 8px 14px 10px; }
+.blk-name { display: flex; justify-content: space-between; gap: 8px; margin: 0; font-size: .88rem; }
+.blk-sub { margin: 6px 0 2px; font-size: .68rem; font-weight: 800; letter-spacing: .06em; color: var(--muted); }
+.blk-ev { display: block; font-size: .8rem; padding: 3px 0; border-bottom: 1px dashed var(--line); color: var(--text); }
+.blk-ev span { display: inline-block; min-width: 72px; color: var(--muted); font-size: .74rem; }
+.blk-ev.done { opacity: .6; }
+@media (max-width: 640px) {
+  .rep-table thead { display: none; }
+  .rep-table, .rep-table tbody { display: block; }
+  .rep-table tr { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+  .rep-table td { display: block; padding: 0; border: 0 !important; }
+  .rep-table td.rep-blk { grid-column: 1 / -1; }
+  .rep-table td.rep-blk:empty { display: none; }
+  .rep-table tr.blk-start { border-top: 2px solid rgba(255,79,154,.35); }
+  .rep-table .num { width: auto; font-size: .72rem; color: var(--muted); }
+  .rep-table .num::before { content: "枠 "; }
+  .rep-team, .rep-how { grid-column: 1 / -1; min-width: 0; }
+  .rep-blank { display: none; }
+  .rep-team:has(.rep-blank) { display: none; }
+}

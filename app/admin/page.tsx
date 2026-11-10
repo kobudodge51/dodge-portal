@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { isAdmin } from "@/lib/admin";
 import { db, isConfigured, safeList, safeOne } from "@/lib/supabase";
 import { fmtDateTime, excerpt } from "@/lib/format";
-import { adminLogin, adminLogout, adminSet, adminDelete, adminSaveColumn, adminAddTeam, adminImportEvents, adminImportTeams, adminSetPickup } from "@/app/actions";
+import { adminLogin, adminLogout, adminSet, adminDelete, adminSaveColumn, adminAddTeam, adminImportEvents, adminImportTeams, adminSetPickup, adminSaveJoshiReps } from "@/app/actions";
 import { getSetting } from "@/lib/settings";
 import PrefSelect from "@/components/PrefSelect";
 import { TEAM_CATEGORIES } from "@/lib/prefectures";
@@ -12,6 +12,7 @@ import ConfirmButton from "@/components/ConfirmButton";
 import InsightsView from "./InsightsView";
 import DevicesView from "./DevicesView";
 import LineView from "./LineView";
+import { ALL_REP_ROWS, mergeRows, parseOverrides } from "@/lib/joshi-reps";
 import { PageHead, NotConnected } from "@/components/Layout";
 
 export const dynamic = "force-dynamic";
@@ -28,6 +29,7 @@ const TABS = [
   { key: "columns", label: "コラム" },
   { key: "contacts", label: "お問い合わせ" },
   { key: "line", label: "LINE通知" },
+  { key: "joshi", label: "女子総合 代表" },
 ];
 
 type Row = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -71,7 +73,7 @@ function summary(table: string, r: Row) {
 
 const VIEW: Record<string, string> = { events: "/events/", teams: "/teams/", threads: "/board/" };
 
-export default async function AdminPage({ searchParams }: { searchParams: Promise<{ tab?: string; edit?: string; show?: string }> }) {
+export default async function AdminPage({ searchParams }: { searchParams: Promise<{ tab?: string; edit?: string; show?: string; saved?: string }> }) {
   if (!(await isAdmin())) {
     return (
       <>
@@ -92,7 +94,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   const tab = TABS.some((t) => t.key === sp.tab) ? sp.tab! : "insights";
 
   let rows: Row[] = [];
-  if (tab === "insights" || tab === "devices" || tab === "line") {
+  if (tab === "insights" || tab === "devices" || tab === "line" || tab === "joshi") {
     rows = [];
   } else if (tab === "reports") {
     rows = await safeList<Row>(() => db().from("portal_reports").select("*").eq("is_resolved", false).order("created_at", { ascending: false }).limit(200));
@@ -104,6 +106,8 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
     rows = await safeList<Row>(() => db().from(`portal_${tab}`).select("*").order("created_at", { ascending: false }).limit(200));
   }
 
+  const repOv = tab === "joshi" ? parseOverrides(await getSetting("joshi_reps")) : {};
+  const reps = tab === "joshi" ? mergeRows(ALL_REP_ROWS, repOv) : [];
   const pickupId = tab === "threads" ? await getSetting("pickup_thread") : null;
 
   const editing = tab === "columns" && sp.edit && sp.edit !== "new"
@@ -123,6 +127,30 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
 
         {tab === "insights" && <InsightsView />}
         {tab === "line" && <LineView />}
+        {tab === "joshi" && (
+          <form action={adminSaveJoshiReps}>
+            {sp.saved && <p className="banner-ok">保存しました。特設ページに反映されています。</p>}
+            <p className="small">代表が決まったら「代表チーム」にチーム名を入れて保存してください（複数は「、」で区切る）。空欄のままなら、特設ページでは空白と「いつ決まるか」が表示されます。「補足」を入れると決まる時期の表示を置き換えます（例：12/1 発表予定）。</p>
+            <div className="table-scroll">
+              <table className="admin-table rep-admin">
+                <thead><tr><th>部門</th><th>地区</th><th>代表決定の大会</th><th>代表チーム</th><th>補足（任意）</th></tr></thead>
+                <tbody>
+                  {reps.map((r) => (
+                    <tr key={r.id}>
+                      <td>{r.div}</td>
+                      <td style={{ whiteSpace: "nowrap" }}>{r.area}</td>
+                      <td className="small">{r.date ? `${+r.date.slice(5, 7)}/${+r.date.slice(8, 10)} ` : ""}{r.qual ?? ""}</td>
+                      <td><input name={`t_${r.id}`} defaultValue={r.teams ?? ""} placeholder="未定" /></td>
+                      <td><input name={`n_${r.id}`} defaultValue={repOv[r.id]?.note ?? ""} placeholder="" /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <button className="btn btn-primary" type="submit" style={{ marginTop: 10 }}>保存する</button>
+            <p className="small muted"><Link href="/special/joshi-sogo#reps" target="_blank">特設ページで確認する →</Link></p>
+          </form>
+        )}
         {tab === "devices" && <DevicesView show={sp.show === "all" || sp.show === "blocked" ? sp.show : ""} />}
 
         {tab === "reports" && (

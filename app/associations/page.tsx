@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { BLOCKS, PREFECTURES } from "@/lib/prefectures";
-import { ASSOCIATIONS, JDBA_URL, BLOCK_ASSOCIATIONS } from "@/lib/associations";
+import { ASSOCIATIONS, JDBA_URL, BLOCK_ASSOCIATIONS, SUB_ASSOCIATIONS } from "@/lib/associations";
 import { db, safeList } from "@/lib/supabase";
 import { EVENT_COLS, type EventRow } from "@/lib/types";
 import { todayJST, fmtDateShort } from "@/lib/format";
@@ -63,13 +63,24 @@ export default async function AssociationsPage() {
               <ul>
                 {PREFECTURES.filter((p) => p.block === b).map((p) => {
                   const url = ASSOCIATIONS[p.name];
+                  const subs = SUB_ASSOCIATIONS[p.name] ?? [];
                   return (
-                    <li key={p.code}>
+                    <li key={p.code} className={subs.length ? "has-sub" : ""}>
                       <Link href={`/pref/${p.code}`}>{p.name}</Link>
                       {url ? (
                         <a href={url} target="_blank" rel="noopener noreferrer" className="small">協会HP ↗</a>
                       ) : (
                         <span className="small muted">HP情報なし</span>
+                      )}
+                      {subs.length > 0 && (
+                        <ul className="sub-assoc">
+                          {subs.map((s) => (
+                            <li key={s.name}>
+                              <span>└ {s.name}{s.note && <small>{s.note}</small>}</span>
+                              {s.url && <a href={s.url} target="_blank" rel="noopener noreferrer" className="small">大会予定 ↗</a>}
+                            </li>
+                          ))}
+                        </ul>
                       )}
                     </li>
                   );
@@ -79,7 +90,7 @@ export default async function AssociationsPage() {
           ))}
         </div>
         <p className="small muted" style={{ marginTop: 16 }}>
-          リンク先が変わっている・新しいホームページができた場合は、<Link href="/contact">お問い合わせ</Link>からお知らせください。
+          支部・市の協会など、ここに載っていない協会のホームページや、リンク先が変わっている場合は、<Link href="/contact">お問い合わせ</Link>からお知らせください。
         </p>
       </div>
     </>

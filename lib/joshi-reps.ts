@@ -28,7 +28,7 @@ export const D1G_ROWS: RepRow[] = [
   { id: "d-saitama", div: "D-1G", area: "埼玉県", block: "関東", slots: 1 },
   { id: "d-chiba", div: "D-1G", area: "千葉県", block: "関東", slots: 1 },
   { id: "d-tokyo", div: "D-1G", area: "東京都", block: "関東", slots: 1, qual: "第29回 ガールズカップ IN TOKYO（D-1G 東京代表決定戦）", qualPref: "東京都", date: "2026-11-03" },
-  { id: "d-kanagawa", div: "D-1G", area: "神奈川県", block: "関東", slots: 2, qual: "第32回 神奈川県ドッジボール選手権大会", qualPref: "神奈川県", date: "2026-10-04" },
+  { id: "d-kanagawa", div: "D-1G", area: "神奈川県", block: "関東", slots: 2, qual: "第32回 神奈川県ドッジボール選手権大会", qualPref: "神奈川県", date: "2026-10-04" , resultUrl: "https://kdba.jp/taikai/2026/pre2026.html#261004" },
   { id: "d-niigata", div: "D-1G", area: "新潟県", block: "北信越", slots: 1, qual: "第13回 全日本女子総合 新潟県大会", qualPref: "新潟県", date: "2026-10-18" },
   { id: "d-toyama", div: "D-1G", area: "富山県", block: "北信越", slots: 1 },
   { id: "d-ishikawa", div: "D-1G", area: "石川県", block: "北信越", slots: 1 },
@@ -36,7 +36,7 @@ export const D1G_ROWS: RepRow[] = [
   { id: "d-nagano", div: "D-1G", area: "長野県", block: "北信越", slots: 1 },
   { id: "d-gifu", div: "D-1G", area: "岐阜県", block: "東海", slots: 1 },
   { id: "d-shizuoka", div: "D-1G", area: "静岡県", block: "東海", slots: 1, qual: "第13回 全日本女子総合 静岡県予選会", qualPref: "静岡県", date: "2026-09-26" },
-  { id: "d-aichi", div: "D-1G", area: "愛知県", block: "東海", slots: 2, qual: "第13回 全日本女子総合 愛知県予選", qualPref: "愛知県", date: "2026-10-25" },
+  { id: "d-aichi", div: "D-1G", area: "愛知県", block: "東海", slots: 2, qual: "第13回 全日本女子総合 東海・愛知県予選（知立）", qualPref: "愛知県", date: "2026-10-25" , resultUrl: encodeURI("https://www.aichidba.org/大会結果/") },
   { id: "d-mie", div: "D-1G", area: "三重県", block: "東海", slots: 1, qual: "第13回 全日本女子総合 三重県大会", qualPref: "三重県", date: "2026-10-31", teams: "心華" },
   { id: "d-shiga", div: "D-1G", area: "滋賀県", block: "関西", slots: 1, note: "開催県" },
   { id: "d-kyoto", div: "D-1G", area: "京都府", block: "関西", slots: 1, qual: "あやべオープン大会／京都府予選会", qualPref: "京都府", date: "2026-11-08" },
@@ -61,13 +61,13 @@ export const D1G_ROWS: RepRow[] = [
 export const S1G_ROWS: RepRow[] = [
   { id: "s-hokkaido", div: "S-1G", area: "北海道", block: "北海道", slots: 0, note: "前回は出場なし・予選情報なし" },
   { id: "s-tohoku", div: "S-1G", area: "東北ブロック", block: "東北", slots: 2, note: "予選の日程は未発表" },
-  { id: "s-kanto", div: "S-1G", area: "関東ブロック", block: "関東", slots: 2, qual: "2026シニアチャンピオンシップ in 関東", qualPref: "神奈川県", date: "2026-08-30" },
+  { id: "s-kanto", div: "S-1G", area: "関東ブロック", block: "関東", slots: 2, qual: "2026シニアチャンピオンシップ in 関東", qualPref: "神奈川県", date: "2026-08-30" , resultUrl: "https://kdba.jp/taikai/2026/pre2026.html#260830" },
   { id: "s-hokushinetsu", div: "S-1G", area: "北信越ブロック", block: "北信越", slots: 2, qual: "2026シニアチャンピオンシップ in 北信越（女子総合 北信越予選）", qualPref: "長野県", date: "2026-11-03" },
   { id: "s-tokai", div: "S-1G", area: "東海ブロック", block: "東海", slots: 2, qual: "第13回全日本女子総合 東海ブロック大会（S-1G）", qualPref: "愛知県", date: "2026-10-25", resultUrl: encodeURI("http://www.aichidba.org/wp-content/uploads/2026/10/【結果】第13回全日本女子総合-ﾄｰﾅﾒﾝﾄ-2026.10.25.pdf") },
   { id: "s-kansai", div: "S-1G", area: "関西ブロック（開催ブロック枠＋1）", block: "関西", slots: 3, qual: "全日本女子総合選手権 関西ブロック予選", qualPref: "奈良県", date: "2026-10-17" },
   { id: "s-chugoku", div: "S-1G", area: "中国ブロック", block: "中国", slots: 2, qual: "シニアチャンピオンシップ in 中国（S-1G）", qualPref: "広島県", date: "2026-11-01" },
   { id: "s-shikoku", div: "S-1G", area: "四国ブロック", block: "四国", slots: 2, note: "予選の日程は未発表" },
-  { id: "s-kyushu", div: "S-1G", area: "九州ブロック", block: "九州・沖縄", slots: 2, qual: "シニアチャンピオンシップ in 九州（S-1G）", qualPref: "福岡県", date: "2026-09-20" },
+  { id: "s-kyushu", div: "S-1G", area: "九州ブロック", block: "九州・沖縄", slots: 2, qual: "シニアチャンピオンシップ in 九州（S-1G）", qualPref: "福岡県", date: "2026-09-20" , resultUrl: "https://drive.google.com/file/d/1MCkAJwN47z6l8xkkMtikwcv8nrA2W9-U/view" },
   { id: "s-extra", div: "S-1G", area: "追加枠（参加数の多い予選から）", block: "全国", slots: 3, note: "日本協会が決定（時期は未発表）" },
 ];
 

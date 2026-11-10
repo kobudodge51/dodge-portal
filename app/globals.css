@@ -786,3 +786,7 @@ html[data-theme="light"] .rep-st.check { background: #f4f4f6; }
   .rep-team:has(.rep-blank) { display: none; }
 }
 .rep-res { display: inline-block; font-size: .72rem; font-weight: 800; margin-right: 6px; white-space: nowrap; }
+.block li.has-sub { flex-wrap: wrap; }
+.sub-assoc { list-style: none; margin: 4px 0 0; padding: 0; width: 100%; }
+.block .sub-assoc li { padding: 4px 0 4px 8px; border: 0; font-size: .8rem; color: var(--text-2); }
+.sub-assoc small { display: block; font-size: .68rem; color: var(--muted); padding-left: 1em; }

@@ -67,3 +67,14 @@ export const BLOCK_ASSOCIATIONS: BlockAssoc[] = [
   { block: "四国", name: "四国ブロック", note: "専用ホームページなし。愛媛・香川などの各県協会が案内しています。", pattern: "四国" },
   { block: "九州・沖縄", name: "九州ブロック連絡会", url: "https://www.facebook.com/jdbakyushu", urlLabel: "Facebook", note: "九州・沖縄8県のブロック。大会のお知らせはFacebookページで発信されています。", pattern: "九州" },
 ];
+
+// 県協会の中の支部・市協会（大会を独自に運営しているところ）
+export type SubAssoc = { name: string; url?: string; note?: string };
+const AICHI_SCHEDULE = encodeURI("https://www.aichidba.org/年間スケジュール/");
+export const SUB_ASSOCIATIONS: Record<string, SubAssoc[]> = {
+  愛知県: [
+    { name: "名古屋支部（名古屋市ドッジボール協会）", url: AICHI_SCHEDULE, note: "理事長杯・しゃちほこ杯・あいち・なごやっ子など" },
+    { name: "尾張支部", url: AICHI_SCHEDULE, note: "尾張クラウンズカップなど" },
+    { name: "三河支部", url: AICHI_SCHEDULE, note: "参河桜杯・三河支部長杯・クリスマスカップなど" },
+  ],
+};
